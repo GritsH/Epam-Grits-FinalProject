@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO">
+    <Properties>
+        <property name="LOG_DIR">logs</property>
+        <property name="pattern_file">%d{yyy-MM-dd HH:mm:ss} [%-16t] %-5level %logger{36} - %msg%n</property>
+        <property name="pattern_console">[%t] %-5level %logger{1} - %msg%n
+        </property>
+    </Properties>
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </Console>
+        <File name="Logger" fileName="${LOG_DIR}/logger.log" append="false">
+                    <PatternLayout pattern="${pattern_file}"/>
+        </File>
+    </Appenders>
+    <Loggers>
+     <Logger name="by.grits" level="debug" additivity="false">
+                <AppenderRef ref="Logger" level="info"/>
+                <AppenderRef ref="Console"/>
+     </Logger>
+        <Root level="debug" additivity="true">
+            <AppenderRef ref="Console"/>
+        </Root>
+    </Loggers>
+</Configuration>
