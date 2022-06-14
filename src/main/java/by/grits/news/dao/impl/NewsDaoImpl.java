@@ -3,7 +3,7 @@ package by.grits.news.dao.impl;
 import by.grits.news.dao.NewsDao;
 import by.grits.news.dao.connection.ConnectionPool;
 import by.grits.news.entities.News;
-import by.grits.news.dao.exceptions.DaoException;
+import by.grits.news.dao.exception.DaoException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

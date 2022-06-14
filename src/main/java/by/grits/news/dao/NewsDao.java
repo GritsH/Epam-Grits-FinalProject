@@ -1,7 +1,7 @@
 package by.grits.news.dao;
 
 import by.grits.news.entities.News;
-import by.grits.news.dao.exceptions.DaoException;
+import by.grits.news.dao.exception.DaoException;
 
 import java.util.List;
 

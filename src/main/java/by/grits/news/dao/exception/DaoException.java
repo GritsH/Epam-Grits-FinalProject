@@ -1,4 +1,4 @@
-package by.grits.news.dao.exceptions;
+package by.grits.news.dao.exception;
 
 public class DaoException extends Exception {
 

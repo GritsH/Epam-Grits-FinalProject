@@ -28,7 +28,7 @@ class PasswordEncoderTest {
     @Test
     void shouldNotMatch() throws NoSuchAlgorithmException {
         String password = "password";
-        when(passwordEncoder.encode(password)).thenReturn("encoded");
+        when(passwordEncoder.encode(password)).thenReturn("encoded1");
 
         String encodedPassword = passwordEncoder.encode(password);
         assertNotEquals(password, encodedPassword);

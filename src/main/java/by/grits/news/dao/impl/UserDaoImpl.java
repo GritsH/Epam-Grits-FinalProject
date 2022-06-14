@@ -4,7 +4,7 @@ import by.grits.news.dao.UserDao;
 import by.grits.news.dao.connection.ConnectionPool;
 import by.grits.news.entities.User;
 import by.grits.news.entities.enums.RoleType;
-import by.grits.news.dao.exceptions.DaoException;
+import by.grits.news.dao.exception.DaoException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -25,6 +25,7 @@ public class UserDaoImpl implements UserDao {
             "select email_address, user_name, user_password, role_type, added_at from users";
     private static final String LOGIN =
             "select email_address, role_type, added_at from users where email_address=? and user_password=?";
+
     private static UserDaoImpl instance;
 
     private UserDaoImpl() {
@@ -106,7 +107,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public User signIn(String email, String password) throws DaoException {
+    public User logIn(String email, String password) throws DaoException {
         User user = null;
         try (Connection connection = ConnectionPool.getInstance().getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(LOGIN);
