@@ -1,0 +1,26 @@
+.main {
+    padding: 1% 25%;
+}
+
+.news-article:hover {
+    box-shadow: none;
+}
+
+.news-article__title {
+    display: initial;
+    -webkit-line-clamp: initial;
+    overflow: initial;
+    -webkit-box-orient: initial;
+    text-align: center;
+}
+
+.news-article__title:hover {
+    color: black;
+}
+
+.news-article__text {
+    display: initial;
+    -webkit-line-clamp: initial;
+    -webkit-box-orient: initial;
+    overflow: initial;
+}
