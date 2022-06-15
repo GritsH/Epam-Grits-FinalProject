@@ -35,7 +35,7 @@ public class LoginCommand implements Command {
             User user = userService.login(userData);
             if (user != null) {
                 session.removeAttribute(USER_DATA_SESSION);
-                session.setAttribute(CURRENT_USER_EMAIL, user.getEmailAddress());
+                session.setAttribute(CURRENT_USER_EMAIL_SESSION, user.getEmailAddress());
                 session.setAttribute(CURRENT_ROLE, user.getRole());
                 session.setAttribute(CURRENT_PAGE, PageNavigation.NEWS_FEED);
                 router = new Router(PageNavigation.NEWS_FEED);

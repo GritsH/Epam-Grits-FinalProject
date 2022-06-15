@@ -14,7 +14,8 @@ public enum CommandType {
     GO_TO_NEWS_PAGE(EnumSet.of(ADMIN, USER, UNKNOWN)),
     LOGIN(EnumSet.of(USER)),
     LOGOUT(EnumSet.of(USER, ADMIN)),
-    SIGNUP(EnumSet.of(UNKNOWN));
+    SIGNUP(EnumSet.of(UNKNOWN)),
+    DEFAULT(EnumSet.of(ADMIN, USER, UNKNOWN));
 
     private EnumSet<RoleType> acceptableRole;
 

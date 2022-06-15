@@ -29,7 +29,7 @@ public class ConnectionPool {
     private static final String DB_USER_PROPERTY = "user";
     private static final String DB_PASSWORD_PROPERTY = "password";
     private static final String DB_DRIVER_PROPERTY = "driver";
-    private static final String DEFAULT_DRIVER_PROPERTY = "com.mysql.cj.jdbc.Driver";
+    private static final String DEFAULT_DRIVER_PROPERTY = "com.mysql.jdbc.Driver";
     private static final String DB_URL;
     private static final String POOL_PROPERTIES_PREFIX = "pool.";
     private static final String POOL_SIZE_PROPERTY = "size";
