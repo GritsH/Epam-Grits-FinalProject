@@ -40,8 +40,8 @@
         <a class="header-logo__title" href="news.html">News</a>
     </div>
     <div class="header-auth">
-        <a class="header-auth__item" href="login.html">Log in</a>
-        <a class="header-auth__item" href="signup.html">Sign Up</a>
+        <a class="header-auth__item" href="${pageContext.request.contextPath}/pages/login.jsp">Log in</a>
+        <a class="header-auth__item" href="${pageContext.request.contextPath}/pages/signup.jsp">Sign Up</a>
     </div>
 </header>
 <main class="main">
@@ -62,7 +62,7 @@
         </form>
         <div class="card-auth">
             <p class="card-auth__text">Don't have an account?</p>
-            <a class="card-auth__link" href="signup.html">Sign up</a>
+            <a class="card-auth__link" href="${pageContext.request.contextPath}/pages/signup.jsp">Sign up</a>
         </div>
     </section>
 </main>
