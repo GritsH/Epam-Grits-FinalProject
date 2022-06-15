@@ -24,6 +24,8 @@ public class NewsDaoImpl implements NewsDao {
             "select id, title, summary, content, author, added_at from news where id=?";
     private static final String GET_ALL =
             "select id, title, summary, content, author, added_at from news";
+    private static final String GET_BY_AUTHOR =
+            "select id, title, summary, content, author, added_at from news where author=?";
 
     private static NewsDaoImpl instance;
 
@@ -95,6 +97,30 @@ public class NewsDaoImpl implements NewsDao {
             throw new DaoException("Error while insert query: " + e.getMessage());
         }
         return news;
+    }
+
+    @Override
+    public List<News> findByAuthor(String authorEmail) throws DaoException {
+        News news = null;
+        List<News> selectedNews = new ArrayList<>();
+        try(Connection connection = ConnectionPool.getInstance().getConnection()){
+            PreparedStatement preparedStatement = connection.prepareStatement(GET_BY_AUTHOR);
+            preparedStatement.setString(1, authorEmail);
+
+            try(ResultSet resultSet = preparedStatement.executeQuery()){
+                while(resultSet.next()){
+                    news = new News(resultSet.getString("title"), resultSet.getString("summary"),
+                            resultSet.getString("content"), resultSet.getString("author"));
+                    news.setId(resultSet.getInt("id"));
+                    news.setAddedAt(resultSet.getDate("added_at").toLocalDate());
+                    selectedNews.add(news);
+                }
+            }
+        } catch (SQLException e) {
+            LOGGER.error("Error while select query: " + e.getMessage());
+            throw new DaoException("Error while insert query: " + e.getMessage());
+        }
+        return selectedNews;
     }
 
     @Override
