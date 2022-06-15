@@ -7,8 +7,8 @@
         </property>
     </Properties>
     <Appenders>
-        <Console name="Console" target="SYSTEM_OUT">
-            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        <Console name="STDOUT" target="SYSTEM_OUT">
+            <PatternLayout  pattern="${pattern_console}"/>
         </Console>
         <File name="Logger" fileName="${LOG_DIR}/logger.log" append="false">
                     <PatternLayout pattern="${pattern_file}"/>
@@ -17,10 +17,10 @@
     <Loggers>
      <Logger name="by.grits" level="debug" additivity="false">
                 <AppenderRef ref="Logger" level="info"/>
-                <AppenderRef ref="Console"/>
+                <AppenderRef ref="STDOUT"/>
      </Logger>
         <Root level="debug" additivity="true">
-            <AppenderRef ref="Console"/>
+            <AppenderRef ref="STDOUT"/>
         </Root>
     </Loggers>
 </Configuration>

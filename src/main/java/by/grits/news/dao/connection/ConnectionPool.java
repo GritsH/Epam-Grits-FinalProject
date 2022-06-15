@@ -19,8 +19,6 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class ConnectionPool {
     static Logger LOGGER = LogManager.getLogger(ConnectionPool.class);
-    private static ConnectionPool instance;
-
     private static final Properties properties = new Properties();
 
     private static final String DB_PROPERTIES_FILE = "properties/app.properties";
@@ -29,7 +27,7 @@ public class ConnectionPool {
     private static final String DB_USER_PROPERTY = "user";
     private static final String DB_PASSWORD_PROPERTY = "password";
     private static final String DB_DRIVER_PROPERTY = "driver";
-    private static final String DEFAULT_DRIVER_PROPERTY = "com.mysql.jdbc.Driver";
+    private static final String DEFAULT_DRIVER_PROPERTY = "com.mysql.cj.jdbc.Driver";
     private static final String DB_URL;
     private static final String POOL_PROPERTIES_PREFIX = "pool.";
     private static final String POOL_SIZE_PROPERTY = "size";
@@ -38,6 +36,7 @@ public class ConnectionPool {
 
     private static final Lock instanceLock = new ReentrantLock(true);
     private static final AtomicBoolean isInstanceCreated = new AtomicBoolean(false);
+    private static ConnectionPool instance;
 
     private final BlockingQueue<ProxyConnection> available =
             new LinkedBlockingQueue<>(CONNECTION_POOL_SIZE);
@@ -59,8 +58,9 @@ public class ConnectionPool {
                     DB_PASSWORD_PROPERTY,
                     fileProperties.getProperty(DB_PROPERTIES_PREFIX + DB_PASSWORD_PROPERTY));
 
-            if ((driverProperty = fileProperties.getProperty(DB_PROPERTIES_PREFIX + DB_DRIVER_PROPERTY))
-                    == null) {
+            driverProperty = fileProperties.getProperty(DB_PROPERTIES_PREFIX + DB_DRIVER_PROPERTY);
+
+            if (driverProperty == null) {
                 driverProperty = DEFAULT_DRIVER_PROPERTY;
             }
             Class.forName(driverProperty);
