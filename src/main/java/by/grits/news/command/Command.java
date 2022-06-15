@@ -10,7 +10,6 @@ public interface Command {
 
     static String extract(HttpServletRequest request) {
         String commandPart = request.getQueryString();
-        String currentPage = CONTROLLER_PART + commandPart;
-        return currentPage;
+        return CONTROLLER_PART + commandPart;
     }
 }

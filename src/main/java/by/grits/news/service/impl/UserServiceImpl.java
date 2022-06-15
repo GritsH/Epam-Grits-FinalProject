@@ -35,7 +35,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User login(Map<String, String> userData) throws ServiceException {
         User user = null;
-        String email = userData.get(EMAIL_SESSION);
+        String email = userData.get(USER_EMAIL_SESSION);
         String password = userData.get(PASSWORD_SESSION);
         PasswordEncoder passwordEncoder = new PasswordEncoder();
         if (!EmailValidator.validateEmailInput(email)) {
@@ -59,10 +59,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean signup(Map<String, String> userData) throws ServiceException {
-        if (!EmailValidator.validateEmailInput(userData.get(EMAIL_SESSION))) {
+        if (!EmailValidator.validateEmailInput(userData.get(USER_EMAIL_SESSION))) {
             return false;
         }
-        String email = userData.get(EMAIL_SESSION);
+        String email = userData.get(USER_EMAIL_SESSION);
         String password = userData.get(PASSWORD_SESSION);
 
         try {

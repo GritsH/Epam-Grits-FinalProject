@@ -12,8 +12,12 @@ public class SessionAttribute {
     public static final String NEWS_ID_SESSION = "news_id_ses";
     public static final String NEWS_AUTHOR_SESSION = "news_author_ses";
     public static final String NEWS_ADDED_AT_SESSION = "news_added_at_ses";
+    public static final String USER_EMAIL_SESSION = "email_ses";
+    public static final String USER_DATA_SESSION = "user_data_ses";
     public static final String EMAIL_SESSION = "email_ses";
-    public static final String PASSWORD_SESSION = "password_session";
+    public static final String PASSWORD_SESSION = "password_ses";
+    public static final String REPEAT_PASSWORD_SESSION = "repeat_password_ses";
+    public static final String REGISTRATION_RESULT = "registration_result";
     public static final String LOCALE = "locale";
     public static final String WRONG_AMOUNT_OVERSIZE_SESSION = "wrong_amount_oversize_ses";
     public static final String WRONG_AMOUNT_SESSION = "wrong_amount_ses";
