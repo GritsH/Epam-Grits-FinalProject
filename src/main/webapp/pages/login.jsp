@@ -40,13 +40,14 @@
         <a class="header-logo__title" href="news.html">News</a>
     </div>
     <div class="header-auth">
-        <a class="header-auth__item" href="${pageContext.request.contextPath}/pages/login.jsp">Log in</a>
-        <a class="header-auth__item" href="${pageContext.request.contextPath}/pages/signup.jsp">Sign Up</a>
+        <a class="header-auth__item" href="${path}/controller?command=go_to_login_page">Log in</a>
+        <a class="header-auth__item" href="${path}/controller?command=go_to_signup_page">Sign Up</a>
     </div>
 </header>
 <main class="main">
     <section class="card">
         <form class="card-form">
+            <input type="hidden" name="command" value="login">
             <div class="card-form__item">
                 <label class="card__label" for="emailInput">Email:</label>
                 <input id="emailInput" class="card__input" type="email">
@@ -62,7 +63,7 @@
         </form>
         <div class="card-auth">
             <p class="card-auth__text">Don't have an account?</p>
-            <a class="card-auth__link" href="${pageContext.request.contextPath}/pages/signup.jsp">Sign up</a>
+            <a class="card-auth__link" href="${path}/controller?command=go_to_signup_page">Sign up</a>
         </div>
     </section>
 </main>

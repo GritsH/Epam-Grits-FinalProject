@@ -10,8 +10,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 
+
 <fmt:setLocale value="${locale}" scope="session"/>
 <fmt:setBundle basename="properties.pagecontent"/>
+
+<fmt:message key="field.email" var="email"/>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -30,36 +34,39 @@
         <a class="header-logo__title" href="news.html">News</a>
     </div>
     <div class="header-auth">
-        <a class="header-auth__item" href="${pageContext.request.contextPath}/pages/login.jsp">Log in</a>
-        <a class="header-auth__item" href="${pageContext.request.contextPath}/pages/signup.jsp">Sign Up</a>
+        <a class="header-auth__item" href="${path}/controller?command=go_to_login_page">Log in</a>
+        <a class="header-auth__item" href="${path}/controller?command=go_to_signup_page">Sign Up</a>
     </div>
 </header>
 <main class="main">
     <section class="card">
         <form class="card-form" action="${path}/controller" method="post">
-<%--            <input class="card-form">--%>
+            <input type="hidden" name="command" value="signup">
             <div class="card-form__item">
                 <label class="card__label" for="emailInput">Email:</label>
-                <input id="emailInput" class="card__input" type="email">
+                <input id="emailInput" class="card__input" type="email" name="email"
+                       value="${user_data_ses['email_ses']}">
                 <p id="emailError" class="input-error">Email is invalid</p>
             </div>
             <div class="card-form__item">
                 <label class="card__label"
                        for="password1Input">Password:</label>
-                <input id="password1Input" class="card__input" type="password">
+                <input id="password1Input" class="card__input" type="password" name="pass"
+                       value="${user_data_ses['password_ses']}">
                 <p id="password1Error" class="input-error">Password is too short</p>
             </div>
             <div class="card-form__item">
                 <label class="card__label" for="password2Input">Confirm
                     password:</label>
-                <input id="password2Input" class="card__input" type="password">
+                <input id="password2Input" class="card__input" type="password" name="repeat_password"
+                       value="${user_data_ses['repeat_password_ses']}">
                 <p id="password2Error" class="input-error">Passwords don't match</p>
             </div>
-            <input class="card__submit" type="submit" value="Sign up">
+            <input class="card__submit" type="submit" value="Sign up" name="submitBtn">
         </form>
         <div class="card-auth">
             <p class="card-auth__text">Already have an account?</p>
-            <a class="card-auth__link" href="${pageContext.request.contextPath}/pages/login.jsp">Log in</a>
+            <a class="card-auth__link" href="${path}/controller?command=go_to_login_page">Log in</a>
         </div>
     </section>
 </main>

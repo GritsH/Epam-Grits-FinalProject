@@ -56,7 +56,7 @@ public class LoginCommand implements Command {
     }
 
     private void updateUserDataFromRequest(HttpServletRequest request, Map<String, String> userData) {
-        userData.put(EMAIL_SESSION, request.getParameter(EMAIL));
+        userData.put(USER_EMAIL_SESSION, request.getParameter(EMAIL));
         userData.put(PASSWORD_SESSION, request.getParameter(PASS));
     }
 }

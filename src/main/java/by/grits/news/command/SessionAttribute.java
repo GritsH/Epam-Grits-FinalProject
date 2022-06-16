@@ -14,7 +14,6 @@ public class SessionAttribute {
     public static final String NEWS_ADDED_AT_SESSION = "news_added_at_ses";
     public static final String USER_EMAIL_SESSION = "email_ses";
     public static final String USER_DATA_SESSION = "user_data_ses";
-    public static final String EMAIL_SESSION = "email_ses";
     public static final String PASSWORD_SESSION = "password_ses";
     public static final String REPEAT_PASSWORD_SESSION = "repeat_password_ses";
     public static final String REGISTRATION_RESULT = "registration_result";

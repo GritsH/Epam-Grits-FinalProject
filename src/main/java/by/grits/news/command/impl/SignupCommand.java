@@ -12,6 +12,7 @@ import jakarta.servlet.http.HttpSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import static by.grits.news.command.RequestParameter.*;
@@ -56,7 +57,7 @@ public class SignupCommand implements Command {
     }
 
     private void updateUserDataFromRequest(HttpServletRequest request, Map<String, String> userData) {
-        userData.put(EMAIL_SESSION, request.getParameter(EMAIL));
+        userData.put(USER_EMAIL_SESSION, request.getParameter(EMAIL));
         userData.put(PASSWORD_SESSION, request.getParameter(PASS));
         userData.put(REPEAT_PASSWORD_SESSION, request.getParameter(REPEAT_PASSWORD));
     }
