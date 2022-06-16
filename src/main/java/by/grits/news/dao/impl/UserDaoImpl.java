@@ -16,7 +16,7 @@ public class UserDaoImpl implements UserDao {
     private static final Logger LOGGER = LogManager.getLogger(UserDaoImpl.class);
 
     private static final String INSERT =
-            "insert into users(email_address, user_name, user_password, role_type, added_at) values(?,?,?,?,?)";
+            "insert into users(email_address, user_password, user_name, role_type, added_at) values(?,?,?,?,?)";
     private static final String DELETE =
             "delete from users where email_address=?";
     private static final String GET_BY_EMAIL =
@@ -24,7 +24,7 @@ public class UserDaoImpl implements UserDao {
     private static final String GET_ALL =
             "select email_address, user_name, user_password, role_type, added_at from users";
     private static final String LOGIN =
-            "select email_address, role_type, added_at from users where email_address=? and user_password=?";
+            "select email_address, user_password, user_name, role_type, added_at from users where email_address=? and user_password=?";
 
     private static UserDaoImpl instance;
 
@@ -116,9 +116,10 @@ public class UserDaoImpl implements UserDao {
             preparedStatement.setString(2, password);
 
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
-                user = new User(resultSet.getString(1), resultSet.getString(2),
-                        resultSet.getString(3), RoleType.valueOf(resultSet.getString(4)),
-                        resultSet.getDate(5).toLocalDate());
+                resultSet.next();
+                user = new User(resultSet.getString("email_address"), resultSet.getString("user_password"),
+                        resultSet.getString("user_name"), RoleType.valueOf(resultSet.getString("role_type")),
+                        resultSet.getDate("added_at").toLocalDate());
             }
         } catch (SQLException e) {
             LOGGER.error("Error while select query: " + e.getMessage());

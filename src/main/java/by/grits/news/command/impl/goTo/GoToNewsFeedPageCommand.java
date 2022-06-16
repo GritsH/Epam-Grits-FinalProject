@@ -8,11 +8,16 @@ import by.grits.news.command.exception.CommandException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class GoToNewsFeedPageCommand implements Command {
     @Override
     public Router execute(HttpServletRequest request) throws CommandException {
         HttpSession session = request.getSession();
         String currentPage = Command.extract(request);
+        Map<String, String> userData = new HashMap<>();
+        session.setAttribute(SessionAttribute.USER_DATA_SESSION, userData);
         session.setAttribute(SessionAttribute.CURRENT_PAGE, currentPage);
         return session.getAttribute(SessionAttribute.CURRENT_USER_EMAIL_SESSION) != null
                 ? new Router(PageNavigation.NEWS_FEED) : new Router(PageNavigation.LOGIN);

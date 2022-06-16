@@ -25,10 +25,8 @@ public class LoginCommand implements Command {
     public Router execute(HttpServletRequest request) throws CommandException {
         HttpSession session = request.getSession();
         Map<String, String> userData = (Map<String, String>) session.getAttribute(USER_DATA_SESSION);
-
         removeTempData(userData);
         updateUserDataFromRequest(request, userData);
-
         UserService userService = UserServiceImpl.getInstance();
         Router router;
         try {
@@ -41,8 +39,8 @@ public class LoginCommand implements Command {
                 router = new Router(PageNavigation.NEWS_FEED);
             }else{
                 session.setAttribute(USER_DATA_SESSION, userData);
-                session.setAttribute(CURRENT_PAGE, PageNavigation.LOGIN);
-                router = new Router(PageNavigation.LOGIN);
+                session.setAttribute(CURRENT_PAGE, PageNavigation.SIGNUP);
+                router = new Router(PageNavigation.SIGNUP);
             }
         } catch (ServiceException e) {
             throw new CommandException(e);

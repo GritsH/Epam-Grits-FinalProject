@@ -14,7 +14,6 @@
 <fmt:setLocale value="${locale}" scope="session"/>
 <fmt:setBundle basename="properties.pagecontent"/>
 
-<fmt:message key="field.email" var="email"/>
 
 <html lang="en">
 <head>

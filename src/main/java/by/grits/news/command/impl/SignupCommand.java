@@ -36,7 +36,7 @@ public class SignupCommand implements Command {
             if(sizeAfter.equals(sizeBefore)){
                 session.removeAttribute(USER_DATA_SESSION);
                 session.setAttribute(REGISTRATION_RESULT, result);
-                router = new Router(PageNavigation.SIGNUP);
+                router = new Router(PageNavigation.INDEX);
             }else{
                 session.setAttribute(USER_DATA_SESSION, userData);
                 router = new Router(PageNavigation.SIGNUP);

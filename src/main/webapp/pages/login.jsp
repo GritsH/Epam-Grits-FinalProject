@@ -37,7 +37,7 @@
     <div class="header-logo">
         <img class="header-logo__icon" src="${pageContext.request.contextPath}/pages/static/img/news.svg"
              alt="News icon">
-        <a class="header-logo__title" href="news.html">News</a>
+        <a class="header-logo__title" href="${path}/controller?command=go_to_news_page">News</a>
     </div>
     <div class="header-auth">
         <a class="header-auth__item" href="${path}/controller?command=go_to_login_page">Log in</a>
@@ -46,16 +46,18 @@
 </header>
 <main class="main">
     <section class="card">
-        <form class="card-form">
+        <form class="card-form" action="${path}/controller" method="post">
             <input type="hidden" name="command" value="login">
             <div class="card-form__item">
                 <label class="card__label" for="emailInput">Email:</label>
-                <input id="emailInput" class="card__input" type="email">
+                <input id="emailInput" class="card__input" type="email" name="email"
+                       value="${user_data_ses['email_ses']}">
                 <p id="emailError" class="input-error">Email is invalid</p>
             </div>
             <div class="card-form__item">
                 <label class="card__label" for="password1Input">Password:</label>
-                <input id="password1Input" class="card__input" type="password">
+                <input id="password1Input" class="card__input" type="password" name="pass"
+                       value="${data_user_ses['password_ses']}">
                 <p id="password1Error" class="input-error">Password is too short</p>
             </div>
             <p id="authError" class="input-error">Authentication failed. Please try again.</p>
