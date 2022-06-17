@@ -11,6 +11,9 @@ import jakarta.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
 
+import static by.grits.news.entities.enums.RoleType.ADMIN;
+import static by.grits.news.entities.enums.RoleType.UNKNOWN;
+
 public class GoToNewsFeedPageCommand implements Command {
     @Override
     public Router execute(HttpServletRequest request) throws CommandException {
@@ -19,7 +22,11 @@ public class GoToNewsFeedPageCommand implements Command {
         Map<String, String> userData = new HashMap<>();
         session.setAttribute(SessionAttribute.USER_DATA_SESSION, userData);
         session.setAttribute(SessionAttribute.CURRENT_PAGE, currentPage);
-        return session.getAttribute(SessionAttribute.CURRENT_USER_EMAIL_SESSION) != null
-                ? new Router(PageNavigation.NEWS_FEED) : new Router(PageNavigation.LOGIN);
+        if(session.getAttribute(SessionAttribute.CURRENT_ROLE) == null){
+            session.setAttribute(SessionAttribute.CURRENT_ROLE, UNKNOWN);
+        }
+        return session.getAttribute(SessionAttribute.CURRENT_ROLE) == ADMIN?
+                new Router(PageNavigation.NEWS_LIST) : new Router(PageNavigation.NEWS_FEED);
+
     }
 }

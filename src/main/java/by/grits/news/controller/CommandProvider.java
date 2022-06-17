@@ -7,6 +7,7 @@ import by.grits.news.command.impl.LoginCommand;
 import by.grits.news.command.impl.SignupCommand;
 import by.grits.news.command.impl.goTo.GoToLoginPageCommand;
 import by.grits.news.command.impl.goTo.GoToNewsFeedPageCommand;
+import by.grits.news.command.impl.goTo.GoToNewsListPageCommand;
 import by.grits.news.command.impl.goTo.GoToSignupPageCommand;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -26,6 +27,7 @@ public class CommandProvider {
         commands.put(GO_TO_SIGNUP_PAGE, new GoToSignupPageCommand());
         commands.put(GO_TO_LOGIN_PAGE, new GoToLoginPageCommand());
         commands.put(GO_TO_NEWS_PAGE, new GoToNewsFeedPageCommand());
+        commands.put(GO_TO_NEWS_LIST_PAGE, new GoToNewsListPageCommand());
     }
     public static Command of(String commandName) {
         Command currentCommand = commands.get(DEFAULT);

@@ -6,6 +6,6 @@
 <head>
 </head>
 <body>
-<jsp:forward page="controller?=go_to_news_page"/>
+<jsp:forward page="controller?command=go_to_news_page"/>
 </body>
 </html>
