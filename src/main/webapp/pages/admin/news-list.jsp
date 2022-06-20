@@ -24,15 +24,6 @@
     <link href="https://fonts.cdnfonts.com/css/montserrat" rel="stylesheet">
 </head>
 <body>
-<%
-    NewsService newsService = NewsServiceImpl.getInstance();
-    List<News> allNews;
-    try {
-        allNews = newsService.findAllNews();
-    } catch (ServiceException e) {
-        throw new CommandException(e);
-    }
-%>
 <header class="header">
     <a class="header-logo__title" href="">News Management</a>
     <section class="locale-links">
@@ -62,25 +53,25 @@
         </section>
         <form class="admin-body-content">
             <section class="admin-news-container">
-                <%for (News news : allNews) {%>
-                <article class="admin-news">
-                    <div class="admin-news__header">
-                        <label class="admin-news__title"><%=news.getTitle()%>></label>
-                        <label class="admin-news__date"><%=news.getAddedAt()%>
-                        </label>
-                    </div>
-                    <p class="admin-news__text">
-                        <%=news.getContent()%>
-                    </p>
-                    <section class="admin-news-actions">
-                        <a class="admin-news-actions__link" href="../templates/admin/news-view.html">view</a>
-                        <a class="admin-news-actions__link"
-                           href="${path}/controller?command=go_to_edit_news">edit</a>
-                        <input class="admin-news-actions__checkbox"
-                               type="checkbox">
-                    </section>
-                </article>
-                <%}%>
+                <c:forEach var="news" items="${all_news_ses}">
+                    <article class="admin-news">
+                        <div class="admin-news__header">
+                            <label class="admin-news__title">${news.title}</label>
+                            <label class="admin-news__date">${news.addedAt}
+                            </label>
+                        </div>
+                        <p class="admin-news__text">
+                            ${news.content}
+                        </p>
+                        <section class="admin-news-actions">
+                            <a class="admin-news-actions__link" href="../templates/admin/news-view.html">view</a>
+                            <a class="admin-news-actions__link"
+                               href="${path}/controller?command=go_to_edit_news">edit</a>
+                            <input class="admin-news-actions__checkbox"
+                                   type="checkbox">
+                        </section>
+                    </article>
+                </c:forEach>
             </section>
             <button id="deleteButton" type="button" class="admin-button">DELETE</button>
         </form>

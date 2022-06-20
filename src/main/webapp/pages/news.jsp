@@ -29,16 +29,6 @@
 <body>
 
 
-<%
-    NewsService newsService = NewsServiceImpl.getInstance();
-    List<News> allNews;
-    try {
-        allNews = newsService.findAllNews();
-    } catch (ServiceException e) {
-        throw new CommandException(e);
-    }
-%>
-
 <c:choose>
     <c:when test="${current_role eq 'ADMIN'}">
         <jsp:forward page="/controller?command=go_to_news_list_page"/>
@@ -48,7 +38,7 @@
             <div class="header-logo">
                 <img class="header-logo__icon" src="${pageContext.request.contextPath}/pages/static/img/news.svg"
                      alt="News icon">
-                <a class="header-logo__title" href="">News</a>
+                <a class="header-logo__title" href="${path}/controller?command=go_to_news_page">News</a>
             </div>
             <div class="header-auth">
                 <c:choose>
@@ -77,17 +67,21 @@
             </section>
 
             <section class="articles-container">
-                <%for(News news: allNews){%>
+                <c:forEach var="news" items="${all_news_ses}">
                 <article class="news-article">
-                    <a class="news-article__title" href="news-details.html"><%=news.getTitle()%></a>
-                    <p class="news-article__text"><%=news.getContent()%></p>
+                    <a class="news-article__title"
+                       href="${path}/controller?command=go_to_news_details_page&news_id=${news.id}">${news.title}
+                    </a>
+                    <p class="news-article__text">${news.content}
+                    </p>
                     <div class="news-article-date">
                         <img class="news-article-date__img"
                              src="${pageContext.request.contextPath}/pages/static/img/calendar.svg" alt="Date">
-                        <p class="news-article-date__text"><%=news.getAddedAt()%></p>
+                        <p class="news-article-date__text">${news.addedAt}
+                        </p>
                     </div>
                 </article>
-                <%}%>
+                </c:forEach>
             </section>
             <section class="pagination">
                 <a class="pagination__item pagination__item_active" href="">1</a>
