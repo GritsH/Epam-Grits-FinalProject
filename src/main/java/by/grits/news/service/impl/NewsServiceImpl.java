@@ -77,7 +77,7 @@ public class NewsServiceImpl implements NewsService {
 
         try{
             News newsToAdd = new News(title, summary, content, author);
-            newsToAdd.setAddedAt(LocalDateTime.now().toLocalDate());
+            newsToAdd.setAddedAt(LocalDate.parse(addedAt));
             isAdded = newsDao.insert(newsToAdd);
         }catch (DaoException e){
             LOGGER.error("Try to add news was failed.", e);
