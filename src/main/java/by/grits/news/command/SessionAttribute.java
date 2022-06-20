@@ -4,8 +4,10 @@ public class SessionAttribute {
     public static final String ALL_SHEETS_SESSION = "all_sheets_ses";
     public static final String CURRENT_PAGE = "current_page";
     public static final String CURRENT_ROLE = "current_role";
+    public static final String ALL_NEWS_SESSION = "all_news_ses";
     public static final String CURRENT_USER_EMAIL_SESSION = "current_user_email";
     public static final String CURRENT_SHEET_SESSION = "current_sheet_ses";
+    public static final String NEWS_DATA_SESSION = "news_data_ses";
     public static final String NEWS_TITLE_SESSION = "news_title_ses";
     public static final String NEWS_SUMMARY_SESSION = "news_summary_ses";
     public static final String NEWS_CONTENT_SESSION = "news_content_ses";

@@ -10,6 +10,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -63,6 +64,26 @@ public class NewsServiceImpl implements NewsService {
             throw new ServiceException("Try to find all news by author was failed.", e);
         }
         return allNews;
+    }
+
+    @Override
+    public boolean addNews(Map<String, String> newsData) throws ServiceException{
+        boolean isAdded = false;
+        String title = newsData.get(NEWS_TITLE_SESSION);
+        String summary = newsData.get(NEWS_SUMMARY_SESSION);
+        String content = newsData.get(NEWS_CONTENT_SESSION);
+        String author = newsData.get(NEWS_AUTHOR_SESSION);
+        String addedAt = newsData.get(NEWS_ADDED_AT_SESSION);
+
+        try{
+            News newsToAdd = new News(title, summary, content, author);
+            newsToAdd.setAddedAt(LocalDateTime.now().toLocalDate());
+            isAdded = newsDao.insert(newsToAdd);
+        }catch (DaoException e){
+            LOGGER.error("Try to add news was failed.", e);
+            throw new ServiceException("Try to add news was failed.", e);
+        }
+        return isAdded;
     }
 
     @Override

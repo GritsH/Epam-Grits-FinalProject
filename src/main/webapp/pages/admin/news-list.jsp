@@ -11,6 +11,9 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -46,7 +49,7 @@
                     <a class="link link_active" href="">News List</a>
                 </li>
                 <li class="side-menu-actions-list__item">
-                    <a class="link" href="${pageContext.request.contextPath}/pages/admin/news-add.jsp">Add News</a>
+                    <a class="link" href="${path}/controller?command=go_to_add_news_page">Add News</a>
                 </li>
             </ul>
         </div>
@@ -59,18 +62,20 @@
         </section>
         <form class="admin-body-content">
             <section class="admin-news-container">
-                <%for(News news: allNews){%>
+                <%for (News news : allNews) {%>
                 <article class="admin-news">
                     <div class="admin-news__header">
                         <label class="admin-news__title"><%=news.getTitle()%>></label>
-                        <label class="admin-news__date"><%=news.getAddedAt()%></label>
+                        <label class="admin-news__date"><%=news.getAddedAt()%>
+                        </label>
                     </div>
                     <p class="admin-news__text">
                         <%=news.getContent()%>
                     </p>
                     <section class="admin-news-actions">
                         <a class="admin-news-actions__link" href="../templates/admin/news-view.html">view</a>
-                        <a class="admin-news-actions__link" href="${pageContext.request.contextPath}/pages/admin/news-edit.jsp">edit</a>
+                        <a class="admin-news-actions__link"
+                           href="${path}/controller?command=go_to_edit_news">edit</a>
                         <input class="admin-news-actions__checkbox"
                                type="checkbox">
                     </section>

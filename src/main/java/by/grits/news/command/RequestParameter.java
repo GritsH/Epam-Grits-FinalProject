@@ -11,6 +11,9 @@ public class RequestParameter {
     public static final String NEWS_SUMMARY = "news_summary";
     public static final String NEWS_NAME = "news_name";
     public static final String NEWS_CONTENT = "news_content";
+    public static final String NEWS_TITLE = "news_title";
+    public static final String NEWS_ADDED_AT="news_added_at";
+    public static final String NEWS_AUTHOR = "news_author";
     public static final String PASS = "pass";
     public static final String REPEAT_PASSWORD = "repeat_password";
     public static final String ROLE = "role";

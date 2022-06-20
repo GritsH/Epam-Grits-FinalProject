@@ -6,7 +6,7 @@ import by.grits.news.dao.exception.DaoException;
 import java.util.List;
 
 public interface NewsDao {
-    void insert(News news) throws DaoException;
+    boolean insert(News news) throws DaoException;
 
     void delete(Integer id) throws DaoException;
 
