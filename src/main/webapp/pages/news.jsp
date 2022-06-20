@@ -1,10 +1,4 @@
-<%@ page import="java.util.List" %>
-<%@ page import="by.grits.news.entities.News" %>
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="by.grits.news.service.NewsService" %>
-<%@ page import="by.grits.news.service.impl.NewsServiceImpl" %>
-<%@ page import="by.grits.news.service.exception.ServiceException" %>
-<%@ page import="by.grits.news.command.exception.CommandException" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: grits
   Date: 6/14/2022
