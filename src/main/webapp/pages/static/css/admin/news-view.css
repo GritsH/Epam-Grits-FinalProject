@@ -1,0 +1,9 @@
+.admin-news-view__label {
+    color: gray;
+    font-weight: 500;
+    min-width: 130px;
+}
+
+.admin-news-view__text {
+    margin: 0;
+}

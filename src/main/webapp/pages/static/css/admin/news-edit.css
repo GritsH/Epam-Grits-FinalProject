@@ -1,0 +1,15 @@
+.admin-news-view__label {
+    font-weight: 500;
+    min-width: 130px;
+}
+
+.admin-news-view__textarea {
+    resize: none;
+    width: 50%;
+    height: 100px;
+    font-size: 1.2em;
+}
+
+.admin-body-content__actions {
+    align-self: center;
+}
