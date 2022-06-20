@@ -7,6 +7,9 @@ import by.grits.news.command.impl.DefaultCommand;
 import by.grits.news.command.impl.LoginCommand;
 import by.grits.news.command.impl.SignupCommand;
 import by.grits.news.command.impl.goTo.*;
+import by.grits.news.command.impl.goTo.admin.GoToAddNewsPageCommand;
+import by.grits.news.command.impl.goTo.admin.GoToNewsListPageCommand;
+import by.grits.news.command.impl.goTo.admin.GoToNewsViewPageCommand;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
