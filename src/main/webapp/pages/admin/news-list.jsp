@@ -1,4 +1,9 @@
-<%--
+<%@ page import="by.grits.news.service.NewsService" %>
+<%@ page import="by.grits.news.service.impl.NewsServiceImpl" %>
+<%@ page import="by.grits.news.entities.News" %>
+<%@ page import="java.util.List" %>
+<%@ page import="by.grits.news.service.exception.ServiceException" %>
+<%@ page import="by.grits.news.command.exception.CommandException" %><%--
   Created by IntelliJ IDEA.
   User: grits
   Date: 6/17/2022
@@ -16,6 +21,15 @@
     <link href="https://fonts.cdnfonts.com/css/montserrat" rel="stylesheet">
 </head>
 <body>
+<%
+    NewsService newsService = NewsServiceImpl.getInstance();
+    List<News> allNews;
+    try {
+        allNews = newsService.findAllNews();
+    } catch (ServiceException e) {
+        throw new CommandException(e);
+    }
+%>
 <header class="header">
     <a class="header-logo__title" href="">News Management</a>
     <section class="locale-links">
@@ -32,7 +46,7 @@
                     <a class="link link_active" href="">News List</a>
                 </li>
                 <li class="side-menu-actions-list__item">
-                    <a class="link" href="../templates/admin/news-edit.html">Add News</a>
+                    <a class="link" href="${pageContext.request.contextPath}/pages/admin/news-add.jsp">Add News</a>
                 </li>
             </ul>
         </div>
@@ -45,75 +59,23 @@
         </section>
         <form class="admin-body-content">
             <section class="admin-news-container">
+                <%for(News news: allNews){%>
                 <article class="admin-news">
                     <div class="admin-news__header">
-                        <label class="admin-news__title">News title</label>
-                        <label class="admin-news__date">11/25/2005</label>
+                        <label class="admin-news__title"><%=news.getTitle()%>></label>
+                        <label class="admin-news__date"><%=news.getAddedAt()%></label>
                     </div>
                     <p class="admin-news__text">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                        sed do eiusmod tempor incididunt ut labore et dolore
-                        magna aliqua. Ut enim ad minim veniam, quis nostrud
-                        exercitation ullamco laboris nisi ut aliquip ex ea
-                        commodo consequat. Duis aute irure dolor in
-                        reprehenderit in voluptate velit esse cillum dolore eu
-                        fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-                        non proident, sunt in culpa qui officia deserunt mollit
-                        anim id est laborum.
+                        <%=news.getContent()%>
                     </p>
                     <section class="admin-news-actions">
                         <a class="admin-news-actions__link" href="../templates/admin/news-view.html">view</a>
-                        <a class="admin-news-actions__link" href="../templates/admin/news-edit.html">edit</a>
+                        <a class="admin-news-actions__link" href="${pageContext.request.contextPath}/pages/admin/news-edit.jsp">edit</a>
                         <input class="admin-news-actions__checkbox"
                                type="checkbox">
                     </section>
                 </article>
-                <article class="admin-news">
-                    <div class="admin-news__header">
-                        <label class="admin-news__title">News title</label>
-                        <p class="admin-news__date">11/25/2005</p>
-                    </div>
-                    <p class="admin-news__text">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                        sed do eiusmod tempor incididunt ut labore et dolore
-                        magna aliqua. Ut enim ad minim veniam, quis nostrud
-                        exercitation ullamco laboris nisi ut aliquip ex ea
-                        commodo consequat. Duis aute irure dolor in
-                        reprehenderit in voluptate velit esse cillum dolore eu
-                        fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-                        non proident, sunt in culpa qui officia deserunt mollit
-                        anim id est laborum.
-                    </p>
-                    <section class="admin-news-actions">
-                        <a class="admin-news-actions__link" href="../templates/admin/news-view.html">view</a>
-                        <a class="admin-news-actions__link" href="../templates/admin/news-edit.html">edit</a>
-                        <input class="admin-news-actions__checkbox"
-                               type="checkbox">
-                    </section>
-                </article>
-                <article class="admin-news">
-                    <div class="admin-news__header">
-                        <label class="admin-news__title">News title</label>
-                        <p class="admin-news__date">11/25/2005</p>
-                    </div>
-                    <p class="admin-news__text">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                        sed do eiusmod tempor incididunt ut labore et dolore
-                        magna aliqua. Ut enim ad minim veniam, quis nostrud
-                        exercitation ullamco laboris nisi ut aliquip ex ea
-                        commodo consequat. Duis aute irure dolor in
-                        reprehenderit in voluptate velit esse cillum dolore eu
-                        fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-                        non proident, sunt in culpa qui officia deserunt mollit
-                        anim id est laborum.
-                    </p>
-                    <section class="admin-news-actions">
-                        <a class="admin-news-actions__link" href="../templates/admin/news-view.html">view</a>
-                        <a class="admin-news-actions__link" href="../templates/admin/news-edit.html">edit</a>
-                        <input class="admin-news-actions__checkbox"
-                               type="checkbox">
-                    </section>
-                </article>
+                <%}%>
             </section>
             <button id="deleteButton" type="button" class="admin-button">DELETE</button>
         </form>

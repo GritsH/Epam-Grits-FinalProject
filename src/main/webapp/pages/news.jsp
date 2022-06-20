@@ -1,4 +1,10 @@
-<%--
+<%@ page import="java.util.List" %>
+<%@ page import="by.grits.news.entities.News" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="by.grits.news.service.NewsService" %>
+<%@ page import="by.grits.news.service.impl.NewsServiceImpl" %>
+<%@ page import="by.grits.news.service.exception.ServiceException" %>
+<%@ page import="by.grits.news.command.exception.CommandException" %><%--
   Created by IntelliJ IDEA.
   User: grits
   Date: 6/14/2022
@@ -22,6 +28,17 @@
 </head>
 <body>
 
+
+<%
+    NewsService newsService = NewsServiceImpl.getInstance();
+    List<News> allNews;
+    try {
+        allNews = newsService.findAllNews();
+    } catch (ServiceException e) {
+        throw new CommandException(e);
+    }
+%>
+
 <c:choose>
     <c:when test="${current_role eq 'ADMIN'}">
         <jsp:forward page="/controller?command=go_to_news_list_page"/>
@@ -34,8 +51,16 @@
                 <a class="header-logo__title" href="">News</a>
             </div>
             <div class="header-auth">
-                <a class="header-auth__item" href="${path}/controller?command=go_to_login_page">Log in</a>
-                <a class="header-auth__item" href="${path}/controller?command=go_to_signup_page">Sign Up</a>
+                <c:choose>
+                    <c:when test="${current_role eq 'UNKNOWN'}">
+                        <a class="header-auth__item" href="${path}/controller?command=go_to_login_page">Log in</a>
+                        <a class="header-auth__item" href="${path}/controller?command=go_to_signup_page">Sign Up</a>
+                    </c:when>
+                    <c:otherwise>
+                        <a class="header-auth__item" href="${path}/controller?command=go_to_login_page">Log out</a>
+                        <a class="header-auth__item" href="${path}/controller?command=go_to_signup_page">Sign Up</a>
+                    </c:otherwise>
+                </c:choose>
             </div>
         </header>
         <main class="main">
@@ -50,75 +75,19 @@
                         <option value="desc">Descending ↓</option>
                     </select></div>
             </section>
+
             <section class="articles-container">
+                <%for(News news: allNews){%>
                 <article class="news-article">
-                    <a class="news-article__title" href="news-details.html">Lorem ipsum</a>
-                    <p class="news-article__text"> Lorem ipsum dolor sit amet,
-                        consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                        nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                        commodo consequat. Duis aute irure dolor in reprehenderit in
-                        voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                        Excepteur sint occaecat cupidatat non proident, sunt in culpa
-                        qui officia deserunt mollit anim id est laborum.</p>
+                    <a class="news-article__title" href="news-details.html"><%=news.getTitle()%></a>
+                    <p class="news-article__text"><%=news.getContent()%></p>
                     <div class="news-article-date">
                         <img class="news-article-date__img"
                              src="${pageContext.request.contextPath}/pages/static/img/calendar.svg" alt="Date">
-                        <p class="news-article-date__text">12.06.2022</p>
+                        <p class="news-article-date__text"><%=news.getAddedAt()%></p>
                     </div>
                 </article>
-                <article class="news-article">
-                    <a class="news-article__title" href="news-details.html">Lorem ipsum</a>
-                    <p class="news-article__text">Lorem ipsum dolor sit amet,
-                        consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Orci dapibus ultrices in iaculis
-                        nunc. Quis lectus nulla at volutpat. Egestas pretium aenean
-                        pharetra magna ac. Sed velit dignissim sodales ut eu sem.
-                        Suscipit tellus mauris a diam maecenas. Vel pretium lectus quam
-                        id leo in vitae turpis. Arcu cursus euismod quis viverra.
-                        Tincidunt praesent semper feugiat nibh sed pulvinar proin. Sit
-                        amet consectetur adipiscing elit. Orci eu lobortis elementum
-                        nibh tellus molestie nunc. In vitae turpis massa sed elementum
-                        tempus egestas sed. Sit amet venenatis urna cursus. Odio tempor
-                        orci dapibus ultrices in.</p>
-                    <div class="news-article-date">
-                        <img class="news-article-date__img"
-                             src="${pageContext.request.contextPath}/pages/static/img/calendar.svg" alt="Date">
-                        <p class="news-article-date__text">10.06.2022</p>
-                    </div>
-                </article>
-                <article class="news-article">
-                    <a class="news-article__title" href="news-details.html">Lorem ipsum</a>
-                    <p class="news-article__text"> Lorem ipsum dolor sit amet,
-                        consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                        nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                        commodo consequat. Duis aute irure dolor in reprehenderit in
-                        voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                        Excepteur sint occaecat cupidatat non proident, sunt in culpa
-                        qui officia deserunt mollit anim id est laborum.</p>
-                    <div class="news-article-date">
-                        <img class="news-article-date__img"
-                             src="${pageContext.request.contextPath}/pages/static/img/calendar.svg" alt="Date">
-                        <p class="news-article-date__text">11.06.2022</p>
-                    </div>
-                </article>
-                <article class="news-article">
-                    <a class="news-article__title" href="news-details.html">Lorem ipsum</a>
-                    <p class="news-article__text"> Lorem ipsum dolor sit amet,
-                        consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                        nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                        commodo consequat. Duis aute irure dolor in reprehenderit in
-                        voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                        Excepteur sint occaecat cupidatat non proident, sunt in culpa
-                        qui officia deserunt mollit anim id est laborum.</p>
-                    <div class="news-article-date">
-                        <img class="news-article-date__img"
-                             src="${pageContext.request.contextPath}/pages/static/img/calendar.svg" alt="Date">
-                        <p class="news-article-date__text">09.06.2022</p>
-                    </div>
-                </article>
+                <%}%>
             </section>
             <section class="pagination">
                 <a class="pagination__item pagination__item_active" href="">1</a>
