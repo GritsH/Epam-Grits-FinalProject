@@ -29,6 +29,7 @@ public class CommandProvider {
         commands.put(GO_TO_NEWS_LIST_PAGE, new GoToNewsListPageCommand());
         commands.put(GO_TO_ADD_NEWS_PAGE, new GoToAddNewsPageCommand());
         commands.put(GO_TO_NEWS_DETAILS_PAGE, new GoToNewsDetailsPageCommand());
+        commands.put(GO_TO_NEWS_VIEW_PAGE, new GoToNewsViewPageCommand());
     }
     public static Command of(String commandName) {
         Command currentCommand = commands.get(DEFAULT);
