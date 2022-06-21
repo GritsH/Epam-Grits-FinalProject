@@ -2,7 +2,7 @@
   Created by IntelliJ IDEA.
   User: grits
   Date: 6/20/2022
-  Time: 9:00 PM
+  Time: 11:19 AM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -12,15 +12,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>News Management: News View</title>
+    <title>News Management: News Edit</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/pages/static/css/base.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/pages/static/css/admin/base.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/pages/static/css/admin/news-view.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/pages/static/css/admin/news-edit.css">
     <link href="https://fonts.cdnfonts.com/css/montserrat" rel="stylesheet">
 </head>
 <body>
 <header class="header">
-    <a class="header-logo__title" href="${path}/controller?command=go_to_news_list_page">News Management</a>
+    <a class="header-logo__title" href="news-list.jsp">News Management</a>
     <section class="locale-links">
         <a class="link" href="">English</a>
         <a class="link" href="">Russian</a>
@@ -35,7 +35,7 @@
                     <a class="link" href="${path}/controller?command=go_to_news_list_page">News List</a>
                 </li>
                 <li class="side-menu-actions-list__item">
-                    <a class="link" href="${path}/controller?command=go_to_add_news_page">Add News</a>
+                    <a class="link link_active" href="${path}/controller?command=go_to_add_news_page">Add News</a>
                 </li>
             </ul>
         </div>
@@ -44,58 +44,62 @@
         <section class="admin-body-nav">
             <a class="admin-body-nav__item" href="${path}/controller?command=go_to_news_list_page">News</a>
             <p class="admin-body-nav__item">>></p>
-            <p class="admin-body-nav__item">News View</p>
+            <p class="admin-body-nav__item">Add News</p>
         </section>
-        <form class="admin-body-content">
-            <c:forEach var="news" items="${all_news_ses}">
-                <c:choose>
-                    <c:when test="${news.id eq news_id_ses}">
+        <c:forEach var="news" items="${all_news_ses}">
+            <c:choose>
+                <c:when test="${news.id eq news_id_to_edit_ses}">
+                    <form class="admin-body-content" action="${path}/controller" method="post">
+                        <input type="hidden" name="command" value="edit_news">
+                        <input type="hidden" name="news_id_to_edit" value="${news.id}">
+                        <input type="hidden" name="news_author" value="${news.author}">
                         <div class="admin-news-view">
                             <div class="admin-news-view__fieldset">
                                 <label class="admin-news-view__label" for="newsTitle">
                                     News Title
                                 </label>
-                                <p id="newsTitle" class="admin-news-view__text">
-                                    ${news.title}
-                                </p>
+                                <input id="newsTitle" class="admin-news-view__input"
+                                       type="text" maxlength="100" name="news_title"
+                                       value="${news_data_ses['news_title_ses'] = news.title}" required>
                             </div>
                             <div class="admin-news-view__fieldset">
                                 <label class="admin-news-view__label" for="newsDate">
                                     News Date
                                 </label>
-                                <p id="newsDate" class="admin-news-view__text">
-                                    ${news.addedAt}
-                                </p>
+                                <input id="newsDate" class="admin-news-view__input"
+                                       type="date" maxlength="10" name="news_added_at"
+                                       value="${news_data_ses['news_added_at_ses'] = news.addedAt}" required>
                             </div>
                             <div class="admin-news-view__fieldset">
                                 <label class="admin-news-view__label" for="newsBrief">
                                     Brief
                                 </label>
-                                <p id="newsBrief" class="admin-news-view__text">
-                                    ${news.summary}
-                                </p>
+                                <input type="text" id="newsBrief" class="admin-news-view__textarea"
+                                       maxlength="500" name="news_summary"
+                                       value="${news_data_ses['news_summary_ses'] = news.summary}" required>
                             </div>
                             <div class="admin-news-view__fieldset">
                                 <label class="admin-news-view__label" for="newsContent">
                                     Content
                                 </label>
-                                <p id="newsContent" class="admin-news-view__text">
-                                   ${news.content}
-                                </p>
+                                <input type="text" id="newsContent" maxlength="2048" required
+                                       class="admin-news-view__textarea" name="news_content"
+                                       value="${news_data_ses['news_content_ses'] = news.content}">
                             </div>
                         </div>
                         <section class="admin-body-content__actions">
-                            <a href="news-edit.html">
-                                <button type="button" class="admin-button">EDIT</button>
+                            <input type="submit" class="admin-button" value="SAVE">
+                            <a href="${path}/controller?command=go_to_news_list_page">
+                                <button type="button" class="admin-button">EXIT</button>
                             </a>
-                            <button id="deleteButton" type="button" class="admin-button">DELETE</button>
                         </section>
-                    </c:when>
-                </c:choose>
-            </c:forEach>
-        </form>
+
+                    </form>
+                </c:when>
+            </c:choose>
+        </c:forEach>
     </section>
 </main>
-<script src="${pageContext.request.contextPath}/pages/static/js/admin/news-view.js"></script>
+<script src="${pageContext.request.contextPath}/pages/static/js/admin/news-edit.js"></script>
 </body>
 </html>

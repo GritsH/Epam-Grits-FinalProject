@@ -61,7 +61,7 @@
                         <section class="admin-news-actions">
                             <a class="admin-news-actions__link" href="${path}/controller?command=go_to_news_view_page&news_id=${news.id}">view</a>
                             <a class="admin-news-actions__link"
-                               href="${path}/controller?command=go_to_edit_news">edit</a>
+                               href="${path}/controller?command=go_to_edit_news_page&news_id_to_edit=${news.id}">edit</a>
                             <input class="admin-news-actions__checkbox"
                                    type="checkbox">
                         </section>

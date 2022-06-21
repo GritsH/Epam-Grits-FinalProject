@@ -88,7 +88,7 @@ public class NewsServiceImpl implements NewsService {
 
     @Override
     public boolean updateNews(Map<String, String> newsData) throws ServiceException {
-        Integer newsId = Integer.parseInt(newsData.get(NEWS_ID_SESSION));
+        Integer newsId = Integer.parseInt(newsData.get(NEWS_ID_TO_EDIT_SES));
         String newsTitle = newsData.get(NEWS_TITLE_SESSION);
         String newsSummary = newsData.get(NEWS_SUMMARY_SESSION);
         String newsContent = newsData.get(NEWS_CONTENT_SESSION);

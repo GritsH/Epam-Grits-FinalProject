@@ -75,7 +75,19 @@ public class  NewsDaoImpl implements NewsDao {
 
     @Override
     public void update(News news) throws DaoException {
+        try(Connection connection = ConnectionPool.getInstance().getConnection()){
+            PreparedStatement preparedStatement = connection.prepareStatement(UPDATE);
+            preparedStatement.setString(1, news.getTitle());
+            preparedStatement.setString(2, news.getSummary());
+            preparedStatement.setString(3, news.getContent());
+            preparedStatement.setString(4, news.getAuthor());
+            preparedStatement.setInt(5, news.getId());
+            preparedStatement.executeUpdate();
 
+        } catch (SQLException e) {
+            LOGGER.error("Error while update query: " + e.getMessage());
+            throw new DaoException("Error while update query: " + e.getMessage());
+        }
 
     }
 

@@ -2,12 +2,10 @@ package by.grits.news.controller;
 
 import by.grits.news.command.Command;
 import by.grits.news.command.CommandType;
-import by.grits.news.command.impl.AddNewsCommand;
-import by.grits.news.command.impl.DefaultCommand;
-import by.grits.news.command.impl.LoginCommand;
-import by.grits.news.command.impl.SignupCommand;
+import by.grits.news.command.impl.*;
 import by.grits.news.command.impl.goTo.*;
 import by.grits.news.command.impl.goTo.admin.GoToAddNewsPageCommand;
+import by.grits.news.command.impl.goTo.admin.GoToEditNewsPageCommand;
 import by.grits.news.command.impl.goTo.admin.GoToNewsListPageCommand;
 import by.grits.news.command.impl.goTo.admin.GoToNewsViewPageCommand;
 import org.apache.logging.log4j.LogManager;
@@ -26,6 +24,7 @@ public class CommandProvider {
         commands.put(SIGNUP, new SignupCommand());
         commands.put(LOGIN, new LoginCommand());
         commands.put(ADD_NEWS, new AddNewsCommand());
+        commands.put(EDIT_NEWS, new EditNewsCommand());
         commands.put(GO_TO_SIGNUP_PAGE, new GoToSignupPageCommand());
         commands.put(GO_TO_LOGIN_PAGE, new GoToLoginPageCommand());
         commands.put(GO_TO_NEWS_PAGE, new GoToNewsFeedPageCommand());
@@ -33,6 +32,7 @@ public class CommandProvider {
         commands.put(GO_TO_ADD_NEWS_PAGE, new GoToAddNewsPageCommand());
         commands.put(GO_TO_NEWS_DETAILS_PAGE, new GoToNewsDetailsPageCommand());
         commands.put(GO_TO_NEWS_VIEW_PAGE, new GoToNewsViewPageCommand());
+        commands.put(GO_TO_EDIT_NEWS_PAGE, new GoToEditNewsPageCommand());
     }
     public static Command of(String commandName) {
         Command currentCommand = commands.get(DEFAULT);
