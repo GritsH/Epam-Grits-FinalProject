@@ -39,7 +39,7 @@ public class EditNewsCommand implements Command {
         return  router;
     }
     private void updateNewsDataFromRequest(HttpServletRequest request, Map<String, String> newsData) {
-        newsData.put(NEWS_ID_TO_EDIT_SES, request.getParameter(NEWS_ID_TO_EDIT));
+        newsData.put(NEWS_ID_TO_EDIT_SESSION, request.getParameter(NEWS_ID_TO_EDIT));
         newsData.put(NEWS_TITLE_SESSION, request.getParameter(NEWS_TITLE));
         newsData.put(NEWS_SUMMARY_SESSION, request.getParameter(NEWS_SUMMARY));
         newsData.put(NEWS_CONTENT_SESSION, request.getParameter(NEWS_CONTENT));
