@@ -10,8 +10,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -88,7 +86,7 @@ public class NewsServiceImpl implements NewsService {
 
     @Override
     public boolean updateNews(Map<String, String> newsData) throws ServiceException {
-        Integer newsId = Integer.parseInt(newsData.get(NEWS_ID_TO_EDIT_SES));
+        Integer newsId = Integer.parseInt(newsData.get(NEWS_ID_TO_EDIT_SESSION));
         String newsTitle = newsData.get(NEWS_TITLE_SESSION);
         String newsSummary = newsData.get(NEWS_SUMMARY_SESSION);
         String newsContent = newsData.get(NEWS_CONTENT_SESSION);

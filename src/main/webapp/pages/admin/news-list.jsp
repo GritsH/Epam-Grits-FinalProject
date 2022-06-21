@@ -46,7 +46,8 @@
             <p class="admin-body-nav__item">>></p>
             <p class="admin-body-nav__item">News List</p>
         </section>
-        <form class="admin-body-content">
+        <form class="admin-body-content" action="${path}/controller" method="post">
+            <input type="hidden" name="command" value="delete_news">
             <section class="admin-news-container">
                 <c:forEach var="news" items="${all_news_ses}">
                     <article class="admin-news">
@@ -56,19 +57,20 @@
                             </label>
                         </div>
                         <p class="admin-news__text">
-                            ${news.content}
+                                ${news.content}
                         </p>
                         <section class="admin-news-actions">
-                            <a class="admin-news-actions__link" href="${path}/controller?command=go_to_news_view_page&news_id=${news.id}">view</a>
+                            <a class="admin-news-actions__link"
+                               href="${path}/controller?command=go_to_news_view_page&news_id=${news.id}">view</a>
                             <a class="admin-news-actions__link"
                                href="${path}/controller?command=go_to_edit_news_page&news_id_to_edit=${news.id}">edit</a>
                             <input class="admin-news-actions__checkbox"
-                                   type="checkbox">
+                                   type="checkbox" name="checkbox_id" value="${news.id}">
                         </section>
                     </article>
                 </c:forEach>
             </section>
-            <button id="deleteButton" type="button" class="admin-button">DELETE</button>
+            <input id="deleteButton" type="submit" class="admin-button" value="DELETE">
         </form>
     </section>
 </main>

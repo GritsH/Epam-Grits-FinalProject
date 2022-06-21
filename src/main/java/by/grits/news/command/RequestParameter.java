@@ -7,6 +7,7 @@ public class RequestParameter {
     public static final String LANGUAGE = "language";
     public static final String NEWS_ID = "news_id";
     public static final String NEWS_ID_TO_DELETE = "news_id_to_delete";
+    public static final String SEVERAL_NEWS_TO_DELETE = "several_news_to_delete";
     public static final String NEWS_ID_TO_EDIT = "news_id_to_edit";
     public static final String NEWS_SUMMARY = "news_summary";
     public static final String NEWS_CONTENT = "news_content";

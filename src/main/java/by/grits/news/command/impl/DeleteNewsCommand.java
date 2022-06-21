@@ -12,23 +12,41 @@ import jakarta.servlet.http.HttpSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import static by.grits.news.command.RequestParameter.NEWS_ID_TO_DELETE;
+import java.util.Map;
+
+import static by.grits.news.command.RequestParameter.*;
+import static by.grits.news.command.RequestParameter.NEWS_AUTHOR;
+import static by.grits.news.command.SessionAttribute.*;
 
 public class DeleteNewsCommand implements Command {
     private static final Logger LOGGER = LogManager.getLogger(AddNewsCommand.class);
 
     @Override
     public Router execute(HttpServletRequest request) throws CommandException {
-        String getId = request.getParameter(NEWS_ID_TO_DELETE);
+        HttpSession session = request.getSession();
+        String newsToDelete = request.getParameter(NEWS_ID_TO_DELETE);
+        String[] severalNewsToDelete = request.getParameterValues("checkbox_id");
+        //Map<String, String> severalNewsToDelete = (Map<String, String>) session.getAttribute(SEVERAL_NEWS_TO_DELETE_SESSION);
         NewsService newsService = NewsServiceImpl.getInstance();
+        //updateNewsDataFromRequest(request, severalNewsToDelete);
         Router router;
-        try{
-            boolean result = newsService.deleteNews(Integer.parseInt(getId));
+        try {
+            if (severalNewsToDelete == null) {
+                boolean result = newsService.deleteNews(Integer.parseInt(newsToDelete));
+            } else {
+                for (String id : severalNewsToDelete) {
+                    boolean result = newsService.deleteNews(Integer.parseInt(id));
+                }
+            }
             router = new Router(PageNavigation.NEWS_LIST);
-        }catch (ServiceException e) {
+        } catch (ServiceException e) {
             LOGGER.error("Try to delete news was failed.", e);
             throw new CommandException("Try to delete news was failed.", e);
         }
-        return  router;
+        return router;
+    }
+
+    private void updateNewsDataFromRequest(HttpServletRequest request, Map<String, String> newsData) {
+        newsData.put(SEVERAL_NEWS_TO_DELETE_SESSION, request.getParameter(SEVERAL_NEWS_TO_DELETE));
     }
 }
