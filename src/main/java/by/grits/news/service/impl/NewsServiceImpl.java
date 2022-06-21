@@ -107,5 +107,16 @@ public class NewsServiceImpl implements NewsService {
         return true;
     }
 
-    //todo pagination??
+    @Override
+    public boolean deleteNews(Integer newsId) throws ServiceException {
+        boolean isDeleted = false;
+        try{
+            newsDao.delete(newsId);
+            isDeleted = true;
+        }catch (DaoException e){
+            LOGGER.error("Try to delete news was failed.", e);
+            throw new ServiceException("Try to delete news was failed.", e);
+        }
+        return isDeleted;
+    }
 }

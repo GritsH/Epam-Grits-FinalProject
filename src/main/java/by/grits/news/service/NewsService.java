@@ -10,7 +10,7 @@ public interface NewsService {
     List<News> findAllNews() throws ServiceException;
     News findNewsById(int id) throws ServiceException;
     List<News> findNewsByAuthor(String authorEmail) throws ServiceException;
-    //todo deleteNews
     boolean addNews(Map<String, String> newsData) throws ServiceException;
     boolean updateNews(Map<String, String> newsData) throws ServiceException;
+    boolean deleteNews(Integer newsId) throws ServiceException;
 }

@@ -46,17 +46,19 @@
             <p class="admin-body-nav__item">>></p>
             <p class="admin-body-nav__item">News View</p>
         </section>
-        <form class="admin-body-content">
+        <form class="admin-body-content" method="post" action="${path}/controller">
+            <input type="hidden" name="command" value="delete_news">
             <c:forEach var="news" items="${all_news_ses}">
                 <c:choose>
                     <c:when test="${news.id eq news_id_ses}">
+                        <input type="hidden" name="news_id_to_delete" value="${news.id}">
                         <div class="admin-news-view">
                             <div class="admin-news-view__fieldset">
                                 <label class="admin-news-view__label" for="newsTitle">
                                     News Title
                                 </label>
                                 <p id="newsTitle" class="admin-news-view__text">
-                                    ${news.title}
+                                        ${news.title}
                                 </p>
                             </div>
                             <div class="admin-news-view__fieldset">
@@ -64,7 +66,7 @@
                                     News Date
                                 </label>
                                 <p id="newsDate" class="admin-news-view__text">
-                                    ${news.addedAt}
+                                        ${news.addedAt}
                                 </p>
                             </div>
                             <div class="admin-news-view__fieldset">
@@ -72,7 +74,7 @@
                                     Brief
                                 </label>
                                 <p id="newsBrief" class="admin-news-view__text">
-                                    ${news.summary}
+                                        ${news.summary}
                                 </p>
                             </div>
                             <div class="admin-news-view__fieldset">
@@ -80,7 +82,7 @@
                                     Content
                                 </label>
                                 <p id="newsContent" class="admin-news-view__text">
-                                   ${news.content}
+                                        ${news.content}
                                 </p>
                             </div>
                         </div>
@@ -88,7 +90,10 @@
                             <a href="${path}/controller?command=go_to_edit_news_page&news_id_to_edit=${news.id}">
                                 <button type="button" class="admin-button">EDIT</button>
                             </a>
-                            <button id="deleteButton" type="button" class="admin-button">DELETE</button>
+                            <input id="deleteButton" type="submit" class="admin-button" value="DELETE">
+<%--                            <a href="${path}/controller?command=delete_news&news_id_to_delete=${news.id}">--%>
+<%--                                <button id="deleteButton" type="button" class="admin-button">DELETE</button>--%>
+<%--                            </a>--%>
                         </section>
                     </c:when>
                 </c:choose>
