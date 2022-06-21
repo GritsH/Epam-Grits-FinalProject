@@ -13,9 +13,9 @@
 <head>
     <meta charset="UTF-8">
     <title>News Management: News Edit</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/pages/static/css/base.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/pages/static/css/admin/base.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/pages/static/css/admin/news-edit.css">
+    <link rel="stylesheet" href="${path}/pages/static/css/base.css">
+    <link rel="stylesheet" href="${path}/pages/static/css/admin/base.css">
+    <link rel="stylesheet" href="${path}/pages/static/css/admin/news-edit.css">
     <link href="https://fonts.cdnfonts.com/css/montserrat" rel="stylesheet">
 </head>
 <body>
@@ -44,7 +44,7 @@
         <section class="admin-body-nav">
             <a class="admin-body-nav__item" href="${path}/controller?command=go_to_news_list_page">News</a>
             <p class="admin-body-nav__item">>></p>
-            <p class="admin-body-nav__item">Add News</p>
+            <p class="admin-body-nav__item" href="${path}/controller?command=go_to_add_news_page">Add News</p>
         </section>
         <c:forEach var="news" items="${all_news_ses}">
             <c:choose>
@@ -100,6 +100,6 @@
         </c:forEach>
     </section>
 </main>
-<script src="${pageContext.request.contextPath}/pages/static/js/admin/news-edit.js"></script>
+<script src="${path}/pages/static/js/admin/news-edit.js"></script>
 </body>
 </html>

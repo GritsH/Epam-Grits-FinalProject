@@ -13,9 +13,9 @@
 <head>
     <meta charset="UTF-8">
     <title>News Management: News View</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/pages/static/css/base.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/pages/static/css/admin/base.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/pages/static/css/admin/news-view.css">
+    <link rel="stylesheet" href="${path}/pages/static/css/base.css">
+    <link rel="stylesheet" href="${path}/pages/static/css/admin/base.css">
+    <link rel="stylesheet" href="${path}/pages/static/css/admin/news-view.css">
     <link href="https://fonts.cdnfonts.com/css/montserrat" rel="stylesheet">
 </head>
 <body>
@@ -96,6 +96,6 @@
         </form>
     </section>
 </main>
-<script src="${pageContext.request.contextPath}/pages/static/js/admin/news-view.js"></script>
+<script src="${path}/pages/static/js/admin/news-view.js"></script>
 </body>
 </html>

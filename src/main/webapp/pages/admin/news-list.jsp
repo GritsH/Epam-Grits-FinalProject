@@ -13,9 +13,9 @@
 <head>
     <meta charset="UTF-8">
     <title>News Management: List</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/pages/static/css/base.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/pages/static/css/admin/base.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/pages/static/css/admin/news-list.css">
+    <link rel="stylesheet" href="${path}/pages/static/css/base.css">
+    <link rel="stylesheet" href="${path}/pages/static/css/admin/base.css">
+    <link rel="stylesheet" href="${path}/pages/static/css/admin/news-list.css">
     <link href="https://fonts.cdnfonts.com/css/montserrat" rel="stylesheet">
 </head>
 <body>

@@ -15,9 +15,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>News</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/pages/static/css/base.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/pages/static/css/news.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/pages/static/css/news-article.css">
+    <link rel="stylesheet" href="${path}/pages/static/css/base.css">
+    <link rel="stylesheet" href="${path}/pages/static/css/news.css">
+    <link rel="stylesheet" href="${path}/pages/static/css/news-article.css">
     <link href="https://fonts.cdnfonts.com/css/montserrat" rel="stylesheet">
 </head>
 <body>
@@ -30,7 +30,7 @@
     <c:otherwise>
         <header class="header">
             <div class="header-logo">
-                <img class="header-logo__icon" src="${pageContext.request.contextPath}/pages/static/img/news.svg"
+                <img class="header-logo__icon" src="${path}/pages/static/img/news.svg"
                      alt="News icon">
                 <a class="header-logo__title" href="${path}/controller?command=go_to_news_page">News</a>
             </div>
@@ -70,7 +70,7 @@
                     </p>
                     <div class="news-article-date">
                         <img class="news-article-date__img"
-                             src="${pageContext.request.contextPath}/pages/static/img/calendar.svg" alt="Date">
+                             src="${path}/pages/static/img/calendar.svg" alt="Date">
                         <p class="news-article-date__text">${news.addedAt}
                         </p>
                     </div>

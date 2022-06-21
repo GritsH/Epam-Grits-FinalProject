@@ -13,14 +13,14 @@
 <head>
     <meta charset="UTF-8">
     <title>News Management: News Edit</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/pages/static/css/base.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/pages/static/css/admin/base.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/pages/static/css/admin/news-edit.css">
+    <link rel="stylesheet" href="${path}/pages/static/css/base.css">
+    <link rel="stylesheet" href="${path}/pages/static/css/admin/base.css">
+    <link rel="stylesheet" href="${path}/pages/static/css/admin/news-edit.css">
     <link href="https://fonts.cdnfonts.com/css/montserrat" rel="stylesheet">
 </head>
 <body>
 <header class="header">
-    <a class="header-logo__title" href="news-list.jsp">News Management</a>
+    <a class="header-logo__title" href="${path}/controller?command=go_to_news_list_page">News Management</a>
     <section class="locale-links">
         <a class="link" href="">English</a>
         <a class="link" href="">Russian</a>
@@ -91,6 +91,6 @@
         </form>
     </section>
 </main>
-<script src="${pageContext.request.contextPath}/pages/static/js/admin/news-edit.js"></script>
+<script src="${path}/pages/static/js/admin/news-edit.js"></script>
 </body>
 </html>

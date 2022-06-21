@@ -20,15 +20,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/pages/static/css/base.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/pages/static/css/auth.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/pages/static/css/signup.css">
+    <link rel="stylesheet" href="${path}/pages/static/css/base.css">
+    <link rel="stylesheet" href="${path}/pages/static/css/auth.css">
+    <link rel="stylesheet" href="${path}/pages/static/css/signup.css">
     <link href="https://fonts.cdnfonts.com/css/montserrat" rel="stylesheet">
 </head>
 <body>
 <header class="header">
     <div class="header-logo">
-        <img class="header-logo__icon" src="${pageContext.request.contextPath}/pages/static/img/news.svg"
+        <img class="header-logo__icon" src="${path}/pages/static/img/news.svg"
              alt="News icon">
         <a class="header-logo__title" href="news.html">News</a>
     </div>
@@ -69,6 +69,6 @@
         </div>
     </section>
 </main>
-<script type="module" src="${pageContext.request.contextPath}/pages/static/js/auth/signup.js"></script>
+<script type="module" src="${path}/pages/static/js/auth/signup.js"></script>
 </body>
 </html>
