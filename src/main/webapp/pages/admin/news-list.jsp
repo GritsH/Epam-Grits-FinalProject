@@ -22,6 +22,7 @@
 <header class="header">
     <a class="header-logo__title" href="${path}/controller?command=go_to_news_list_page">News Management</a>
     <section class="locale-links">
+        <a class="link" href="${path}/controller?command=logout">Log out</a>
         <a class="link" href="">English</a>
         <a class="link" href="">Russian</a>
     </section>

@@ -41,7 +41,7 @@
                         <a class="header-auth__item" href="${path}/controller?command=go_to_signup_page">Sign Up</a>
                     </c:when>
                     <c:otherwise>
-                        <a class="header-auth__item" href="${path}/controller?command=go_to_login_page">Log out</a>
+                        <a class="header-auth__item" href="${path}/controller?command=logout">Log out</a>
                         <a class="header-auth__item" href="${path}/controller?command=go_to_signup_page">Sign Up</a>
                     </c:otherwise>
                 </c:choose>
