@@ -20,7 +20,7 @@
 </head>
 <body>
 <header class="header">
-    <a class="header-logo__title" href="">News Management</a>
+    <a class="header-logo__title" href="${path}/controller?command=go_to_news_list_page">News Management</a>
     <section class="locale-links">
         <a class="link" href="">English</a>
         <a class="link" href="">Russian</a>
@@ -32,7 +32,7 @@
             <label class="side-menu-news__title">News</label>
             <ul class="side-menu-actions-list">
                 <li class="side-menu-actions-list__item">
-                    <a class="link link_active" href="">News List</a>
+                    <a class="link link_active" href="${path}/controller?command=go_to_news_list_page">News List</a>
                 </li>
                 <li class="side-menu-actions-list__item">
                     <a class="link" href="${path}/controller?command=go_to_add_news_page">Add News</a>
@@ -42,7 +42,7 @@
     </aside>
     <section class="admin-body">
         <section class="admin-body-nav">
-            <a class="admin-body-nav__item" href="">News</a>
+            <a class="admin-body-nav__item" href="${path}/controller?command=go_to_news_list_page">News</a>
             <p class="admin-body-nav__item">>></p>
             <p class="admin-body-nav__item">News List</p>
         </section>

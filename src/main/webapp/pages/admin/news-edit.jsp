@@ -44,7 +44,7 @@
         <section class="admin-body-nav">
             <a class="admin-body-nav__item" href="${path}/controller?command=go_to_news_list_page">News</a>
             <p class="admin-body-nav__item">>></p>
-            <p class="admin-body-nav__item" href="${path}/controller?command=go_to_add_news_page">Add News</p>
+            <a class="admin-body-nav__item" href="${path}/controller?command=go_to_add_news_page">Add News</a>
         </section>
         <c:forEach var="news" items="${all_news_ses}">
             <c:choose>

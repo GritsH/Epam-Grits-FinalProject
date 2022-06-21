@@ -32,19 +32,19 @@
             <h2 class="side-menu-news__title">News</h2>
             <ul class="side-menu-actions-list">
                 <li class="side-menu-actions-list__item">
-                    <a class="link" href="news-list.jsp">News List</a>
+                    <a class="link" href="${path}/controller?command=go_to_news_list_page">News List</a>
                 </li>
                 <li class="side-menu-actions-list__item">
-                    <a class="link link_active" href="">Add News</a>
+                    <a class="link link_active" href="${path}/controller?command=go_to_add_news_page">Add News</a>
                 </li>
             </ul>
         </div>
     </aside>
     <section class="admin-body">
         <section class="admin-body-nav">
-            <a class="admin-body-nav__item" href="news-list.jsp">News</a>
+            <a class="admin-body-nav__item" href="${path}/controller?command=go_to_news_list_page">News</a>
             <p class="admin-body-nav__item">>></p>
-            <p class="admin-body-nav__item">Add News</p>
+            <a class="admin-body-nav__item" href="${path}/controller?command=go_to_add_news_page">Add News</a>
         </section>
         <form class="admin-body-content" action="${path}/controller" method="post">
             <input type="hidden" name="command" value="add_news">

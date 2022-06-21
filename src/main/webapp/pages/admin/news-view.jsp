@@ -85,7 +85,7 @@
                             </div>
                         </div>
                         <section class="admin-body-content__actions">
-                            <a href="news-edit.html">
+                            <a href="${path}/controller?command=go_to_edit_news_page&news_id_to_edit=${news.id}">
                                 <button type="button" class="admin-button">EDIT</button>
                             </a>
                             <button id="deleteButton" type="button" class="admin-button">DELETE</button>
