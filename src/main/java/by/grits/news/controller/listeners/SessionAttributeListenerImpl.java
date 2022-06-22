@@ -14,7 +14,8 @@ public class SessionAttributeListenerImpl implements HttpSessionAttributeListene
     @Override
     public void attributeAdded(HttpSessionBindingEvent event) {
         LOGGER.log(Level.INFO, "Attribute was added: " + event.getSession().getAttribute("user_name"));
-        LOGGER.log(Level.INFO, "Attribute was added: " + event.getSession().getAttribute("current_page"));    }
+        LOGGER.log(Level.INFO, "Attribute was added: " + event.getSession().getAttribute("current_page"));
+    }
 
     @Override
     public void attributeRemoved(HttpSessionBindingEvent event) {
@@ -24,5 +25,6 @@ public class SessionAttributeListenerImpl implements HttpSessionAttributeListene
     @Override
     public void attributeReplaced(HttpSessionBindingEvent event) {
         LOGGER.log(Level.INFO, "Attribute was replaced: " + event.getSession().getAttribute("user_name"));
-        LOGGER.log(Level.INFO, "Attribute was replaced: " + event.getSession().getAttribute("current_page"));    }
+        LOGGER.log(Level.INFO, "Attribute was replaced: " + event.getSession().getAttribute("current_page"));
+    }
 }

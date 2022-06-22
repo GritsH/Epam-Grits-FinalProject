@@ -28,7 +28,7 @@ public class GoToNewsListPageCommand implements Command {
         try {
             allNews = newsService.findAllNews();
         } catch (ServiceException e) {
-            throw new CommandException("Could not retrieve all news "+e);
+            throw new CommandException("Could not retrieve all news " + e);
         }
         session.setAttribute(SessionAttribute.USER_DATA_SESSION, userData);
         session.setAttribute(SessionAttribute.ALL_NEWS_SESSION, allNews);

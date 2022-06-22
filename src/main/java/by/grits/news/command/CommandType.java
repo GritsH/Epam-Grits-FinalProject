@@ -16,7 +16,7 @@ public enum CommandType {
     GO_TO_NEWS_LIST_PAGE(EnumSet.of(ADMIN)),
     GO_TO_EDIT_NEWS_PAGE(EnumSet.of(ADMIN)),
     GO_TO_ADD_NEWS_PAGE(EnumSet.of(ADMIN)),
-    GO_TO_NEWS_DETAILS_PAGE(EnumSet.of(ADMIN,USER,UNKNOWN)),
+    GO_TO_NEWS_DETAILS_PAGE(EnumSet.of(ADMIN, USER, UNKNOWN)),
     GO_TO_NEWS_VIEW_PAGE(EnumSet.of(ADMIN)),
     LOGIN(EnumSet.of(USER, ADMIN)),
     LOGOUT(EnumSet.of(USER, ADMIN)),

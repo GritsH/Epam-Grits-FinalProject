@@ -14,10 +14,10 @@ public class DefaultCommand implements Command {
     public Router execute(HttpServletRequest request) throws CommandException {
         HttpSession session = request.getSession();
         Router router;
-        if(session.getAttribute(CURRENT_ROLE) !=null){
+        if (session.getAttribute(CURRENT_ROLE) != null) {
             session.setAttribute(CURRENT_PAGE, PageNavigation.NEWS_FEED);
             router = new Router(PageNavigation.NEWS_FEED);
-        }else{
+        } else {
             session.setAttribute(CURRENT_PAGE, PageNavigation.LOGIN);
             router = new Router(PageNavigation.LOGIN);
         }

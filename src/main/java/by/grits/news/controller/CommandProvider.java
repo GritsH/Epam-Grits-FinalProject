@@ -19,7 +19,8 @@ public class CommandProvider {
     private static final Logger LOGGER = LogManager.getLogger(CommandProvider.class);
 
     private static EnumMap<CommandType, Command> commands = new EnumMap<>(CommandType.class);
-    static{
+
+    static {
         commands.put(DEFAULT, new DefaultCommand());
         commands.put(SIGNUP, new SignupCommand());
         commands.put(LOGIN, new LoginCommand());
@@ -36,6 +37,7 @@ public class CommandProvider {
         commands.put(GO_TO_NEWS_VIEW_PAGE, new GoToNewsViewPageCommand());
         commands.put(GO_TO_EDIT_NEWS_PAGE, new GoToEditNewsPageCommand());
     }
+
     public static Command of(String commandName) {
         Command currentCommand = commands.get(DEFAULT);
         if (commandName != null) {

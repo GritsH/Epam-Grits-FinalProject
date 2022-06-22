@@ -29,15 +29,15 @@ public class SignupCommand implements Command {
         removeTempData(userData);
         updateUserDataFromRequest(request, userData);
         Router router;
-        try{
+        try {
             Integer sizeBefore = userData.size();
             boolean result = userService.signup(userData);
             Integer sizeAfter = userData.size();
-            if(sizeAfter.equals(sizeBefore)){
+            if (sizeAfter.equals(sizeBefore)) {
                 session.removeAttribute(USER_DATA_SESSION);
                 session.setAttribute(REGISTRATION_RESULT, result);
                 router = new Router(PageNavigation.INDEX);
-            }else{
+            } else {
                 session.setAttribute(USER_DATA_SESSION, userData);
                 router = new Router(PageNavigation.SIGNUP);
             }

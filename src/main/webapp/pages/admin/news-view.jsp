@@ -91,9 +91,9 @@
                                 <button type="button" class="admin-button">EDIT</button>
                             </a>
                             <input id="deleteButton" type="submit" class="admin-button" value="DELETE">
-<%--                            <a href="${path}/controller?command=delete_news&news_id_to_delete=${news.id}">--%>
-<%--                                <button id="deleteButton" type="button" class="admin-button">DELETE</button>--%>
-<%--                            </a>--%>
+                                <%--                            <a href="${path}/controller?command=delete_news&news_id_to_delete=${news.id}">--%>
+                                <%--                                <button id="deleteButton" type="button" class="admin-button">DELETE</button>--%>
+                                <%--                            </a>--%>
                         </section>
                     </c:when>
                 </c:choose>

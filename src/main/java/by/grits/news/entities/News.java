@@ -83,7 +83,7 @@ public class News implements Serializable, Comparable<News> {
     }
 
     @Override
-    public String  toString() {
+    public String toString() {
         return "News{" +
                 "id=" + id +
                 ", title='" + title + '\'' +

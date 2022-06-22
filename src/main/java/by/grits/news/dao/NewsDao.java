@@ -13,6 +13,7 @@ public interface NewsDao {
     void update(News news) throws DaoException;
 
     News findById(Integer id) throws DaoException;
+
     List<News> findByAuthor(String authorEmail) throws DaoException;
 
     List<News> findAll() throws DaoException;

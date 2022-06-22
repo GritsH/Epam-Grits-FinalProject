@@ -28,16 +28,17 @@ public class EditNewsCommand implements Command {
         NewsService newsService = NewsServiceImpl.getInstance();
         updateNewsDataFromRequest(request, newsData);
         Router router;
-        try{
+        try {
             boolean result = newsService.updateNews(newsData);
             session.removeAttribute(NEWS_DATA_SESSION);
             router = new Router(PageNavigation.NEWS_LIST);
-        }catch (ServiceException e) {
+        } catch (ServiceException e) {
             LOGGER.error("Try to edit news was failed.", e);
             throw new CommandException("Try to edit news was failed.", e);
         }
-        return  router;
+        return router;
     }
+
     private void updateNewsDataFromRequest(HttpServletRequest request, Map<String, String> newsData) {
         newsData.put(NEWS_ID_TO_EDIT_SESSION, request.getParameter(NEWS_ID_TO_EDIT));
         newsData.put(NEWS_TITLE_SESSION, request.getParameter(NEWS_TITLE));

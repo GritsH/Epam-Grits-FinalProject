@@ -8,7 +8,10 @@ import java.util.Map;
 
 public interface UserService {
     User login(Map<String, String> userData) throws ServiceException;
+
     boolean signup(Map<String, String> userData) throws ServiceException;
+
     List<User> findAllUsers() throws ServiceException;
+
     User findUserByEmail(String userEmail) throws ServiceException;
 }

@@ -27,7 +27,7 @@ public class AddNewsCommand implements Command {
         NewsService newsService = NewsServiceImpl.getInstance();
         updateNewsDataFromRequest(request, newsData);
         Router router;
-        try{
+        try {
             boolean result = newsService.addNews(newsData);
             session.removeAttribute(NEWS_DATA_SESSION);
             router = new Router(PageNavigation.NEWS_LIST);

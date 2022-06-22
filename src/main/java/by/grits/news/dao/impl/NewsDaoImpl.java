@@ -11,7 +11,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class  NewsDaoImpl implements NewsDao {
+public class NewsDaoImpl implements NewsDao {
     private static final Logger LOGGER = LogManager.getLogger(NewsDaoImpl.class);
 
     private static final String INSERT =
@@ -75,7 +75,7 @@ public class  NewsDaoImpl implements NewsDao {
 
     @Override
     public void update(News news) throws DaoException {
-        try(Connection connection = ConnectionPool.getInstance().getConnection()){
+        try (Connection connection = ConnectionPool.getInstance().getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(UPDATE);
             preparedStatement.setString(1, news.getTitle());
             preparedStatement.setString(2, news.getSummary());
@@ -117,12 +117,12 @@ public class  NewsDaoImpl implements NewsDao {
     public List<News> findByAuthor(String authorEmail) throws DaoException {
         News news = null;
         List<News> selectedNews = new ArrayList<>();
-        try(Connection connection = ConnectionPool.getInstance().getConnection()){
+        try (Connection connection = ConnectionPool.getInstance().getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(GET_BY_AUTHOR);
             preparedStatement.setString(1, authorEmail);
 
-            try(ResultSet resultSet = preparedStatement.executeQuery()){
-                while(resultSet.next()){
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
                     news = new News(resultSet.getString("title"), resultSet.getString("summary"),
                             resultSet.getString("content"), resultSet.getString("author"));
                     news.setId(resultSet.getInt("id"));

@@ -57,11 +57,11 @@
                     </label>
                     <form method="post" action="${path}/controller">
                         <input type="hidden" name="command" value="go_to_news_page">
-                    <select id="sortSelect" class="sort__select" name="sort_type">
-                        <option value="none" disabled selected></option>
-                        <option value="asc">Ascending ↑</option>
-                        <option value="desc">Descending ↓</option>
-                    </select>
+                        <select id="sortSelect" class="sort__select" name="sort_type">
+                            <option value="none" disabled selected></option>
+                            <option value="asc">Ascending ↑</option>
+                            <option value="desc">Descending ↓</option>
+                        </select>
                         <button type="submit">sort</button>
                     </form>
                 </div>
@@ -85,11 +85,11 @@
                 </c:forEach>
 
             </section>
-<%--            <section class="pagination">--%>
-<%--                <a class="pagination__item pagination__item_active" href="">1</a>--%>
-<%--                <a class="pagination__item" href="">2</a>--%>
-<%--                <a class="pagination__item" href="">3</a>--%>
-<%--            </section>--%>
+                <%--            <section class="pagination">--%>
+                <%--                <a class="pagination__item pagination__item_active" href="">1</a>--%>
+                <%--                <a class="pagination__item" href="">2</a>--%>
+                <%--                <a class="pagination__item" href="">3</a>--%>
+                <%--            </section>--%>
         </main>
     </c:otherwise>
 </c:choose>

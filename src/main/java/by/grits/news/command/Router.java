@@ -10,13 +10,13 @@ public class Router {
         FORWARD, REDIRECT;
     }
 
-    public Router(String page){
+    public Router(String page) {
         this.page = page;
     }
 
-    public Router(String page, PageChangeType type){
+    public Router(String page, PageChangeType type) {
         this.page = page;
-        if(type != null){
+        if (type != null) {
             this.type = type;
         }
     }

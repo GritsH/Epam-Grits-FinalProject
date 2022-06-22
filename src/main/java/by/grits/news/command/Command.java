@@ -5,7 +5,8 @@ import jakarta.servlet.http.HttpServletRequest;
 
 @FunctionalInterface
 public interface Command {
-    static String CONTROLLER_PART="/controller?";
+    static String CONTROLLER_PART = "/controller?";
+
     Router execute(HttpServletRequest request) throws CommandException;
 
     static String extract(HttpServletRequest request) {

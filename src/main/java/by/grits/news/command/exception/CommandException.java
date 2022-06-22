@@ -1,6 +1,6 @@
 package by.grits.news.command.exception;
 
-public class CommandException extends Exception{
+public class CommandException extends Exception {
     public CommandException() {
     }
 

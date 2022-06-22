@@ -11,8 +11,9 @@ import static org.mockito.Mockito.when;
 
 class PasswordEncoderTest {
     private PasswordEncoder passwordEncoder;
+
     @BeforeEach
-    void setup(){
+    void setup() {
         passwordEncoder = mock(PasswordEncoder.class);
     }
 

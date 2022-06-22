@@ -65,7 +65,7 @@ public class NewsServiceImpl implements NewsService {
     }
 
     @Override
-    public boolean addNews(Map<String, String> newsData) throws ServiceException{
+    public boolean addNews(Map<String, String> newsData) throws ServiceException {
         boolean isAdded = false;
         String title = newsData.get(NEWS_TITLE_SESSION);
         String summary = newsData.get(NEWS_SUMMARY_SESSION);
@@ -73,11 +73,11 @@ public class NewsServiceImpl implements NewsService {
         String author = newsData.get(NEWS_AUTHOR_SESSION);
         String addedAt = newsData.get(NEWS_ADDED_AT_SESSION);
 
-        try{
+        try {
             News newsToAdd = new News(title, summary, content, author);
             newsToAdd.setAddedAt(LocalDate.parse(addedAt));
             isAdded = newsDao.insert(newsToAdd);
-        }catch (DaoException e){
+        } catch (DaoException e) {
             LOGGER.error("Try to add news was failed.", e);
             throw new ServiceException("Try to add news was failed.", e);
         }
@@ -108,10 +108,10 @@ public class NewsServiceImpl implements NewsService {
     @Override
     public boolean deleteNews(Integer newsId) throws ServiceException {
         boolean isDeleted = false;
-        try{
+        try {
             newsDao.delete(newsId);
             isDeleted = true;
-        }catch (DaoException e){
+        } catch (DaoException e) {
             LOGGER.error("Try to delete news was failed.", e);
             throw new ServiceException("Try to delete news was failed.", e);
         }
