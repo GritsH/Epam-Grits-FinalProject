@@ -25,6 +25,7 @@ public class CommandProvider {
         commands.put(SIGNUP, new SignupCommand());
         commands.put(LOGIN, new LoginCommand());
         commands.put(LOGOUT, new LogoutCommand());
+        commands.put(CHANGE_LANGUAGE, new ChangeLanguageCommand());
         commands.put(ADD_NEWS, new AddNewsCommand());
         commands.put(EDIT_NEWS, new EditNewsCommand());
         commands.put(DELETE_NEWS, new DeleteNewsCommand());

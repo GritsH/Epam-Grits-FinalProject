@@ -21,7 +21,8 @@ public enum CommandType {
     LOGIN(EnumSet.of(USER, ADMIN)),
     LOGOUT(EnumSet.of(USER, ADMIN)),
     SIGNUP(EnumSet.of(UNKNOWN)),
-    DEFAULT(EnumSet.of(ADMIN, USER, UNKNOWN));
+    DEFAULT(EnumSet.of(ADMIN, USER, UNKNOWN)),
+    CHANGE_LANGUAGE(EnumSet.of(ADMIN, USER, UNKNOWN));
 
     private EnumSet<RoleType> acceptableRole;
 
