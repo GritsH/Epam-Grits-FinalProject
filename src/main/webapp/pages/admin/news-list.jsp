@@ -35,7 +35,7 @@
 <header class="header">
     <a class="header-logo__title" href="${path}/controller?command=go_to_news_list_page">News Management</a>
     <section class="locale-links">
-<%--        <a href="javascript:" type="hidden">${locale =='ru_RU'?ru:en}</a>--%>
+        <%--        <a href="javascript:" type="hidden">${locale =='ru_RU'?ru:en}</a>--%>
         <a class="link" href="${path}/controller?command=logout">${logout}</a>
         <a class="link" href="${path}/controller?command=change_language&language=EN">${en}</a>
         <a class="link" href="${path}/controller?command=change_language&language=RU">${ru}</a>

@@ -70,7 +70,7 @@
                         <div class="admin-news-view">
                             <div class="admin-news-view__fieldset">
                                 <label class="admin-news-view__label" for="newsTitle">
-                                    ${news_title}
+                                        ${news_title}
                                 </label>
                                 <p id="newsTitle" class="admin-news-view__text">
                                         ${news.title}
@@ -78,7 +78,7 @@
                             </div>
                             <div class="admin-news-view__fieldset">
                                 <label class="admin-news-view__label" for="newsDate">
-                                    ${news_date}
+                                        ${news_date}
                                 </label>
                                 <p id="newsDate" class="admin-news-view__text">
                                         ${news.addedAt}
@@ -86,7 +86,7 @@
                             </div>
                             <div class="admin-news-view__fieldset">
                                 <label class="admin-news-view__label" for="newsBrief">
-                                    ${news_summary}
+                                        ${news_summary}
                                 </label>
                                 <p id="newsBrief" class="admin-news-view__text">
                                         ${news.summary}
@@ -94,7 +94,7 @@
                             </div>
                             <div class="admin-news-view__fieldset">
                                 <label class="admin-news-view__label" for="newsContent">
-                                    ${news_content}
+                                        ${news_content}
                                 </label>
                                 <p id="newsContent" class="admin-news-view__text">
                                         ${news.content}
