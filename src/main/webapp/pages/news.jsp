@@ -9,6 +9,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
+<c:set var="sortType" value="none"/>
 
 <html lang="en">
 <head>
@@ -54,34 +55,41 @@
                     <label for="sortSelect" class="sort__label">
                         Date:
                     </label>
-                    <select id="sortSelect" class="sort__select">
+                    <form method="post" action="${path}/controller">
+                        <input type="hidden" name="command" value="go_to_news_page">
+                    <select id="sortSelect" class="sort__select" name="sort_type">
+                        <option value="none" disabled selected></option>
                         <option value="asc">Ascending ↑</option>
                         <option value="desc">Descending ↓</option>
-                    </select></div>
+                    </select>
+                        <button type="submit">sort</button>
+                    </form>
+                </div>
             </section>
 
             <section class="articles-container">
                 <c:forEach var="news" items="${all_news_ses}">
-                <article class="news-article">
-                    <a class="news-article__title"
-                       href="${path}/controller?command=go_to_news_details_page&news_id=${news.id}">${news.title}
-                    </a>
-                    <p class="news-article__text">${news.content}
-                    </p>
-                    <div class="news-article-date">
-                        <img class="news-article-date__img"
-                             src="${path}/pages/static/img/calendar.svg" alt="Date">
-                        <p class="news-article-date__text">${news.addedAt}
+                    <article class="news-article">
+                        <a class="news-article__title"
+                           href="${path}/controller?command=go_to_news_details_page&news_id=${news.id}">${news.title}
+                        </a>
+                        <p class="news-article__text">${news.content}
                         </p>
-                    </div>
-                </article>
+                        <div class="news-article-date">
+                            <img class="news-article-date__img"
+                                 src="${path}/pages/static/img/calendar.svg" alt="Date">
+                            <p class="news-article-date__text">${news.addedAt}
+                            </p>
+                        </div>
+                    </article>
                 </c:forEach>
+
             </section>
-            <section class="pagination">
-                <a class="pagination__item pagination__item_active" href="">1</a>
-                <a class="pagination__item" href="">2</a>
-                <a class="pagination__item" href="">3</a>
-            </section>
+<%--            <section class="pagination">--%>
+<%--                <a class="pagination__item pagination__item_active" href="">1</a>--%>
+<%--                <a class="pagination__item" href="">2</a>--%>
+<%--                <a class="pagination__item" href="">3</a>--%>
+<%--            </section>--%>
         </main>
     </c:otherwise>
 </c:choose>

@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class News implements Serializable {
+public class News implements Serializable, Comparable<News> {
     private static final long serialVersionUID = 123L;
 
     private Integer id;
@@ -91,5 +91,10 @@ public class News implements Serializable {
                 ", content='" + content + '\'' +
                 ", addedAt=" + addedAt +
                 '}';
+    }
+
+    @Override
+    public int compareTo(News news) {
+        return getAddedAt().compareTo(news.getAddedAt());
     }
 }
