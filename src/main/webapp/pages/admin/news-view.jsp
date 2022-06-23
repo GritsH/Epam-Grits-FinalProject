@@ -23,6 +23,7 @@
 <fmt:message key="title.added_at" var="news_date"/>
 <fmt:message key="title.summary" var="news_summary"/>
 <fmt:message key="title.content" var="news_content"/>
+<fmt:message key="link.view_news" var="view"/>
 
 <html lang="en">
 <head>
@@ -37,8 +38,8 @@
 <header class="header">
     <a class="header-logo__title" href="${path}/controller?command=go_to_news_list_page">News Management</a>
     <section class="locale-links">
-        <a class="link" href="${path}/controller?command=change_language&language=EN">${en}</a>
-        <a class="link" href="${path}/controller?command=change_language&language=RU">${ru}</a>
+<%--        <a class="link" href="${path}/controller?command=change_language&language=EN">${en}</a>--%>
+<%--        <a class="link" href="${path}/controller?command=change_language&language=RU">${ru}</a>--%>
     </section>
 </header>
 <main class="main">
@@ -59,7 +60,7 @@
         <section class="admin-body-nav">
             <a class="admin-body-nav__item" href="${path}/controller?command=go_to_news_list_page">News</a>
             <p class="admin-body-nav__item">>></p>
-            <p class="admin-body-nav__item">News View</p>
+            <p class="admin-body-nav__item">${view}</p>
         </section>
         <form class="admin-body-content" method="post" action="${path}/controller">
             <input type="hidden" name="command" value="delete_news">
