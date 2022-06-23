@@ -1,9 +1,6 @@
 package by.grits.news.command.impl.goTo;
 
-import by.grits.news.command.Command;
-import by.grits.news.command.PageNavigation;
-import by.grits.news.command.RequestParameter;
-import by.grits.news.command.Router;
+import by.grits.news.command.*;
 import by.grits.news.command.exception.CommandException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;

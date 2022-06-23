@@ -55,6 +55,7 @@ public class Controller extends HttpServlet {
                     response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             }
         } catch (CommandException e) {
+            LOGGER.error("Error while command execution " + commandName, e);
             response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage());
         }
     }
