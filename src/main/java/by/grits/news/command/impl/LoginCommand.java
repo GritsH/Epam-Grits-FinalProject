@@ -8,12 +8,15 @@ import by.grits.news.entities.User;
 import by.grits.news.service.UserService;
 import by.grits.news.service.exception.ServiceException;
 import by.grits.news.service.impl.UserServiceImpl;
+import by.grits.news.util.PasswordEncoder;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.Map;
+import java.util.Objects;
 
 import static by.grits.news.command.RequestParameter.*;
 import static by.grits.news.command.SessionAttribute.*;
@@ -30,15 +33,26 @@ public class LoginCommand implements Command {
             updateUserDataFromRequest(request, userData);
         }
         UserService userService = UserServiceImpl.getInstance();
-        Router router;
+        Router router = null;
         try {
+            PasswordEncoder encoder = new PasswordEncoder();
+            String encodedPass = encoder.encode(userData.get("password_ses"));
             User user = userService.login(userData);
-            if (user != null) {
+            if(user==null){
+                user = userService.findUserByEmail(userData.get("email_ses"));
+            }
+            if (Objects.equals(user.getEmailAddress(), userData.get("email_ses"))
+                    && Objects.equals(user.getPassword(), encodedPass)) {
                 session.removeAttribute(USER_DATA_SESSION);
                 session.setAttribute(CURRENT_USER_EMAIL_SESSION, user.getEmailAddress());
                 session.setAttribute(CURRENT_ROLE, user.getRole());
                 session.setAttribute(CURRENT_PAGE, PageNavigation.NEWS_FEED);
                 router = new Router(PageNavigation.NEWS_FEED);
+            } else if (Objects.equals(user.getEmailAddress(), userData.get("email_ses"))
+                    && !Objects.equals(user.getPassword(), encodedPass)) {
+                session.setAttribute(USER_DATA_SESSION, userData);
+                session.setAttribute(CURRENT_PAGE, PageNavigation.LOGIN);
+                router = new Router(PageNavigation.LOGIN);
             } else {
                 session.setAttribute(USER_DATA_SESSION, userData);
                 session.setAttribute(CURRENT_PAGE, PageNavigation.SIGNUP);
@@ -46,6 +60,8 @@ public class LoginCommand implements Command {
             }
         } catch (ServiceException e) {
             throw new CommandException(e);
+        } catch (NoSuchAlgorithmException e) {
+            LOGGER.error("Smth wrong with encoding password");
         }
         return router;
     }

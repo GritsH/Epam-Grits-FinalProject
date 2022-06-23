@@ -20,7 +20,7 @@ public class UserDaoImpl implements UserDao {
     private static final String DELETE =
             "delete from users where email_address=?";
     private static final String GET_BY_EMAIL =
-            "select email_address, user_name, role_type, added_at from users where email_address=?";
+            "select email_address,user_password, user_name, role_type, added_at from users where email_address=?";
     private static final String GET_ALL =
             "select email_address, user_name, user_password, role_type, added_at from users";
     private static final String LOGIN =
@@ -94,9 +94,9 @@ public class UserDaoImpl implements UserDao {
 
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
-                    user = new User(email, resultSet.getString(2), resultSet.getString(3),
-                            RoleType.valueOf(resultSet.getString(4)),
-                            resultSet.getDate(5).toLocalDate());
+                    user = new User(email, resultSet.getString("user_password"), resultSet.getString("user_name"),
+                            RoleType.valueOf(resultSet.getString("role_type")),
+                            resultSet.getDate("added_at").toLocalDate());
                 }
             }
         } catch (SQLException e) {
@@ -123,7 +123,7 @@ public class UserDaoImpl implements UserDao {
             }
         } catch (SQLException e) {
             LOGGER.error("Error while select query: " + e.getMessage());
-            throw new DaoException("Error while select query: " + e.getMessage());
+            //throw new DaoException("Error while select query: " + e.getMessage());
         }
         return user;
     }

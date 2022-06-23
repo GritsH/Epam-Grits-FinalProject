@@ -15,6 +15,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 
 @WebServlet(name = "controller", urlPatterns = {"/controller"})
 @MultipartConfig
@@ -36,7 +37,8 @@ public class Controller extends HttpServlet {
         processRequest(req, resp);
     }
 
-    private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException,
+            IOException {
         String commandName = request.getParameter(RequestParameter.COMMAND);
         Command command = CommandProvider.of(commandName);
         LOGGER.info("Command name = " + commandName);

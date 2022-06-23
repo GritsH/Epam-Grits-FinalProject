@@ -15,7 +15,6 @@ import org.apache.logging.log4j.Logger;
 import java.util.Map;
 
 import static by.grits.news.command.RequestParameter.*;
-import static by.grits.news.command.RequestParameter.NEWS_AUTHOR;
 import static by.grits.news.command.SessionAttribute.*;
 
 public class DeleteNewsCommand implements Command {

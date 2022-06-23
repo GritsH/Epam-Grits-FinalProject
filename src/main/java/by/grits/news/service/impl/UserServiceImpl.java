@@ -50,7 +50,7 @@ public class UserServiceImpl implements UserService {
             }
         } catch (DaoException e) {
             LOGGER.error("Try to authenticate user " + email + password + " was failed.", e);
-            throw new ServiceException("Try to authenticate user " + email + password + " was failed.", e);
+            //throw new ServiceException("Try to authenticate user " + email + password + " was failed.", e);
         } catch (NoSuchAlgorithmException e) {
             LOGGER.error("Smth wrong with encoding password");
         }
