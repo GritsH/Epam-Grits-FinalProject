@@ -31,7 +31,7 @@
     <c:otherwise>
         <header class="header">
             <div class="header-logo">
-                <img class="header-logo__icon" src="${path}/pages/static/img/news.svg"
+                <img class="header-logo__icon" src="${pageContext.request.contextPath}/pages/static/img/news.svg"
                      alt="News icon">
                 <a class="header-logo__title" href="${path}/controller?command=go_to_news_page">News</a>
             </div>

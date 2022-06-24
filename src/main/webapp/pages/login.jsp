@@ -70,5 +70,6 @@
     </section>
 </main>
 <script type="module" src="${path}/pages/static/js/auth/login.js"></script>
+
 </body>
 </html>
