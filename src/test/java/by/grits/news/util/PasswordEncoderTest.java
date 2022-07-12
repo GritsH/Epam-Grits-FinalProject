@@ -14,25 +14,27 @@ class PasswordEncoderTest {
 
     @BeforeEach
     void setup() {
-        passwordEncoder = mock(PasswordEncoder.class);
+        passwordEncoder = new PasswordEncoder();
     }
 
     @Test
     void shouldMatch() throws NoSuchAlgorithmException {
         String password = "password";
-        when(passwordEncoder.encode(password)).thenReturn("encodedPassword");
+        String password2 = "password";
 
         String encodedPassword = passwordEncoder.encode(password);
-        assertEquals("encodedPassword", encodedPassword);
+        String encodedPassword2 = passwordEncoder.encode(password2);
+        assertEquals(encodedPassword, encodedPassword2);
     }
 
     @Test
     void shouldNotMatch() throws NoSuchAlgorithmException {
         String password = "password";
-        when(passwordEncoder.encode(password)).thenReturn("encoded1");
+        String password2 = "notPassword";
 
         String encodedPassword = passwordEncoder.encode(password);
-        assertNotEquals(password, encodedPassword);
+        String encodedPassword2 = passwordEncoder.encode(password2);
+        assertNotEquals(encodedPassword, encodedPassword2);
     }
 
 }

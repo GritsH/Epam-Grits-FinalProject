@@ -40,8 +40,7 @@ public class NewsDaoImpl implements NewsDao {
     }
 
     @Override
-    public boolean insert(News news) throws DaoException {
-        boolean isAdded = false;
+    public void insert(News news) throws DaoException {
         try (Connection connection = ConnectionPool.getInstance().getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(INSERT);
 
@@ -52,12 +51,10 @@ public class NewsDaoImpl implements NewsDao {
             preparedStatement.setDate(5, Date.valueOf(news.getAddedAt()));
 
             preparedStatement.executeUpdate();
-            isAdded = true;
         } catch (SQLException e) {
             LOGGER.error("Error while insert query: " + e.getMessage());
             throw new DaoException("Error while insert query: " + e.getMessage());
         }
-        return isAdded;
     }
 
     @Override
@@ -139,7 +136,7 @@ public class NewsDaoImpl implements NewsDao {
 
     @Override
     public List<News> findAll() throws DaoException {
-        News news = null;
+        News news;
         List<News> allNews = new ArrayList<>();
         try (Connection connection = ConnectionPool.getInstance().getConnection()) {
 

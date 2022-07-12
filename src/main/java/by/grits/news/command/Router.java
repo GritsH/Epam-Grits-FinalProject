@@ -29,14 +29,6 @@ public class Router {
         this.page = page;
     }
 
-    public void setRedirect() {
-        this.type = REDIRECT;
-    }
-
-    public void setForward() {
-        this.type = FORWARD;
-    }
-
     public PageChangeType getType() {
         return type;
     }

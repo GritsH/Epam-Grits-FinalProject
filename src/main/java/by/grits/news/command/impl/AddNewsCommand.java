@@ -28,7 +28,7 @@ public class AddNewsCommand implements Command {
         updateNewsDataFromRequest(request, newsData);
         Router router;
         try {
-            boolean result = newsService.addNews(newsData);
+            newsService.addNews(newsData);
             session.removeAttribute(NEWS_DATA_SESSION);
             router = new Router(PageNavigation.NEWS_LIST);
         } catch (ServiceException e) {

@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: grits
-  Date: 6/17/2022
-  Time: 9:47 AM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
@@ -35,7 +28,6 @@
 <header class="header">
     <a class="header-logo__title" href="${path}/controller?command=go_to_news_list_page">News Management</a>
     <section class="locale-links">
-        <%--        <a href="javascript:" type="hidden">${locale =='ru_RU'?ru:en}</a>--%>
         <a class="link" href="${path}/controller?command=logout">${logout}</a>
         <a class="link" href="${path}/controller?command=change_language&language=EN">${en}</a>
         <a class="link" href="${path}/controller?command=change_language&language=RU">${ru}</a>

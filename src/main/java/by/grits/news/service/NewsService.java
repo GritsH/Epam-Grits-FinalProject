@@ -13,9 +13,9 @@ public interface NewsService {
 
     List<News> findNewsByAuthor(String authorEmail) throws ServiceException;
 
-    boolean addNews(Map<String, String> newsData) throws ServiceException;
+    void addNews(Map<String, String> newsData) throws ServiceException;
 
-    boolean updateNews(Map<String, String> newsData) throws ServiceException;
+    void updateNews(Map<String, String> newsData) throws ServiceException;
 
-    boolean deleteNews(Integer newsId) throws ServiceException;
+    void deleteNews(Integer newsId) throws ServiceException;
 }

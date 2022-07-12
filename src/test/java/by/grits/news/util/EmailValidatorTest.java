@@ -7,28 +7,23 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class EmailValidatorTest {
-    private EmailValidator validator;
 
-    @BeforeEach
-    void setup() {
-        validator = new EmailValidator();
-    }
 
     @Test
     void validateEmailInput() {
-        boolean result = validator.validateEmailInput("email@gmail.com");
+        boolean result = EmailValidator.validateEmailInput("email@gmail.com");
         Assertions.assertTrue(result);
     }
 
     @Test
     void shouldNotValidateIfWrongEmailInput() {
-        boolean result = validator.validateEmailInput("asdsad4548adw");
+        boolean result = EmailValidator.validateEmailInput("asdsad4548adw");
         Assertions.assertFalse(result);
     }
 
     @Test
     void shouldNotValidateIfInputIsNull() {
-        boolean result = validator.validateEmailInput("");
+        boolean result = EmailValidator.validateEmailInput("");
         Assertions.assertFalse(result);
     }
 

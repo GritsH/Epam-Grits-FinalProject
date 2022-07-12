@@ -1,4 +1,4 @@
-package by.grits.news.command.impl.goTo.admin;
+package by.grits.news.command.impl.to.admin;
 
 import by.grits.news.command.*;
 import by.grits.news.command.exception.CommandException;

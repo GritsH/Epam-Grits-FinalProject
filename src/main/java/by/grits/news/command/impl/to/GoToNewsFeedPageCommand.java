@@ -1,4 +1,4 @@
-package by.grits.news.command.impl.goTo;
+package by.grits.news.command.impl.to;
 
 import by.grits.news.command.Command;
 import by.grits.news.command.PageNavigation;

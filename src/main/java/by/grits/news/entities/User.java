@@ -6,9 +6,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class User implements Serializable {
-    private static final long serialVersionUID = 456L;
-
+public class User {
     private String emailAddress;
     private String name;
     private String password;

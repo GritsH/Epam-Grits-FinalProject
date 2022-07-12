@@ -65,8 +65,7 @@ public class NewsServiceImpl implements NewsService {
     }
 
     @Override
-    public boolean addNews(Map<String, String> newsData) throws ServiceException {
-        boolean isAdded = false;
+    public void addNews(Map<String, String> newsData) throws ServiceException {
         String title = newsData.get(NEWS_TITLE_SESSION);
         String summary = newsData.get(NEWS_SUMMARY_SESSION);
         String content = newsData.get(NEWS_CONTENT_SESSION);
@@ -76,16 +75,15 @@ public class NewsServiceImpl implements NewsService {
         try {
             News newsToAdd = new News(title, summary, content, author);
             newsToAdd.setAddedAt(LocalDate.parse(addedAt));
-            isAdded = newsDao.insert(newsToAdd);
+            newsDao.insert(newsToAdd);
         } catch (DaoException e) {
             LOGGER.error("Try to add news was failed.", e);
             throw new ServiceException("Try to add news was failed.", e);
         }
-        return isAdded;
     }
 
     @Override
-    public boolean updateNews(Map<String, String> newsData) throws ServiceException {
+    public void updateNews(Map<String, String> newsData) throws ServiceException {
         Integer newsId = Integer.parseInt(newsData.get(NEWS_ID_TO_EDIT_SESSION));
         String newsTitle = newsData.get(NEWS_TITLE_SESSION);
         String newsSummary = newsData.get(NEWS_SUMMARY_SESSION);
@@ -102,19 +100,15 @@ public class NewsServiceImpl implements NewsService {
             LOGGER.error("Try to update news was failed.", e);
             throw new ServiceException("Try to update news was failed.", e);
         }
-        return true;
     }
 
     @Override
-    public boolean deleteNews(Integer newsId) throws ServiceException {
-        boolean isDeleted = false;
+    public void deleteNews(Integer newsId) throws ServiceException {
         try {
             newsDao.delete(newsId);
-            isDeleted = true;
         } catch (DaoException e) {
             LOGGER.error("Try to delete news was failed.", e);
             throw new ServiceException("Try to delete news was failed.", e);
         }
-        return isDeleted;
     }
 }

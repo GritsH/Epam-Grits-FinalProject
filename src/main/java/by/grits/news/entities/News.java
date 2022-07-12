@@ -4,8 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class News implements Serializable, Comparable<News> {
-    private static final long serialVersionUID = 123L;
+public class News implements Comparable<News> {
 
     private Integer id;
     private String title;

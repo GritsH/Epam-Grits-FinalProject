@@ -1,4 +1,4 @@
-package by.grits.news.command.impl.goTo;
+package by.grits.news.command.impl.to.admin;
 
 import by.grits.news.command.Command;
 import by.grits.news.command.PageNavigation;
@@ -11,14 +11,14 @@ import jakarta.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
 
-public class GoToLoginPageCommand implements Command {
+public class GoToAddNewsPageCommand implements Command {
     @Override
     public Router execute(HttpServletRequest request) throws CommandException {
         HttpSession session = request.getSession();
-        Map<String, String> userData = new HashMap<>();
-        session.setAttribute(SessionAttribute.USER_DATA_SESSION, userData);
+        Map<String, String> newsData = new HashMap<>();
+        session.setAttribute(SessionAttribute.NEWS_DATA_SESSION, newsData);
         String currentPage = Command.extract(request);
         session.setAttribute(SessionAttribute.CURRENT_PAGE, currentPage);
-        return new Router(PageNavigation.LOGIN);
+        return new Router(PageNavigation.NEWS_ADD);
     }
 }

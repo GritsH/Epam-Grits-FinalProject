@@ -3,11 +3,11 @@ package by.grits.news.controller;
 import by.grits.news.command.Command;
 import by.grits.news.command.CommandType;
 import by.grits.news.command.impl.*;
-import by.grits.news.command.impl.goTo.*;
-import by.grits.news.command.impl.goTo.admin.GoToAddNewsPageCommand;
-import by.grits.news.command.impl.goTo.admin.GoToEditNewsPageCommand;
-import by.grits.news.command.impl.goTo.admin.GoToNewsListPageCommand;
-import by.grits.news.command.impl.goTo.admin.GoToNewsViewPageCommand;
+import by.grits.news.command.impl.to.*;
+import by.grits.news.command.impl.to.admin.GoToAddNewsPageCommand;
+import by.grits.news.command.impl.to.admin.GoToEditNewsPageCommand;
+import by.grits.news.command.impl.to.admin.GoToNewsListPageCommand;
+import by.grits.news.command.impl.to.admin.GoToNewsViewPageCommand;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

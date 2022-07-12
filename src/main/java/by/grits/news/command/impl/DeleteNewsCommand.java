@@ -25,16 +25,14 @@ public class DeleteNewsCommand implements Command {
         HttpSession session = request.getSession();
         String newsToDelete = request.getParameter(NEWS_ID_TO_DELETE);
         String[] severalNewsToDelete = request.getParameterValues("checkbox_id");
-        //Map<String, String> severalNewsToDelete = (Map<String, String>) session.getAttribute(SEVERAL_NEWS_TO_DELETE_SESSION);
         NewsService newsService = NewsServiceImpl.getInstance();
-        //updateNewsDataFromRequest(request, severalNewsToDelete);
         Router router;
         try {
             if (severalNewsToDelete == null) {
-                boolean result = newsService.deleteNews(Integer.parseInt(newsToDelete));
+                newsService.deleteNews(Integer.parseInt(newsToDelete));
             } else {
                 for (String id : severalNewsToDelete) {
-                    boolean result = newsService.deleteNews(Integer.parseInt(id));
+                    newsService.deleteNews(Integer.parseInt(id));
                 }
             }
             router = new Router(PageNavigation.NEWS_LIST);

@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: grits
-  Date: 6/20/2022
-  Time: 9:00 PM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
@@ -107,9 +100,6 @@
                                 <button type="button" class="admin-button">${edit_button}</button>
                             </a>
                             <input id="deleteButton" type="submit" class="admin-button" value="${delete_button}">
-                                <%--                            <a href="${path}/controller?command=delete_news&news_id_to_delete=${news.id}">--%>
-                                <%--                                <button id="deleteButton" type="button" class="admin-button">DELETE</button>--%>
-                                <%--                            </a>--%>
                         </section>
                     </c:when>
                 </c:choose>

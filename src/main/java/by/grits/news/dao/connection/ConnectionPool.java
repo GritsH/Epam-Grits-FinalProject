@@ -162,6 +162,7 @@ public class ConnectionPool {
     }
 
     public void destroyPool() {
+        //todo somehow make this better
         for (int i = 0; i < CONNECTION_POOL_SIZE; i++) {
             try {
                 available.take().finalClose();

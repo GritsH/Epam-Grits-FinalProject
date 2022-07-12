@@ -29,7 +29,7 @@ public class EditNewsCommand implements Command {
         updateNewsDataFromRequest(request, newsData);
         Router router;
         try {
-            boolean result = newsService.updateNews(newsData);
+            newsService.updateNews(newsData);
             session.removeAttribute(NEWS_DATA_SESSION);
             router = new Router(PageNavigation.NEWS_LIST);
         } catch (ServiceException e) {

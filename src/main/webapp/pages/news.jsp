@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: grits
-  Date: 6/14/2022
-  Time: 11:52 AM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
@@ -85,11 +78,6 @@
                 </c:forEach>
 
             </section>
-                <%--            <section class="pagination">--%>
-                <%--                <a class="pagination__item pagination__item_active" href="">1</a>--%>
-                <%--                <a class="pagination__item" href="">2</a>--%>
-                <%--                <a class="pagination__item" href="">3</a>--%>
-                <%--            </section>--%>
         </main>
     </c:otherwise>
 </c:choose>
