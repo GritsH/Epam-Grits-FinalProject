@@ -28,8 +28,8 @@
 <header class="header">
     <a class="header-logo__title" href="${path}/controller?command=go_to_news_list_page">News Management</a>
     <section class="locale-links">
-<%--        <a class="link" href="">English</a>--%>
-<%--        <a class="link" href="">Russian</a>--%>
+        <%--        <a class="link" href="">English</a>--%>
+        <%--        <a class="link" href="">Russian</a>--%>
     </section>
 </header>
 <main class="main">
@@ -75,16 +75,17 @@
                     <label class="admin-news-view__label" for="newsBrief">
                         ${news_summary}
                     </label>
-                    <input type="text" id="newsBrief" class="admin-news-view__textarea"
-                           maxlength="500" required name="news_summary" value="${news_data_ses['news_summary_ses']}">
+                    <textarea id="newsBrief" class="admin-news-view__textarea"
+                              maxlength="500" required name="news_summary"
+                              value="${news_data_ses['news_summary_ses']}"></textarea>
                 </div>
                 <div class="admin-news-view__fieldset">
                     <label class="admin-news-view__label" for="newsContent">
                         ${news_content}
                     </label>
-                    <input type="text" id="newsContent" maxlength="2048" required
-                           class="admin-news-view__textarea" name="news_content"
-                           value="${news_data_ses['news_content_ses']}">
+                    <textarea id="newsContent" maxlength="2048" required
+                              class="admin-news-view__textarea" name="news_content"
+                              value="${news_data_ses['news_content_ses']}"></textarea>
                 </div>
                 <input type="hidden" name="news_author" value="${news_data_ses['news_author_ses'] = 'admin@gmail.com'}">
             </div>
