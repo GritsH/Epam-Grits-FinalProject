@@ -13,6 +13,7 @@ public class GoToNewsViewPageCommand implements Command {
         HttpSession session = request.getSession();
         String id = request.getParameter(RequestParameter.NEWS_ID);
         session.setAttribute(NEWS_ID_SESSION, id);
+        session.setAttribute(SessionAttribute.CURRENT_PAGE, PageNavigation.NEWS_VIEW);
         return new Router(PageNavigation.NEWS_VIEW);
     }
 }

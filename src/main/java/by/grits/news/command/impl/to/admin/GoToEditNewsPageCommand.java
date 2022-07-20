@@ -20,7 +20,7 @@ public class GoToEditNewsPageCommand implements Command {
         session.setAttribute(NEWS_ID_TO_EDIT_SESSION, id);
         session.setAttribute(SessionAttribute.NEWS_DATA_SESSION, newsData);
         String currentPage = Command.extract(request);
-        session.setAttribute(SessionAttribute.CURRENT_PAGE, currentPage);
+        session.setAttribute(SessionAttribute.CURRENT_PAGE, PageNavigation.NEWS_EDIT);
         return new Router(PageNavigation.NEWS_EDIT);
     }
 }

@@ -8,7 +8,7 @@
 <fmt:message key="link.logout" var="logout"/>
 <fmt:message key="language.en" var="en"/>
 <fmt:message key="language.ru" var="ru"/>
-<fmt:message key="title.news" var="news"/>
+<fmt:message key="title.news" var="news_"/>
 <fmt:message key="link.add_news" var="add_news"/>
 <fmt:message key="link.news_list" var="news_list"/>
 <fmt:message key="link.edit_news" var="link_edit"/>
@@ -18,6 +18,11 @@
 
 <html lang="${locale}">
 <head>
+    <script>
+        if(location.href === "http://localhost:8080/news/controller"){
+            location.href="http://localhost:8080/news/controller?command=go_to_news_list_page";
+        }
+    </script>
     <meta charset="UTF-8">
     <title>News Management: List</title>
     <link rel="stylesheet" href="${path}/pages/static/css/base.css">
@@ -37,7 +42,7 @@
 <main class="main">
     <aside class="side-menu">
         <div class="side-menu-news">
-            <label class="side-menu-news__title">${news}</label>
+            <label class="side-menu-news__title">${news_}</label>
             <ul class="side-menu-actions-list">
                 <li class="side-menu-actions-list__item">
                     <a class="link link_active" href="${path}/controller?command=go_to_news_list_page">${news_list}</a>
@@ -50,7 +55,7 @@
     </aside>
     <section class="admin-body">
         <section class="admin-body-nav">
-            <a class="admin-body-nav__item" href="${path}/controller?command=go_to_news_list_page">${news}</a>
+            <a class="admin-body-nav__item" href="${path}/controller?command=go_to_news_list_page">${news_}</a>
             <p class="admin-body-nav__item">>></p>
             <p class="admin-body-nav__item">${news_list}</p>
         </section>

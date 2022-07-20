@@ -25,12 +25,15 @@ public class AddNewsCommand implements Command {
         HttpSession session = request.getSession();
         Map<String, String> newsData = (Map<String, String>) session.getAttribute(NEWS_DATA_SESSION);
         NewsService newsService = NewsServiceImpl.getInstance();
-        updateNewsDataFromRequest(request, newsData);
+        if (newsData != null) {
+            updateNewsDataFromRequest(request, newsData);
+        }
         Router router;
         try {
             newsService.addNews(newsData);
             session.removeAttribute(NEWS_DATA_SESSION);
-            router = new Router(PageNavigation.NEWS_LIST);
+            session.setAttribute(CURRENT_PAGE, PageNavigation.NEWS_ADD);
+            router = new Router(PageNavigation.NEWS_LIST, Router.PageChangeType.FORWARD);
         } catch (ServiceException e) {
             LOGGER.error("Try to add news was failed.", e);
             throw new CommandException("Try to add news was failed.", e);

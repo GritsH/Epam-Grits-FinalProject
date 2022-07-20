@@ -31,7 +31,7 @@ public class GoToNewsListPageCommand implements Command {
         }
         session.setAttribute(SessionAttribute.USER_DATA_SESSION, userData);
         session.setAttribute(SessionAttribute.ALL_NEWS_SESSION, allNews);
-        session.setAttribute(SessionAttribute.CURRENT_PAGE, currentPage);
+        session.setAttribute(SessionAttribute.CURRENT_PAGE, PageNavigation.NEWS_LIST);
         return new Router(PageNavigation.NEWS_LIST);
     }
 }
