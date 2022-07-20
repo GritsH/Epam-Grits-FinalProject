@@ -119,14 +119,11 @@ public class ConnectionPool {
         return instance;
     }
 
-    public boolean releaseConnection(Connection connection) {
-
-        boolean result = false;
+    public void releaseConnection(Connection connection) {
         if (connection instanceof ProxyConnection) {
             try {
                 occupied.take();
                 available.put((ProxyConnection) connection);
-                result = true;
             } catch (InterruptedException e) {
                 LOGGER.error(
                         "Thread killed while waiting "
@@ -139,7 +136,6 @@ public class ConnectionPool {
                 Thread.currentThread().interrupt();
             }
         }
-        return result;
     }
 
     public Connection getConnection() {
