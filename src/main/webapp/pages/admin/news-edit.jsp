@@ -5,6 +5,10 @@
 <fmt:setLocale value="${locale}" scope="session"/>
 <fmt:setBundle basename="properties.pagecontent"/>
 
+<fmt:message key="language.en" var="en"/>
+<fmt:message key="language.ru" var="ru"/>
+<fmt:message key="link.logout" var="logout"/>
+<fmt:message key="title.news" var="news"/>
 <fmt:message key="link.add_news" var="add_news"/>
 <fmt:message key="link.news_list" var="news_list"/>
 <fmt:message key="title.news_title" var="news_title"/>
@@ -28,14 +32,15 @@
 <header class="header">
     <a class="header-logo__title" href="news-list.jsp">News Management</a>
     <section class="locale-links">
-<%--        <a class="link" href="">English</a>--%>
-<%--        <a class="link" href="">Russian</a>--%>
+        <a class="link" href="${path}/controller?command=logout">${logout}</a>
+        <a class="link" href="${path}/controller?command=change_language&language=EN">${en}</a>
+        <a class="link" href="${path}/controller?command=change_language&language=RU">${ru}</a>
     </section>
 </header>
 <main class="main">
     <aside class="side-menu">
         <div class="side-menu-news">
-            <h2 class="side-menu-news__title">News</h2>
+            <h2 class="side-menu-news__title">${news}</h2>
             <ul class="side-menu-actions-list">
                 <li class="side-menu-actions-list__item">
                     <a class="link" href="${path}/controller?command=go_to_news_list_page">${news_list}</a>
@@ -48,7 +53,7 @@
     </aside>
     <section class="admin-body">
         <section class="admin-body-nav">
-            <a class="admin-body-nav__item" href="${path}/controller?command=go_to_news_list_page">News</a>
+            <a class="admin-body-nav__item" href="${path}/controller?command=go_to_news_list_page">${news}</a>
             <p class="admin-body-nav__item">>></p>
             <a class="admin-body-nav__item" href="${path}/controller?command=go_to_add_news_page">${add_news}</a>
         </section>
