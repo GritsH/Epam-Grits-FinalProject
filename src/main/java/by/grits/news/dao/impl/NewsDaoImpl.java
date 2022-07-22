@@ -4,15 +4,12 @@ import by.grits.news.dao.NewsDao;
 import by.grits.news.dao.connection.ConnectionPool;
 import by.grits.news.entities.News;
 import by.grits.news.dao.exception.DaoException;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import by.grits.news.util.NewsDeserializer;
 
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.List;
 
 public class NewsDaoImpl implements NewsDao {
-    private static final Logger LOGGER = LogManager.getLogger(NewsDaoImpl.class);
 
     private static final String INSERT =
             "insert into news(title, summary, content, author, added_at) values(?,?,?,?,?)";
@@ -52,7 +49,6 @@ public class NewsDaoImpl implements NewsDao {
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            LOGGER.error("Error while insert query: " + e.getMessage());
             throw new DaoException("Error while insert query: " + e.getMessage());
         }
     }
@@ -64,7 +60,6 @@ public class NewsDaoImpl implements NewsDao {
             preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            LOGGER.error("Error while delete query: " + e.getMessage());
             throw new DaoException("Error while insert query: " + e.getMessage());
         }
 
@@ -82,7 +77,6 @@ public class NewsDaoImpl implements NewsDao {
             preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
-            LOGGER.error("Error while update query: " + e.getMessage());
             throw new DaoException("Error while update query: " + e.getMessage());
         }
 
@@ -104,7 +98,6 @@ public class NewsDaoImpl implements NewsDao {
                 }
             }
         } catch (SQLException e) {
-            LOGGER.error("Error while select query: " + e.getMessage());
             throw new DaoException("Error while insert query: " + e.getMessage());
         }
         return news;
@@ -112,23 +105,15 @@ public class NewsDaoImpl implements NewsDao {
 
     @Override
     public List<News> findByAuthor(String authorEmail) throws DaoException {
-        News news = null;
-        List<News> selectedNews = new ArrayList<>();
+        List<News> selectedNews;
         try (Connection connection = ConnectionPool.getInstance().getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(GET_BY_AUTHOR);
             preparedStatement.setString(1, authorEmail);
 
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
-                while (resultSet.next()) {
-                    news = new News(resultSet.getString("title"), resultSet.getString("summary"),
-                            resultSet.getString("content"), resultSet.getString("author"));
-                    news.setId(resultSet.getInt("id"));
-                    news.setAddedAt(resultSet.getDate("added_at").toLocalDate());
-                    selectedNews.add(news);
-                }
+                selectedNews = NewsDeserializer.deserialize(resultSet);
             }
         } catch (SQLException e) {
-            LOGGER.error("Error while select query: " + e.getMessage());
             throw new DaoException("Error while insert query: " + e.getMessage());
         }
         return selectedNews;
@@ -136,22 +121,14 @@ public class NewsDaoImpl implements NewsDao {
 
     @Override
     public List<News> findAll() throws DaoException {
-        News news;
-        List<News> allNews = new ArrayList<>();
+        List<News> allNews;
         try (Connection connection = ConnectionPool.getInstance().getConnection()) {
 
             PreparedStatement preparedStatement = connection.prepareStatement(GET_ALL);
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            while (resultSet.next()) {
-                news = new News(resultSet.getString("title"), resultSet.getString("summary"),
-                        resultSet.getString("content"), resultSet.getString("author"));
-                news.setId(resultSet.getInt("id"));
-                news.setAddedAt(resultSet.getDate("added_at").toLocalDate());
-                allNews.add(news);
-            }
+            allNews = NewsDeserializer.deserialize(resultSet);
         } catch (SQLException e) {
-            LOGGER.error("Error while select query: " + e.getMessage());
             throw new DaoException("Error while select query: " + e.getMessage());
         }
         return allNews;

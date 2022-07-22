@@ -49,8 +49,7 @@ public class UserServiceImpl implements UserService {
                 userData.put(NOT_FOUND_SESSION, WRONG_DATA_MARKER);
             }
         } catch (DaoException e) {
-            LOGGER.error("Try to authenticate user " + email + password + " was failed.", e);
-            //throw new ServiceException("Try to authenticate user " + email + password + " was failed.", e);
+            throw new ServiceException("Try to authenticate user " + email + password + " was failed.", e);
         } catch (NoSuchAlgorithmException e) {
             LOGGER.error("Smth wrong with encoding password");
         }
@@ -76,7 +75,6 @@ public class UserServiceImpl implements UserService {
             userDao.insert(newUser);
             return true;
         } catch (DaoException | NoSuchAlgorithmException e) {
-            LOGGER.error("Could not create new account ", e);
             throw new ServiceException("Creating new account failed", e);
         }
     }
@@ -87,7 +85,6 @@ public class UserServiceImpl implements UserService {
         try {
             allUsers = userDao.findAll();
         } catch (DaoException e) {
-            LOGGER.error("Failed getting al users", e);
             throw new ServiceException("Failed getting all users.", e);
         }
         return allUsers;
@@ -95,11 +92,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User findUserByEmail(String userEmail) throws ServiceException {
-        User user = null;
+        User user;
         try {
             user = userDao.findByEmail(userEmail);
         } catch (DaoException e) {
-            LOGGER.error("Try to find user by email " + userEmail + " was failed.", e);
             throw new ServiceException("Try to find user by id " + userEmail + " was failed.", e);
         }
         return user;

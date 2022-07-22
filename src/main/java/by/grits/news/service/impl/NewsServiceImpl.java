@@ -34,7 +34,6 @@ public class NewsServiceImpl implements NewsService {
         try {
             allNews = newsDao.findAll();
         } catch (DaoException e) {
-            LOGGER.error("Try to find all news was failed.", e);
             throw new ServiceException("Try to find all news was failed.", e);
         }
         return allNews;
@@ -46,7 +45,6 @@ public class NewsServiceImpl implements NewsService {
         try {
             selectedNews = newsDao.findById(id);
         } catch (DaoException e) {
-            LOGGER.error("Try to find news by ID was failed.", e);
             throw new ServiceException("Try to find news by ID was failed.", e);
         }
         return selectedNews;
@@ -58,7 +56,6 @@ public class NewsServiceImpl implements NewsService {
         try {
             allNews = newsDao.findByAuthor(authorEmail);
         } catch (DaoException e) {
-            LOGGER.error("Try to find all news by author was failed.", e);
             throw new ServiceException("Try to find all news by author was failed.", e);
         }
         return allNews;
@@ -77,7 +74,6 @@ public class NewsServiceImpl implements NewsService {
             newsToAdd.setAddedAt(LocalDate.parse(addedAt));
             newsDao.insert(newsToAdd);
         } catch (DaoException e) {
-            LOGGER.error("Try to add news was failed.", e);
             throw new ServiceException("Try to add news was failed.", e);
         }
     }
@@ -97,7 +93,6 @@ public class NewsServiceImpl implements NewsService {
             toUpdateNews.setAddedAt(LocalDate.parse(newsAddedAt));
             newsDao.update(toUpdateNews);
         } catch (DaoException e) {
-            LOGGER.error("Try to update news was failed.", e);
             throw new ServiceException("Try to update news was failed.", e);
         }
     }
@@ -107,7 +102,6 @@ public class NewsServiceImpl implements NewsService {
         try {
             newsDao.delete(newsId);
         } catch (DaoException e) {
-            LOGGER.error("Try to delete news was failed.", e);
             throw new ServiceException("Try to delete news was failed.", e);
         }
     }

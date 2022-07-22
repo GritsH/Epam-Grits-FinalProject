@@ -52,7 +52,6 @@ public class UserDaoImpl implements UserDao {
             preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
-            LOGGER.error("Error while insert query: " + e.getMessage());
             throw new DaoException("Error while insert query: " + e.getMessage());
         }
     }
@@ -65,7 +64,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public List<User> findAll() throws DaoException {
-        User user = null;
+        User user;
         List<User> allUsers = new ArrayList<>();
         try (Connection connection = ConnectionPool.getInstance().getConnection()) {
 
@@ -79,7 +78,6 @@ public class UserDaoImpl implements UserDao {
                 allUsers.add(user);
             }
         } catch (SQLException e) {
-            LOGGER.error("Error while select query: " + e.getMessage());
             throw new DaoException("Error while select query: " + e.getMessage());
         }
         return allUsers;
@@ -100,7 +98,6 @@ public class UserDaoImpl implements UserDao {
                 }
             }
         } catch (SQLException e) {
-            LOGGER.error("Error while select query: " + e.getMessage());
             throw new DaoException("Error while select query: " + e.getMessage());
         }
         return user;
@@ -108,7 +105,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public User logIn(String email, String password) throws DaoException {
-        User user = null;
+        User user;
         try (Connection connection = ConnectionPool.getInstance().getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(LOGIN);
 
@@ -122,8 +119,7 @@ public class UserDaoImpl implements UserDao {
                         resultSet.getDate("added_at").toLocalDate());
             }
         } catch (SQLException e) {
-            LOGGER.error("Error while select query: " + e.getMessage());
-            //throw new DaoException("Error while select query: " + e.getMessage());
+            throw new DaoException("Error while select query: " + e.getMessage());
         }
         return user;
     }
