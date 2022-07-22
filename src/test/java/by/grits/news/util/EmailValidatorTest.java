@@ -22,7 +22,7 @@ class EmailValidatorTest {
     }
 
     @Test
-    void shouldNotValidateIfInputIsNull() {
+    void shouldNotValidateIfInputIsEmpty() {
         boolean result = EmailValidator.validateEmailInput("");
         Assertions.assertFalse(result);
     }
