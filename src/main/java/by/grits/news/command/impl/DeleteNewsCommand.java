@@ -22,7 +22,6 @@ public class DeleteNewsCommand implements Command {
 
     @Override
     public Router execute(HttpServletRequest request) throws CommandException {
-        HttpSession session = request.getSession();
         String newsToDelete = request.getParameter(NEWS_ID_TO_DELETE);
         String[] severalNewsToDelete = request.getParameterValues("checkbox_id");
         NewsService newsService = NewsServiceImpl.getInstance();

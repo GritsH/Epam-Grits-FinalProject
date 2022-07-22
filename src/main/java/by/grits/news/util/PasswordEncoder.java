@@ -17,7 +17,7 @@ public class PasswordEncoder {
 
     public String encode(String password) throws NoSuchAlgorithmException {
 
-        MessageDigest messageDigest = null;
+        MessageDigest messageDigest;
         messageDigest = MessageDigest.getInstance(ENCRYPTION_METHOD);
 
         messageDigest.update(SEED);

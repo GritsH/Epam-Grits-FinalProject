@@ -34,8 +34,8 @@ public class ConnectionPool {
     private static final int DEFAULT_CONNECTION_POOL_SIZE = 8;
     private static final int CONNECTION_POOL_SIZE;
 
-    private static final Lock instanceLock = new ReentrantLock(true);
-    private static final AtomicBoolean isInstanceCreated = new AtomicBoolean(false);
+    private static final Lock INSTANCE_LOCK = new ReentrantLock(true);
+    private static final AtomicBoolean IS_INSTANCE_CREATED = new AtomicBoolean(false);
     private static ConnectionPool instance;
 
     private final BlockingQueue<ProxyConnection> available =
@@ -91,9 +91,8 @@ public class ConnectionPool {
     private ConnectionPool() {
 
         for (int i = 0; i < CONNECTION_POOL_SIZE; i++) {
-            ProxyConnection connection;
             try {
-                connection = new ProxyConnection(DriverManager.getConnection(DB_URL, properties));
+                ProxyConnection connection = new ProxyConnection(DriverManager.getConnection(DB_URL, properties));
                 available.put(connection);
             } catch (SQLException | InterruptedException e) {
                 LOGGER.error("Error while initialising connection pool: " + e.getMessage());
@@ -104,16 +103,16 @@ public class ConnectionPool {
     }
 
     public static ConnectionPool getInstance() {
-        if (!isInstanceCreated.get()) {
+        if (!IS_INSTANCE_CREATED.get()) {
             try {
-                instanceLock.lock();
+                INSTANCE_LOCK.lock();
                 if (instance == null) {
                     instance = new ConnectionPool();
-                    isInstanceCreated.set(true);
+                    IS_INSTANCE_CREATED.set(true);
                     LOGGER.debug("Connection pool instance created");
                 }
             } finally {
-                instanceLock.unlock();
+                INSTANCE_LOCK.unlock();
             }
         }
         return instance;

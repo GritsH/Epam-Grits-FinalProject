@@ -14,7 +14,6 @@ import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.util.EnumSet;
-import java.util.Locale;
 
 import static by.grits.news.command.SessionAttribute.CURRENT_ROLE;
 
