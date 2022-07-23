@@ -16,7 +16,6 @@ import java.util.Map;
 import static by.grits.news.command.SessionAttribute.*;
 
 public class NewsServiceImpl implements NewsService {
-    private static final Logger LOGGER = LogManager.getLogger(NewsServiceImpl.class);
 
     private static NewsServiceImpl instance = new NewsServiceImpl();
     private NewsDao newsDao = NewsDaoImpl.getInstance();

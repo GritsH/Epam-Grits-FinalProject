@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDaoImpl implements UserDao {
-    private static final Logger LOGGER = LogManager.getLogger(UserDaoImpl.class);
 
     private static final String INSERT =
             "insert into users(email_address, user_password, user_name, role_type, added_at) values(?,?,?,?,?)";

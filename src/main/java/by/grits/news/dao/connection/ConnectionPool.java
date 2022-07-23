@@ -19,7 +19,7 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class ConnectionPool {
     static Logger LOGGER = LogManager.getLogger(ConnectionPool.class);
-    private static final Properties properties = new Properties();
+    private static final Properties PROPERTIES = new Properties();
 
     private static final String DB_PROPERTIES_FILE = "properties/app.properties";
     private static final String DB_PROPERTIES_PREFIX = "db.";
@@ -52,9 +52,9 @@ public class ConnectionPool {
             fileProperties.load(propertiesStream);
 
             DB_URL = fileProperties.getProperty(DB_PROPERTIES_PREFIX + DB_URL_PROPERTY);
-            properties.put(
+            PROPERTIES.put(
                     DB_USER_PROPERTY, fileProperties.getProperty(DB_PROPERTIES_PREFIX + DB_USER_PROPERTY));
-            properties.put(
+            PROPERTIES.put(
                     DB_PASSWORD_PROPERTY,
                     fileProperties.getProperty(DB_PROPERTIES_PREFIX + DB_PASSWORD_PROPERTY));
 
@@ -80,10 +80,10 @@ public class ConnectionPool {
             CONNECTION_POOL_SIZE = poolSize;
             LOGGER.debug("Pool size: " + poolSize);
         } catch (IOException e) {
-            LOGGER.error("Cannot open properties file: " + DB_PROPERTIES_FILE);
+            //LOGGER.error("Cannot open properties file: " + DB_PROPERTIES_FILE);
             throw new ExceptionInInitializerError("Cannot open properties file: " + DB_PROPERTIES_FILE);
         } catch (ClassNotFoundException e) {
-            LOGGER.error("Error loading driver: " + driverProperty);
+            //LOGGER.error("Error loading driver: " + driverProperty);
             throw new ExceptionInInitializerError("Error loading driver: " + driverProperty);
         }
     }
@@ -92,10 +92,10 @@ public class ConnectionPool {
 
         for (int i = 0; i < CONNECTION_POOL_SIZE; i++) {
             try {
-                ProxyConnection connection = new ProxyConnection(DriverManager.getConnection(DB_URL, properties));
+                ProxyConnection connection = new ProxyConnection(DriverManager.getConnection(DB_URL, PROPERTIES));
                 available.put(connection);
             } catch (SQLException | InterruptedException e) {
-                LOGGER.error("Error while initialising connection pool: " + e.getMessage());
+                //LOGGER.error("Error while initialising connection pool: " + e.getMessage());
                 throw new ExceptionInInitializerError(
                         "Error while initialising connection pool: " + e.getMessage());
             }
