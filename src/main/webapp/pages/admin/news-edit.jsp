@@ -85,17 +85,17 @@
                                 <label class="admin-news-view__label" for="newsBrief">
                                     ${news_summary}
                                 </label>
-                                <input type="text" id="newsBrief" class="admin-news-view__textarea"
+                                <textarea id="newsBrief" class="admin-news-view__textarea"
                                        maxlength="500" name="news_summary"
-                                       value="${news_data_ses['news_summary_ses'] = news.summary}" required>
+                                          value="${news_data_ses['news_summary_ses'] = news.summary}" required></textarea>
                             </div>
                             <div class="admin-news-view__fieldset">
                                 <label class="admin-news-view__label" for="newsContent">
                                     ${news_content}
                                 </label>
-                                <input type="text" id="newsContent" maxlength="2048" required
+                                <textarea id="newsContent" maxlength="2048" required
                                        class="admin-news-view__textarea" name="news_content"
-                                       value="${news_data_ses['news_content_ses'] = news.content}">
+                                          value="${news_data_ses['news_content_ses'] = news.content}"></textarea>
                             </div>
                         </div>
                         <section class="admin-body-content__actions">

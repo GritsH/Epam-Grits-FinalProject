@@ -82,7 +82,7 @@
                     </label>
                     <textarea id="newsBrief" class="admin-news-view__textarea"
                               maxlength="500" required name="news_summary"
-                              value="${news_data_ses['news_summary_ses']}"></textarea>
+                              value="${news_data_ses['news_summary_ses']}" ></textarea>
                 </div>
                 <div class="admin-news-view__fieldset">
                     <label class="admin-news-view__label" for="newsContent">
