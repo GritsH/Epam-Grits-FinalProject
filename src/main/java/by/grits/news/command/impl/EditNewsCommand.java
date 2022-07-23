@@ -4,6 +4,7 @@ import by.grits.news.command.Command;
 import by.grits.news.command.PageNavigation;
 import by.grits.news.command.Router;
 import by.grits.news.command.exception.CommandException;
+import by.grits.news.dao.impl.NewsDaoImpl;
 import by.grits.news.service.NewsService;
 import by.grits.news.service.exception.ServiceException;
 import by.grits.news.service.impl.NewsServiceImpl;
@@ -29,6 +30,7 @@ public class EditNewsCommand implements Command {
         updateNewsDataFromRequest(request, newsData);
         Router router;
         try {
+            newsService.init(NewsDaoImpl.getInstance());
             newsService.updateNews(newsData);
             session.removeAttribute(NEWS_DATA_SESSION);
             router = new Router(PageNavigation.NEWS_LIST);

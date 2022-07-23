@@ -1,5 +1,6 @@
 package by.grits.news.service;
 
+import by.grits.news.dao.NewsDao;
 import by.grits.news.entities.News;
 import by.grits.news.service.exception.ServiceException;
 
@@ -18,4 +19,5 @@ public interface NewsService {
     void updateNews(Map<String, String> newsData) throws ServiceException;
 
     void deleteNews(Integer newsId) throws ServiceException;
+    void init(NewsDao newsDao) throws ServiceException;
 }

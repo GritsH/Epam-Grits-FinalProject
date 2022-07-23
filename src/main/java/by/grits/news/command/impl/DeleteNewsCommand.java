@@ -4,11 +4,11 @@ import by.grits.news.command.Command;
 import by.grits.news.command.PageNavigation;
 import by.grits.news.command.Router;
 import by.grits.news.command.exception.CommandException;
+import by.grits.news.dao.impl.NewsDaoImpl;
 import by.grits.news.service.NewsService;
 import by.grits.news.service.exception.ServiceException;
 import by.grits.news.service.impl.NewsServiceImpl;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -27,6 +27,7 @@ public class DeleteNewsCommand implements Command {
         NewsService newsService = NewsServiceImpl.getInstance();
         Router router;
         try {
+            newsService.init(NewsDaoImpl.getInstance());
             if (severalNewsToDelete == null) {
                 newsService.deleteNews(Integer.parseInt(newsToDelete));
             } else {

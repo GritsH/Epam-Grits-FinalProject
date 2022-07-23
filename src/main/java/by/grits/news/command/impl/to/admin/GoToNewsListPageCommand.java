@@ -5,6 +5,7 @@ import by.grits.news.command.PageNavigation;
 import by.grits.news.command.Router;
 import by.grits.news.command.SessionAttribute;
 import by.grits.news.command.exception.CommandException;
+import by.grits.news.dao.impl.NewsDaoImpl;
 import by.grits.news.entities.News;
 import by.grits.news.service.NewsService;
 import by.grits.news.service.exception.ServiceException;
@@ -20,11 +21,11 @@ public class GoToNewsListPageCommand implements Command {
     @Override
     public Router execute(HttpServletRequest request) throws CommandException {
         HttpSession session = request.getSession();
-        String currentPage = Command.extract(request);
         Map<String, String> userData = new HashMap<>();
         List<News> allNews;
         NewsService newsService = NewsServiceImpl.getInstance();
         try {
+            newsService.init(NewsDaoImpl.getInstance());
             allNews = newsService.findAllNews();
         } catch (ServiceException e) {
             throw new CommandException("Could not retrieve all news " + e);

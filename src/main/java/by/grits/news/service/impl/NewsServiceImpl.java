@@ -2,12 +2,10 @@ package by.grits.news.service.impl;
 
 import by.grits.news.dao.NewsDao;
 import by.grits.news.dao.exception.DaoException;
-import by.grits.news.dao.impl.NewsDaoImpl;
 import by.grits.news.entities.News;
 import by.grits.news.service.NewsService;
 import by.grits.news.service.exception.ServiceException;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+
 
 import java.time.LocalDate;
 import java.util.List;
@@ -17,14 +15,22 @@ import static by.grits.news.command.SessionAttribute.*;
 
 public class NewsServiceImpl implements NewsService {
 
-    private static NewsServiceImpl instance = new NewsServiceImpl();
-    private NewsDao newsDao = NewsDaoImpl.getInstance();
+    private static NewsServiceImpl instance;
+    private static NewsDao newsDao;
 
     private NewsServiceImpl() {
     }
 
     public static NewsServiceImpl getInstance() {
+        if (instance == null) {
+            instance = new NewsServiceImpl();
+        }
         return instance;
+    }
+
+    @Override
+    public void init(NewsDao newsDao1) throws ServiceException {
+        newsDao = newsDao1;
     }
 
     @Override

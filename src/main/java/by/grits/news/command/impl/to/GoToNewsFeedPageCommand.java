@@ -5,6 +5,7 @@ import by.grits.news.command.PageNavigation;
 import by.grits.news.command.Router;
 import by.grits.news.command.SessionAttribute;
 import by.grits.news.command.exception.CommandException;
+import by.grits.news.dao.impl.NewsDaoImpl;
 import by.grits.news.entities.News;
 import by.grits.news.service.NewsService;
 import by.grits.news.service.exception.ServiceException;
@@ -27,6 +28,7 @@ public class GoToNewsFeedPageCommand implements Command {
         List<News> allNews;
         NewsService newsService = NewsServiceImpl.getInstance();
         try {
+            newsService.init(NewsDaoImpl.getInstance());
             allNews = newsService.findAllNews();
             if (Objects.equals(sortType, "asc")) {
                 Collections.sort(allNews);

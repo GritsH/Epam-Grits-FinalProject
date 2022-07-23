@@ -17,7 +17,6 @@ public class GoToLoginPageCommand implements Command {
         HttpSession session = request.getSession();
         Map<String, String> userData = new HashMap<>();
         session.setAttribute(SessionAttribute.USER_DATA_SESSION, userData);
-        String currentPage = Command.extract(request);
         session.setAttribute(SessionAttribute.CURRENT_PAGE, PageNavigation.LOGIN);
         return new Router(PageNavigation.LOGIN);
     }

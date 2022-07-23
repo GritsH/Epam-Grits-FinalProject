@@ -17,7 +17,6 @@ public class GoToAddNewsPageCommand implements Command {
         HttpSession session = request.getSession();
         Map<String, String> newsData = new HashMap<>();
         session.setAttribute(SessionAttribute.NEWS_DATA_SESSION, newsData);
-        String currentPage = Command.extract(request);
         session.setAttribute(SessionAttribute.CURRENT_PAGE, PageNavigation.NEWS_ADD);
         return new Router(PageNavigation.NEWS_ADD, Router.PageChangeType.FORWARD);
     }
