@@ -28,6 +28,6 @@ public class SessionAttributeListenerImpl implements HttpSessionAttributeListene
     @Override
     public void attributeReplaced(HttpSessionBindingEvent event) {
         LOGGER.log(Level.INFO, "Attribute 'user email' was replaced: " + event.getSession().getAttribute(CURRENT_USER_EMAIL_SESSION));
-        LOGGER.log(Level.INFO, "Attribute 'current page' was replaced: " + event.getSession().getAttribute(CURRENT_USER_EMAIL_SESSION));
+        LOGGER.log(Level.INFO, "Attribute 'current page' was replaced: " + event.getSession().getAttribute(CURRENT_PAGE));
     }
 }

@@ -11,7 +11,5 @@ public interface UserService {
 
     boolean signup(Map<String, String> userData) throws ServiceException;
 
-    List<User> findAllUsers() throws ServiceException;
-
     User findUserByEmail(String userEmail) throws ServiceException;
 }

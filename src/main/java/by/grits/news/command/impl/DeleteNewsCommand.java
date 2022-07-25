@@ -12,10 +12,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.Map;
 
 import static by.grits.news.command.RequestParameter.*;
-import static by.grits.news.command.SessionAttribute.*;
 
 public class DeleteNewsCommand implements Command {
     private static final Logger LOGGER = LogManager.getLogger(AddNewsCommand.class);
@@ -43,7 +41,4 @@ public class DeleteNewsCommand implements Command {
         return router;
     }
 
-    private void updateNewsDataFromRequest(HttpServletRequest request, Map<String, String> newsData) {
-        newsData.put(SEVERAL_NEWS_TO_DELETE_SESSION, request.getParameter(SEVERAL_NEWS_TO_DELETE));
-    }
 }

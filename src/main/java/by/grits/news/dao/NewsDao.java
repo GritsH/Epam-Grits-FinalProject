@@ -14,7 +14,5 @@ public interface NewsDao {
 
     News findById(Integer id) throws DaoException;
 
-    List<News> findByAuthor(String authorEmail) throws DaoException;
-
     List<News> findAll() throws DaoException;
 }

@@ -15,7 +15,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
-import java.security.NoSuchAlgorithmException;
 
 @WebServlet(name = "controller", urlPatterns = {"/controller"})
 @MultipartConfig

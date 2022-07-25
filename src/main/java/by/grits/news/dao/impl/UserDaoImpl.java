@@ -5,12 +5,8 @@ import by.grits.news.dao.connection.ConnectionPool;
 import by.grits.news.entities.User;
 import by.grits.news.entities.enums.RoleType;
 import by.grits.news.dao.exception.DaoException;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 
 public class UserDaoImpl implements UserDao {
 
@@ -55,32 +51,6 @@ public class UserDaoImpl implements UserDao {
         }
     }
 
-    @Override
-    public void delete(String userEmail) throws DaoException {
-
-
-    }
-
-    @Override
-    public List<User> findAll() throws DaoException {
-        User user;
-        List<User> allUsers = new ArrayList<>();
-        try (Connection connection = ConnectionPool.getInstance().getConnection()) {
-
-            PreparedStatement preparedStatement = connection.prepareStatement(GET_ALL);
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            while (resultSet.next()) {
-                user = new User(resultSet.getString(1), resultSet.getString(2),
-                        resultSet.getString(3), RoleType.valueOf(resultSet.getString(4)),
-                        resultSet.getDate(5).toLocalDate());
-                allUsers.add(user);
-            }
-        } catch (SQLException e) {
-            throw new DaoException("Error while select query: " + e.getMessage());
-        }
-        return allUsers;
-    }
 
     @Override
     public User findByEmail(String email) throws DaoException {

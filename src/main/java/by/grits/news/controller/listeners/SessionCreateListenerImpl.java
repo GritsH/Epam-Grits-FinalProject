@@ -5,9 +5,6 @@ import jakarta.servlet.annotation.WebListener;
 import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.HttpSessionEvent;
 import jakarta.servlet.http.HttpSessionListener;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import static by.grits.news.command.SessionAttribute.CURRENT_PAGE;
 import static by.grits.news.command.SessionAttribute.LOCALE;
 

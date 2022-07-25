@@ -104,22 +104,6 @@ public class NewsDaoImpl implements NewsDao {
     }
 
     @Override
-    public List<News> findByAuthor(String authorEmail) throws DaoException {
-        List<News> selectedNews;
-        try (Connection connection = ConnectionPool.getInstance().getConnection()) {
-            PreparedStatement preparedStatement = connection.prepareStatement(GET_BY_AUTHOR);
-            preparedStatement.setString(1, authorEmail);
-
-            try (ResultSet resultSet = preparedStatement.executeQuery()) {
-                selectedNews = NewsDeserializer.deserialize(resultSet);
-            }
-        } catch (SQLException e) {
-            throw new DaoException("Error while insert query: " + e.getMessage());
-        }
-        return selectedNews;
-    }
-
-    @Override
     public List<News> findAll() throws DaoException {
         List<News> allNews;
         try (Connection connection = ConnectionPool.getInstance().getConnection()) {

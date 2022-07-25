@@ -79,16 +79,6 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-    @Override
-    public List<User> findAllUsers() throws ServiceException {
-        List<User> allUsers;
-        try {
-            allUsers = userDao.findAll();
-        } catch (DaoException e) {
-            throw new ServiceException("Failed getting all users.", e);
-        }
-        return allUsers;
-    }
 
     @Override
     public User findUserByEmail(String userEmail) throws ServiceException {

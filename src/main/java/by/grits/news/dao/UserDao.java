@@ -8,9 +8,6 @@ import java.util.List;
 public interface UserDao {
     void insert(User user) throws DaoException;
 
-    void delete(String userEmail) throws DaoException;
-
-    List<User> findAll() throws DaoException;
 
     User findByEmail(String email) throws DaoException;
 

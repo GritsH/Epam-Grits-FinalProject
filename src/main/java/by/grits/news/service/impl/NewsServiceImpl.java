@@ -16,7 +16,7 @@ import static by.grits.news.command.SessionAttribute.*;
 public class NewsServiceImpl implements NewsService {
 
     private static NewsServiceImpl instance;
-    private static NewsDao newsDao;
+    private NewsDao newsDao;
 
     private NewsServiceImpl() {
     }
@@ -29,8 +29,8 @@ public class NewsServiceImpl implements NewsService {
     }
 
     @Override
-    public void init(NewsDao newsDao1) throws ServiceException {
-        newsDao = newsDao1;
+    public void init(NewsDao newsDao){
+        this.newsDao = newsDao;
     }
 
     @Override
@@ -55,16 +55,6 @@ public class NewsServiceImpl implements NewsService {
         return selectedNews;
     }
 
-    @Override
-    public List<News> findNewsByAuthor(String authorEmail) throws ServiceException {
-        List<News> allNews;
-        try {
-            allNews = newsDao.findByAuthor(authorEmail);
-        } catch (DaoException e) {
-            throw new ServiceException("Try to find all news by author was failed.", e);
-        }
-        return allNews;
-    }
 
     @Override
     public void addNews(Map<String, String> newsData) throws ServiceException {
