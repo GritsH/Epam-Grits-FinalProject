@@ -1,9 +1,10 @@
-package by.grits.news.command.impl;
+package by.grits.news.command.impl.admin;
 
 import by.grits.news.command.Command;
 import by.grits.news.command.PageNavigation;
 import by.grits.news.command.Router;
 import by.grits.news.command.exception.CommandException;
+import by.grits.news.command.impl.admin.AddNewsCommand;
 import by.grits.news.dao.impl.NewsDaoImpl;
 import by.grits.news.service.NewsService;
 import by.grits.news.service.exception.ServiceException;
