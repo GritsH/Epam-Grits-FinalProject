@@ -17,6 +17,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.time.LocalDate;
 import java.util.*;
 
+import static by.grits.news.command.RequestParameter.NEWS_ID;
 import static by.grits.news.command.SessionAttribute.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -37,7 +38,7 @@ class NewsServiceImplTest {
         newsService = NewsServiceImpl.getInstance();
         newsService.init(newsDao);
 
-        newsData.put(NEWS_ID_TO_EDIT_SESSION, "1");
+        newsData.put(NEWS_ID, "1");
         newsData.put(NEWS_TITLE_SESSION, "title");
         newsData.put(NEWS_SUMMARY_SESSION, "summary");
         newsData.put(NEWS_CONTENT_SESSION, "content");
@@ -48,15 +49,17 @@ class NewsServiceImplTest {
     @DisplayName("should add news")
     @Test
     void addNews() throws ServiceException, DaoException {
-        News expectedNews = new News(newsData.get(NEWS_TITLE_SESSION), newsData.get(NEWS_SUMMARY_SESSION),
-                newsData.get(NEWS_CONTENT_SESSION), newsData.get(NEWS_AUTHOR_SESSION));
-        expectedNews.setAddedAt(LocalDate.parse(newsData.get(NEWS_ADDED_AT_SESSION)));
-
         newsService.addNews(newsData);
         verify(newsDao).insert(newsArgumentCaptor.capture());
         verifyNoMoreInteractions(newsDao);
 
-        assertEquals(expectedNews, newsArgumentCaptor.getValue());
+        News capturedNews = newsArgumentCaptor.getValue();
+
+        assertEquals(capturedNews.getTitle(), newsData.get(NEWS_TITLE_SESSION));
+        assertEquals(capturedNews.getSummary(), newsData.get(NEWS_SUMMARY_SESSION));
+        assertEquals(capturedNews.getContent(), newsData.get(NEWS_CONTENT_SESSION));
+        assertEquals(capturedNews.getAuthor(), newsData.get(NEWS_AUTHOR_SESSION));
+        assertEquals(capturedNews.getAddedAt(), LocalDate.parse(newsData.get(NEWS_ADDED_AT_SESSION)));
 
     }
 
@@ -73,19 +76,22 @@ class NewsServiceImplTest {
     @DisplayName("should update news")
     @Test
     void updateNews() throws ServiceException, DaoException {
-
-        News expectedNews = new News(newsData.get(NEWS_TITLE_SESSION), newsData.get(NEWS_SUMMARY_SESSION),
-                newsData.get(NEWS_CONTENT_SESSION), newsData.get(NEWS_AUTHOR_SESSION));
-        expectedNews.setAddedAt(LocalDate.parse(newsData.get(NEWS_ADDED_AT_SESSION)));
-        expectedNews.setId(Integer.parseInt(newsData.get(NEWS_ID_TO_EDIT_SESSION)));
+        newsService.addNews(newsData);
+        verify(newsDao).insert(newsArgumentCaptor.capture());
+        News oldNews = newsArgumentCaptor.getValue();
 
         newsData.put(NEWS_CONTENT_SESSION, "updated_content");
 
         newsService.updateNews(newsData);
         verify(newsDao).update(newsArgumentCaptor.capture());
+        News updatedNews = newsArgumentCaptor.getValue();
         verifyNoMoreInteractions(newsDao);
 
-        assertNotEquals(expectedNews, newsArgumentCaptor.getValue());
+        assertNotEquals(oldNews.getContent(), updatedNews.getContent());
+        assertEquals(oldNews.getTitle(), updatedNews.getTitle());
+        assertEquals(oldNews.getAuthor(), updatedNews.getAuthor());
+        assertEquals(oldNews.getSummary(), updatedNews.getSummary());
+        assertEquals(oldNews.getAddedAt(), updatedNews.getAddedAt());
     }
 
     @DisplayName("should find all news")
