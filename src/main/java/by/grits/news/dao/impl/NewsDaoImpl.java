@@ -111,7 +111,7 @@ public class NewsDaoImpl implements NewsDao {
             PreparedStatement preparedStatement = connection.prepareStatement(GET_ALL);
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            allNews = NewsDeserializer.deserialize(resultSet);
+            allNews = NewsDeserializer.deserializeAllNews(resultSet);
         } catch (SQLException e) {
             throw new DaoException("Error while select query: " + e.getMessage());
         }

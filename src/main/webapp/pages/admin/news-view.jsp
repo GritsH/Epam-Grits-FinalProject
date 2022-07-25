@@ -2,6 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
+<c:set var="news_detailed" value="${detailed_news_ses}"/>
 <fmt:setLocale value="${locale}" scope="session"/>
 <fmt:setBundle basename="properties.pagecontent"/>
 
@@ -59,53 +60,48 @@
         </section>
         <form class="admin-body-content" method="post" action="${path}/controller">
             <input type="hidden" name="command" value="delete_news">
-            <c:forEach var="news" items="${all_news_ses}">
-                <c:choose>
-                    <c:when test="${news.id eq news_id_ses}">
-                        <input type="hidden" name="news_id_to_delete" value="${news.id}">
-                        <div class="admin-news-view">
-                            <div class="admin-news-view__fieldset">
-                                <label class="admin-news-view__label" for="newsTitle">
-                                        ${news_title}
-                                </label>
-                                <p id="newsTitle" class="admin-news-view__text">
-                                        ${news.title}
-                                </p>
-                            </div>
-                            <div class="admin-news-view__fieldset">
-                                <label class="admin-news-view__label" for="newsDate">
-                                        ${news_date}
-                                </label>
-                                <p id="newsDate" class="admin-news-view__text">
-                                        ${news.addedAt}
-                                </p>
-                            </div>
-                            <div class="admin-news-view__fieldset">
-                                <label class="admin-news-view__label" for="newsBrief">
-                                        ${news_summary}
-                                </label>
-                                <p id="newsBrief" class="admin-news-view__text">
-                                        ${news.summary}
-                                </p>
-                            </div>
-                            <div class="admin-news-view__fieldset">
-                                <label class="admin-news-view__label" for="newsContent">
-                                        ${news_content}
-                                </label>
-                                <p id="newsContent" class="admin-news-view__text">
-                                        ${news.content}
-                                </p>
-                            </div>
-                        </div>
-                        <section class="admin-body-content__actions">
-                            <a href="${path}/controller?command=go_to_edit_news_page&news_id_to_edit=${news.id}">
-                                <button type="button" class="admin-button">${edit_button}</button>
-                            </a>
-                            <input id="deleteButton" type="submit" class="admin-button" value="${delete_button}">
-                        </section>
-                    </c:when>
-                </c:choose>
-            </c:forEach>
+            <input type="hidden" name="news_id_to_delete" value="${news_detailed.id}">
+            <div class="admin-news-view">
+                <div class="admin-news-view__fieldset">
+                    <label class="admin-news-view__label" for="newsTitle">
+                        ${news_title}
+                    </label>
+                    <p id="newsTitle" class="admin-news-view__text">
+                        ${news_detailed.title}
+                    </p>
+                </div>
+                <div class="admin-news-view__fieldset">
+                    <label class="admin-news-view__label" for="newsDate">
+                        ${news_date}
+                    </label>
+                    <p id="newsDate" class="admin-news-view__text">
+                        ${news_detailed.addedAt}
+                    </p>
+                </div>
+                <div class="admin-news-view__fieldset">
+                    <label class="admin-news-view__label" for="newsBrief">
+                        ${news_summary}
+                    </label>
+                    <p id="newsBrief" class="admin-news-view__text">
+                        ${news_detailed.summary}
+                    </p>
+                </div>
+                <div class="admin-news-view__fieldset">
+                    <label class="admin-news-view__label" for="newsContent">
+                        ${news_content}
+                    </label>
+                    <p id="newsContent" class="admin-news-view__text">
+                        ${news_detailed.content}
+                    </p>
+                </div>
+            </div>
+            <section class="admin-body-content__actions">
+                <a href="${path}/controller?command=go_to_edit_news_page&news_id_to_edit=${news_detailed.id}">
+                    <button type="button" class="admin-button">${edit_button}</button>
+                </a>
+                <input id="deleteButton" type="submit" class="admin-button" value="${delete_button}">
+            </section>
+
         </form>
     </section>
 </main>

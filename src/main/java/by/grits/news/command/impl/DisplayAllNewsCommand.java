@@ -1,4 +1,4 @@
-package by.grits.news.command.impl.to;
+package by.grits.news.command.impl;
 
 import by.grits.news.command.Command;
 import by.grits.news.command.PageNavigation;
@@ -18,7 +18,7 @@ import java.util.*;
 import static by.grits.news.entities.enums.RoleType.ADMIN;
 import static by.grits.news.entities.enums.RoleType.UNKNOWN;
 
-public class GoToNewsFeedPageCommand implements Command {
+public class DisplayAllNewsCommand implements Command {
     @Override
     public Router execute(HttpServletRequest request) throws CommandException {
         HttpSession session = request.getSession();

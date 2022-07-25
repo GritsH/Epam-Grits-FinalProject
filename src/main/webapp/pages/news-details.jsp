@@ -2,6 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
+<c:set var="news" value="${detailed_news_ses}"/>
 
 <html lang="en">
 <head>
@@ -35,22 +36,15 @@
     </div>
 </header>
 <main class="main">
-    <c:forEach var="news" items="${all_news_ses}">
-        <c:choose>
-            <c:when test="${news.id eq news_id_ses}">
-                <article class="news-article" style="max-height: 100%">
-                    <h2 class="news-article__title">${news.title}</h2>
-                    <p class="news-article__text">${news.content}</p>
-                    <div class="news-article-date">
-                        <img class="news-article-date__img"
-                             src="${path}/pages/static/img/calendar.svg" alt="Date">
-                        <p class="news-article-date__text">${news.addedAt}</p>
-                    </div>
-                </article>
-            </c:when>
-        </c:choose>
-
-    </c:forEach>
+    <article class="news-article" style="max-height: 100%">
+        <h2 class="news-article__title">${news.title}</h2>
+        <p class="news-article__text">${news.content}</p>
+        <div class="news-article-date">
+            <img class="news-article-date__img"
+                 src="${path}/pages/static/img/calendar.svg" alt="Date">
+            <p class="news-article-date__text">${news.addedAt}</p>
+        </div>
+    </article>
 </main>
 </body>
 </html>
