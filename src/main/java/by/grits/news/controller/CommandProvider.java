@@ -4,9 +4,9 @@ import by.grits.news.command.Command;
 import by.grits.news.command.CommandType;
 import by.grits.news.command.impl.*;
 import by.grits.news.command.impl.to.*;
-import by.grits.news.command.impl.to.admin.GoToAddNewsPageCommand;
-import by.grits.news.command.impl.to.admin.GoToEditNewsPageCommand;
-import by.grits.news.command.impl.to.admin.GoToNewsListPageCommand;
+import by.grits.news.command.impl.to.admin.ToAddNewsPageCommand;
+import by.grits.news.command.impl.to.admin.ToEditNewsPageCommand;
+import by.grits.news.command.impl.to.admin.ToNewsListPageCommand;
 import by.grits.news.command.impl.DisplayNewsViewPageCommand;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -29,14 +29,14 @@ public class CommandProvider {
         commands.put(ADD_NEWS, new AddNewsCommand());
         commands.put(EDIT_NEWS, new EditNewsCommand());
         commands.put(DELETE_NEWS, new DeleteNewsCommand());
-        commands.put(GO_TO_SIGNUP_PAGE, new GoToSignupPageCommand());
-        commands.put(GO_TO_LOGIN_PAGE, new GoToLoginPageCommand());
+        commands.put(GO_TO_SIGNUP_PAGE, new ToSignupPageCommand());
+        commands.put(GO_TO_LOGIN_PAGE, new ToLoginPageCommand());
         commands.put(GO_TO_NEWS_PAGE, new DisplayAllNewsCommand());
-        commands.put(GO_TO_NEWS_LIST_PAGE, new GoToNewsListPageCommand());
-        commands.put(GO_TO_ADD_NEWS_PAGE, new GoToAddNewsPageCommand());
+        commands.put(GO_TO_NEWS_LIST_PAGE, new ToNewsListPageCommand());
+        commands.put(GO_TO_ADD_NEWS_PAGE, new ToAddNewsPageCommand());
         commands.put(GO_TO_NEWS_DETAILS_PAGE, new DisplayNewsDetailsCommand());
         commands.put(GO_TO_NEWS_VIEW_PAGE, new DisplayNewsViewPageCommand());
-        commands.put(GO_TO_EDIT_NEWS_PAGE, new GoToEditNewsPageCommand());
+        commands.put(GO_TO_EDIT_NEWS_PAGE, new ToEditNewsPageCommand());
     }
 
     public static Command of(String commandName) {

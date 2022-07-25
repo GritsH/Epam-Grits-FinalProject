@@ -11,15 +11,13 @@ import jakarta.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
 
-public class GoToSignupPageCommand implements Command {
+public class ToLoginPageCommand implements Command {
     @Override
     public Router execute(HttpServletRequest request) throws CommandException {
         HttpSession session = request.getSession();
-        session.removeAttribute(SessionAttribute.REGISTRATION_RESULT);
         Map<String, String> userData = new HashMap<>();
         session.setAttribute(SessionAttribute.USER_DATA_SESSION, userData);
-        String currentPage = Command.extract(request);
-        session.setAttribute(SessionAttribute.CURRENT_PAGE, currentPage);
-        return new Router(PageNavigation.SIGNUP);
+        session.setAttribute(SessionAttribute.CURRENT_PAGE, PageNavigation.LOGIN);
+        return new Router(PageNavigation.LOGIN);
     }
 }
