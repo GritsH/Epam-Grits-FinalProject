@@ -6,7 +6,7 @@ import by.grits.news.command.impl.*;
 import by.grits.news.command.impl.admin.*;
 import by.grits.news.command.impl.to.*;
 import by.grits.news.command.impl.to.admin.ToAddNewsPageCommand;
-import by.grits.news.command.impl.to.admin.ToEditNewsPageCommand;
+import by.grits.news.command.impl.admin.DisplayEditNewsPageCommand;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -35,7 +35,7 @@ public class CommandProvider {
         commands.put(GO_TO_ADD_NEWS_PAGE, new ToAddNewsPageCommand());
         commands.put(GO_TO_NEWS_DETAILS_PAGE, new DisplayNewsDetailsCommand());
         commands.put(GO_TO_NEWS_VIEW_PAGE, new DisplayNewsViewPageCommand());
-        commands.put(GO_TO_EDIT_NEWS_PAGE, new ToEditNewsPageCommand());
+        commands.put(GO_TO_EDIT_NEWS_PAGE, new DisplayEditNewsPageCommand());
     }
 
     public static Command of(String commandName) {

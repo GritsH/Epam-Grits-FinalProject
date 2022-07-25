@@ -4,7 +4,6 @@ import by.grits.news.command.Command;
 import by.grits.news.command.PageNavigation;
 import by.grits.news.command.Router;
 import by.grits.news.command.exception.CommandException;
-import by.grits.news.command.impl.admin.AddNewsCommand;
 import by.grits.news.dao.impl.NewsDaoImpl;
 import by.grits.news.service.NewsService;
 import by.grits.news.service.exception.ServiceException;
@@ -43,7 +42,7 @@ public class EditNewsCommand implements Command {
     }
 
     private void updateNewsDataFromRequest(HttpServletRequest request, Map<String, String> newsData) {
-        newsData.put(NEWS_ID_TO_EDIT_SESSION, request.getParameter(NEWS_ID_TO_EDIT));
+        newsData.put(NEWS_ID, request.getParameter(NEWS_ID));
         newsData.put(NEWS_TITLE_SESSION, request.getParameter(NEWS_TITLE));
         newsData.put(NEWS_SUMMARY_SESSION, request.getParameter(NEWS_SUMMARY));
         newsData.put(NEWS_CONTENT_SESSION, request.getParameter(NEWS_CONTENT));

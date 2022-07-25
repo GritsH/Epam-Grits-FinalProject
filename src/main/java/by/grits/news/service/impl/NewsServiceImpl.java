@@ -11,6 +11,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
+import static by.grits.news.command.RequestParameter.NEWS_ID;
 import static by.grits.news.command.SessionAttribute.*;
 
 public class NewsServiceImpl implements NewsService {
@@ -75,7 +76,7 @@ public class NewsServiceImpl implements NewsService {
 
     @Override
     public void updateNews(Map<String, String> newsData) throws ServiceException {
-        Integer newsId = Integer.parseInt(newsData.get(NEWS_ID_TO_EDIT_SESSION));
+        Integer newsId = Integer.parseInt(newsData.get(NEWS_ID));
         String newsTitle = newsData.get(NEWS_TITLE_SESSION);
         String newsSummary = newsData.get(NEWS_SUMMARY_SESSION);
         String newsContent = newsData.get(NEWS_CONTENT_SESSION);

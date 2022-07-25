@@ -76,7 +76,7 @@
                             <a class="admin-news-actions__link"
                                href="${path}/controller?command=go_to_news_view_page&news_id=${news.id}">${link_view}</a>
                             <a class="admin-news-actions__link"
-                               href="${path}/controller?command=go_to_edit_news_page&news_id_to_edit=${news.id}">${link_edit}</a>
+                               href="${path}/controller?command=go_to_edit_news_page&news_id=${news.id}">${link_edit}</a>
                             <input class="admin-news-actions__checkbox"
                                    type="checkbox" name="checkbox_id" value="${news.id}">
                         </section>

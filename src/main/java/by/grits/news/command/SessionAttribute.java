@@ -9,10 +9,8 @@ public class SessionAttribute {
     public static final String NEWS_TITLE_SESSION = "news_title_ses";
     public static final String NEWS_SUMMARY_SESSION = "news_summary_ses";
     public static final String NEWS_CONTENT_SESSION = "news_content_ses";
-    public static final String NEWS_ID_SESSION = "news_id_ses";
     public static final String NEWS_DETAILS_SESSION = "detailed_news_ses";
     public static final String NEWS_ID_TO_EDIT_SESSION = "news_id_to_edit_ses";
-    public static final String SEVERAL_NEWS_TO_DELETE_SESSION = "several_news_to_delete_ses";
     public static final String NEWS_AUTHOR_SESSION = "news_author_ses";
     public static final String NEWS_ADDED_AT_SESSION = "news_added_at_ses";
     public static final String USER_EMAIL_SESSION = "email_ses";

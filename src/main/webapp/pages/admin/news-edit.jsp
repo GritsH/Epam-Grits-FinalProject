@@ -2,6 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
+<c:set var="news_for_edit" value="${detailed_news_ses}"/>
 <fmt:setLocale value="${locale}" scope="session"/>
 <fmt:setBundle basename="properties.pagecontent"/>
 
@@ -57,58 +58,55 @@
             <p class="admin-body-nav__item">>></p>
             <a class="admin-body-nav__item" href="${path}/controller?command=go_to_add_news_page">${add_news}</a>
         </section>
-        <c:forEach var="news" items="${all_news_ses}">
-            <c:choose>
-                <c:when test="${news.id eq news_id_to_edit_ses}">
-                    <form class="admin-body-content" action="${path}/controller" method="post">
-                        <input type="hidden" name="command" value="edit_news">
-                        <input type="hidden" name="news_id_to_edit" value="${news.id}">
-                        <input type="hidden" name="news_author" value="${news.author}">
-                        <div class="admin-news-view">
-                            <div class="admin-news-view__fieldset">
-                                <label class="admin-news-view__label" for="newsTitle">
-                                    ${news_title}
-                                </label>
-                                <input id="newsTitle" class="admin-news-view__input"
-                                       type="text" maxlength="100" name="news_title"
-                                       value="${news_data_ses['news_title_ses'] = news.title}" required>
-                            </div>
-                            <div class="admin-news-view__fieldset">
-                                <label class="admin-news-view__label" for="newsDate">
-                                    ${added_at}
-                                </label>
-                                <input id="newsDate" class="admin-news-view__input"
-                                       type="date" maxlength="10" name="news_added_at"
-                                       value="${news_data_ses['news_added_at_ses'] = news.addedAt}" required>
-                            </div>
-                            <div class="admin-news-view__fieldset">
-                                <label class="admin-news-view__label" for="newsBrief">
-                                    ${news_summary}
-                                </label>
-                                <textarea id="newsBrief" class="admin-news-view__textarea"
-                                       maxlength="500" name="news_summary"
-                                          value="${news_data_ses['news_summary_ses'] = news.summary}" required></textarea>
-                            </div>
-                            <div class="admin-news-view__fieldset">
-                                <label class="admin-news-view__label" for="newsContent">
-                                    ${news_content}
-                                </label>
-                                <textarea id="newsContent" maxlength="2048" required
-                                       class="admin-news-view__textarea" name="news_content"
-                                          value="${news_data_ses['news_content_ses'] = news.content}"></textarea>
-                            </div>
-                        </div>
-                        <section class="admin-body-content__actions">
-                            <input type="submit" class="admin-button" value="${save}">
-                            <a href="${path}/controller?command=go_to_news_list_page">
-                                <button type="button" class="admin-button">${exit}</button>
-                            </a>
-                        </section>
+        <form class="admin-body-content" action="${path}/controller" method="post">
+            <input type="hidden" name="command" value="edit_news">
+            <input type="hidden" name="news_id" value="${news_for_edit.id}">
+            <input type="hidden" name="news_author" value="${news_for_edit.author}">
+            <div class="admin-news-view">
+                <div class="admin-news-view__fieldset">
+                    <label class="admin-news-view__label" for="newsTitle">
+                        ${news_title}
+                    </label>
+                    <input id="newsTitle" class="admin-news-view__input"
+                           type="text" maxlength="100" name="news_title"
+                           value="${news_data_ses['news_title_ses'] = news_for_edit.title}" required>
+                </div>
+                <div class="admin-news-view__fieldset">
+                    <label class="admin-news-view__label" for="newsDate">
+                        ${added_at}
+                    </label>
+                    <input id="newsDate" class="admin-news-view__input"
+                           type="date" maxlength="10" name="news_added_at"
+                           value="${news_data_ses['news_added_at_ses'] = news_for_edit.addedAt}" required>
+                </div>
+                <div class="admin-news-view__fieldset">
+                    <label class="admin-news-view__label" for="newsBrief">
+                        ${news_summary}
+                    </label>
+                    <textarea id="newsBrief" class="admin-news-view__textarea"
+                              maxlength="500" name="news_summary" required>
+                        ${news_data_ses['news_summary_ses'] = news_for_edit.summary}
+                    </textarea>
+                </div>
+                <div class="admin-news-view__fieldset">
+                    <label class="admin-news-view__label" for="newsContent">
+                        ${news_content}
+                    </label>
+                    <textarea id="newsContent" maxlength="2048" required
+                              class="admin-news-view__textarea" name="news_content">
+                        ${news_data_ses['news_content_ses'] = news_for_edit.content}
+                    </textarea>
+                </div>
+            </div>
+            <section class="admin-body-content__actions">
+                <input type="submit" class="admin-button" value="${save}">
+                <a href="${path}/controller?command=go_to_news_list_page">
+                    <button type="button" class="admin-button">${exit}</button>
+                </a>
+            </section>
 
-                    </form>
-                </c:when>
-            </c:choose>
-        </c:forEach>
+        </form>
+
     </section>
 </main>
 <script src="${path}/pages/static/js/admin/news-edit.js"></script>
