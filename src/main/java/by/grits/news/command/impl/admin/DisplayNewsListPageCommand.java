@@ -1,4 +1,4 @@
-package by.grits.news.command.impl.to.admin;
+package by.grits.news.command.impl.admin;
 
 import by.grits.news.command.Command;
 import by.grits.news.command.PageNavigation;
@@ -13,11 +13,12 @@ import by.grits.news.service.impl.NewsServiceImpl;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ToNewsListPageCommand implements Command {
+public class DisplayNewsListPageCommand implements Command {
     @Override
     public Router execute(HttpServletRequest request) throws CommandException {
         HttpSession session = request.getSession();
@@ -27,6 +28,7 @@ public class ToNewsListPageCommand implements Command {
         try {
             newsService.init(NewsDaoImpl.getInstance());
             allNews = newsService.findAllNews();
+            allNews.sort(Collections.reverseOrder());
         } catch (ServiceException e) {
             throw new CommandException("Could not retrieve all news " + e);
         }
