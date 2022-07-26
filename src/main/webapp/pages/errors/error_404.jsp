@@ -8,10 +8,7 @@
     <title>404</title>
 </head>
 <body>
-<form action="${path}/controller">
-    <h1>404</h1>
-    <input type="hidden" name="command" value="/controller?command=go_to_news_page">
-    <button type="submit">Go to main page</button>
-</form>
+<h1>404. We don't have this page, and we are not sorry</h1>
+<a href="${path}/index.jsp">Go back to main page</a>
 </body>
 </html>
