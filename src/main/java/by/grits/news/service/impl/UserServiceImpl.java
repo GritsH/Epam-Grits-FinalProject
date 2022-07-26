@@ -14,7 +14,6 @@ import org.apache.logging.log4j.Logger;
 
 import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Map;
 
 import static by.grits.news.command.RequestParameter.WRONG_DATA_MARKER;
@@ -23,7 +22,7 @@ import static by.grits.news.command.SessionAttribute.*;
 public class UserServiceImpl implements UserService {
     private static final Logger LOGGER = LogManager.getLogger(UserServiceImpl.class);
     private static UserServiceImpl instance = new UserServiceImpl();
-    private UserDao userDao = UserDaoImpl.getInstance();
+    private UserDao userDao;
 
     private UserServiceImpl() {
     }
@@ -32,6 +31,10 @@ public class UserServiceImpl implements UserService {
         return instance;
     }
 
+    @Override
+    public void init(UserDao userDao) {
+        this.userDao = userDao;
+    }
     @Override
     public User login(Map<String, String> userData) throws ServiceException {
         User user = null;
@@ -90,4 +93,6 @@ public class UserServiceImpl implements UserService {
         }
         return user;
     }
+
+
 }

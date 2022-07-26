@@ -4,6 +4,7 @@ import by.grits.news.command.Command;
 import by.grits.news.command.PageNavigation;
 import by.grits.news.command.Router;
 import by.grits.news.command.exception.CommandException;
+import by.grits.news.dao.impl.UserDaoImpl;
 import by.grits.news.service.UserService;
 import by.grits.news.service.exception.ServiceException;
 import by.grits.news.service.impl.UserServiceImpl;
@@ -25,6 +26,7 @@ public class SignupCommand implements Command {
         HttpSession session = request.getSession();
         Map<String, String> userData = (Map<String, String>) session.getAttribute(USER_DATA_SESSION);
         UserService userService = UserServiceImpl.getInstance();
+        userService.init(UserDaoImpl.getInstance());
         removeTempData(userData);
         updateUserDataFromRequest(request, userData);
         Router router;

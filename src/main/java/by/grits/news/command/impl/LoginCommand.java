@@ -4,6 +4,7 @@ import by.grits.news.command.Command;
 import by.grits.news.command.PageNavigation;
 import by.grits.news.command.Router;
 import by.grits.news.command.exception.CommandException;
+import by.grits.news.dao.impl.UserDaoImpl;
 import by.grits.news.entities.User;
 import by.grits.news.service.UserService;
 import by.grits.news.service.exception.ServiceException;
@@ -33,6 +34,7 @@ public class LoginCommand implements Command {
             updateUserDataFromRequest(request, userData);
         }
         UserService userService = UserServiceImpl.getInstance();
+        userService.init(UserDaoImpl.getInstance());
         Router router = null;
         try {
             PasswordEncoder encoder = new PasswordEncoder();
