@@ -96,7 +96,7 @@
                 </div>
             </div>
             <section class="admin-body-content__actions">
-                <a href="${path}/controller?command=go_to_edit_news_page&news_id_to_edit=${news_detailed.id}">
+                <a href="${path}/controller?command=go_to_edit_news_page&news_id=${news_detailed.id}">
                     <button type="button" class="admin-button">${edit_button}</button>
                 </a>
                 <input id="deleteButton" type="submit" class="admin-button" value="${delete_button}">
