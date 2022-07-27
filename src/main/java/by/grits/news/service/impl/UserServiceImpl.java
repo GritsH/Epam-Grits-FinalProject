@@ -2,7 +2,6 @@ package by.grits.news.service.impl;
 
 import by.grits.news.dao.UserDao;
 import by.grits.news.dao.exception.DaoException;
-import by.grits.news.dao.impl.UserDaoImpl;
 import by.grits.news.entities.User;
 import by.grits.news.entities.enums.RoleType;
 import by.grits.news.service.UserService;
@@ -24,6 +23,7 @@ public class UserServiceImpl implements UserService {
     private static UserServiceImpl instance = new UserServiceImpl();
     private UserDao userDao;
 
+    private PasswordEncoder passwordEncoder = new PasswordEncoder();
     private UserServiceImpl() {
     }
 
@@ -40,7 +40,6 @@ public class UserServiceImpl implements UserService {
         User user = null;
         String email = userData.get(USER_EMAIL_SESSION);
         String password = userData.get(PASSWORD_SESSION);
-        PasswordEncoder passwordEncoder = new PasswordEncoder();
         if (!EmailValidator.validateEmailInput(email)) {
             return null;
         }
@@ -72,7 +71,6 @@ public class UserServiceImpl implements UserService {
                 userData.put(WRONG_EMAIL_EXISTS_SESSION, WRONG_DATA_MARKER);
                 return false;
             }
-            PasswordEncoder passwordEncoder = new PasswordEncoder();
             String encodedPassword = passwordEncoder.encode(password);
             User newUser = new User(email, encodedPassword, "", RoleType.USER, LocalDate.now());
             userDao.insert(newUser);

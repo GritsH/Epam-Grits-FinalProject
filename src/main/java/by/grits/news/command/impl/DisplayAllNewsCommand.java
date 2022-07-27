@@ -19,6 +19,13 @@ import static by.grits.news.entities.enums.RoleType.ADMIN;
 import static by.grits.news.entities.enums.RoleType.UNKNOWN;
 
 public class DisplayAllNewsCommand implements Command {
+    private final NewsService newsService;
+
+    public DisplayAllNewsCommand() {
+        newsService = NewsServiceImpl.getInstance();
+        newsService.init(NewsDaoImpl.getInstance());
+    }
+
     @Override
     public Router execute(HttpServletRequest request) throws CommandException {
         HttpSession session = request.getSession();
@@ -26,9 +33,7 @@ public class DisplayAllNewsCommand implements Command {
         Map<String, String> userData = new HashMap<>();
         String sortType = request.getParameter("sort_type");
         List<News> allNews;
-        NewsService newsService = NewsServiceImpl.getInstance();
         try {
-            newsService.init(NewsDaoImpl.getInstance());
             allNews = newsService.findAllNews();
             if (Objects.equals(sortType, "asc")) {
                 Collections.sort(allNews);

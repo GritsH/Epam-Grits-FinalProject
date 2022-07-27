@@ -19,14 +19,19 @@ import java.util.List;
 import java.util.Map;
 
 public class DisplayNewsListPageCommand implements Command {
+    private final NewsService newsService;
+
+    public DisplayNewsListPageCommand() {
+        newsService = NewsServiceImpl.getInstance();
+        newsService.init(NewsDaoImpl.getInstance());
+    }
+
     @Override
     public Router execute(HttpServletRequest request) throws CommandException {
         HttpSession session = request.getSession();
         Map<String, String> userData = new HashMap<>();
         List<News> allNews;
-        NewsService newsService = NewsServiceImpl.getInstance();
         try {
-            newsService.init(NewsDaoImpl.getInstance());
             allNews = newsService.findAllNews();
             allNews.sort(Collections.reverseOrder());
         } catch (ServiceException e) {

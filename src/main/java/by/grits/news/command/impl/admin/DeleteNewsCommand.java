@@ -18,15 +18,19 @@ import static by.grits.news.command.RequestParameter.*;
 
 public class DeleteNewsCommand implements Command {
     private static final Logger LOGGER = LogManager.getLogger(AddNewsCommand.class);
+    private final NewsService newsService;
+
+    public DeleteNewsCommand() {
+        newsService = NewsServiceImpl.getInstance();
+        newsService.init(NewsDaoImpl.getInstance());
+    }
 
     @Override
     public Router execute(HttpServletRequest request) throws CommandException {
         String newsToDelete = request.getParameter(NEWS_ID_TO_DELETE);
         String[] severalNewsToDelete = request.getParameterValues("checkbox_id");
-        NewsService newsService = NewsServiceImpl.getInstance();
         Router router;
         try {
-            newsService.init(NewsDaoImpl.getInstance());
             if (severalNewsToDelete == null) {
                 newsService.deleteNews(Integer.parseInt(newsToDelete));
             } else {

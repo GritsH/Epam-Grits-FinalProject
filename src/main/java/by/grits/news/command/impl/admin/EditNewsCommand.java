@@ -21,16 +21,20 @@ import static by.grits.news.command.SessionAttribute.NEWS_AUTHOR_SESSION;
 
 public class EditNewsCommand implements Command {
     private static final Logger LOGGER = LogManager.getLogger(AddNewsCommand.class);
+    private final NewsService newsService;
+
+    public EditNewsCommand() {
+        newsService = NewsServiceImpl.getInstance();
+        newsService.init(NewsDaoImpl.getInstance());
+    }
 
     @Override
     public Router execute(HttpServletRequest request) throws CommandException {
         HttpSession session = request.getSession();
         Map<String, String> newsData = (Map<String, String>) session.getAttribute(NEWS_DATA_SESSION);
-        NewsService newsService = NewsServiceImpl.getInstance();
         updateNewsDataFromRequest(request, newsData);
         Router router;
         try {
-            newsService.init(NewsDaoImpl.getInstance());
             newsService.updateNews(newsData);
             session.removeAttribute(NEWS_DATA_SESSION);
             router = new Router(PageNavigation.NEWS_LIST);
