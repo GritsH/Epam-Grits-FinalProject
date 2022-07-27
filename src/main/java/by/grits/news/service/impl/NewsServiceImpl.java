@@ -30,7 +30,7 @@ public class NewsServiceImpl implements NewsService {
     }
 
     @Override
-    public void init(NewsDao newsDao){
+    public void init(NewsDao newsDao) {
         this.newsDao = newsDao;
     }
 

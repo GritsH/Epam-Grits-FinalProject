@@ -19,8 +19,8 @@
 <html lang="${locale}">
 <head>
     <script>
-        if(location.href === "http://localhost:8080/news/controller"){
-            location.href="http://localhost:8080/news/controller?command=go_to_news_list_page";
+        if (location.href === "http://localhost:8080/news/controller") {
+            location.href = "http://localhost:8080/news/controller?command=go_to_news_list_page";
         }
     </script>
     <meta charset="UTF-8">

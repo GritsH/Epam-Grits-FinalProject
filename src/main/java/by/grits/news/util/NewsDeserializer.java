@@ -18,7 +18,7 @@ public class NewsDeserializer {
     public static List<News> deserializeAllNews(ResultSet resultSet) throws SQLException {
         List<News> allNews = new ArrayList<>();
         while (resultSet.next()) {
-           News news = new News(resultSet.getString("title"), resultSet.getString("summary"),
+            News news = new News(resultSet.getString("title"), resultSet.getString("summary"),
                     resultSet.getString("content"), resultSet.getString("author"));
             news.setId(resultSet.getInt("id"));
             news.setAddedAt(resultSet.getDate("added_at").toLocalDate());

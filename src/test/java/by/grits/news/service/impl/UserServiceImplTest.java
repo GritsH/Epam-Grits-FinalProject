@@ -28,14 +28,16 @@ import static org.mockito.Mockito.*;
 class UserServiceImplTest {
     @Mock
     private UserDao userDao;
-    @Mock private User mockedUser;
+    @Mock
+    private User mockedUser;
     UserService userService;
     Map<String, String> userData = new HashMap<>();
     PasswordEncoder passwordEncoder = new PasswordEncoder();
-    @Captor private ArgumentCaptor<User> userArgumentCaptor;
+    @Captor
+    private ArgumentCaptor<User> userArgumentCaptor;
 
     @BeforeEach
-    void setup(){
+    void setup() {
         userService = UserServiceImpl.getInstance();
         userService.init(userDao);
 
@@ -55,7 +57,7 @@ class UserServiceImplTest {
         String encodedPassword = passwordEncoder.encode(userData.get(PASSWORD_SESSION));
 
         assertEquals(capturedUser.getEmailAddress(), userData.get(USER_EMAIL_SESSION));
-        assertEquals(capturedUser.getPassword(),encodedPassword);
+        assertEquals(capturedUser.getPassword(), encodedPassword);
     }
 
     @DisplayName("should find user by email")

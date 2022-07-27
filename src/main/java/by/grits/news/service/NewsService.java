@@ -12,11 +12,11 @@ public interface NewsService {
 
     News findNewsById(int id) throws ServiceException;
 
-
     void addNews(Map<String, String> newsData) throws ServiceException;
 
     void updateNews(Map<String, String> newsData) throws ServiceException;
 
     void deleteNews(Integer newsId) throws ServiceException;
+
     void init(NewsDao newsDao);
 }

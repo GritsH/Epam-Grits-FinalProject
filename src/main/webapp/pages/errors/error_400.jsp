@@ -5,7 +5,7 @@
 
 <html>
 <head>
-  <title>400</title>
+    <title>400</title>
 </head>
 <body>
 <h1>400. Something bad happened</h1>

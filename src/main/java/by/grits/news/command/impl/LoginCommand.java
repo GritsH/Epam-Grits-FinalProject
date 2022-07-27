@@ -40,7 +40,7 @@ public class LoginCommand implements Command {
             PasswordEncoder encoder = new PasswordEncoder();
             String encodedPass = encoder.encode(userData.get("password_ses"));
             User user = userService.login(userData);
-            if(user==null){
+            if (user == null) {
                 user = userService.findUserByEmail(userData.get("email_ses"));
             }
             if (Objects.equals(user.getEmailAddress(), userData.get("email_ses"))

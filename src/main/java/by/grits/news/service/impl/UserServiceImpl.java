@@ -24,6 +24,7 @@ public class UserServiceImpl implements UserService {
     private UserDao userDao;
 
     private PasswordEncoder passwordEncoder = new PasswordEncoder();
+
     private UserServiceImpl() {
     }
 
@@ -35,6 +36,7 @@ public class UserServiceImpl implements UserService {
     public void init(UserDao userDao) {
         this.userDao = userDao;
     }
+
     @Override
     public User login(Map<String, String> userData) throws ServiceException {
         User user = null;
