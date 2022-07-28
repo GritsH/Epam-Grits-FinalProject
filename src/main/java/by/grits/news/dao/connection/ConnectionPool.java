@@ -95,9 +95,9 @@ public class ConnectionPool {
                 ProxyConnection connection = new ProxyConnection(DriverManager.getConnection(DB_URL, PROPERTIES));
                 available.put(connection);
             } catch (SQLException | InterruptedException e) {
-                //LOGGER.error("Error while initialising connection pool: " + e.getMessage());
-                throw new ExceptionInInitializerError(
-                        "Error while initialising connection pool: " + e.getMessage());
+                LOGGER.error("Error while initialising connection pool: " + e.getMessage());
+//                throw new ExceptionInInitializerError(
+//                        "Error while initialising connection pool: " + e.getMessage());
             }
         }
     }
@@ -119,10 +119,10 @@ public class ConnectionPool {
     }
 
     public void releaseConnection(Connection connection) {
-        if (connection instanceof ProxyConnection) {
+        if (connection instanceof ProxyConnection proxyConnection) {
             try {
                 occupied.take();
-                available.put((ProxyConnection) connection);
+                available.put(proxyConnection);
             } catch (InterruptedException e) {
                 LOGGER.error(
                         "Thread killed while waiting "
@@ -157,7 +157,6 @@ public class ConnectionPool {
     }
 
     public void destroyPool() {
-        //todo somehow make this better
         for (int i = 0; i < CONNECTION_POOL_SIZE; i++) {
             try {
                 available.take().finalClose();

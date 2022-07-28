@@ -55,17 +55,11 @@ public class PageFilter implements Filter {
             HttpSession session = request.getSession();
             RoleType role = session.getAttribute(CURRENT_ROLE) == null ?
                     RoleType.UNKNOWN : RoleType.valueOf(session.getAttribute(CURRENT_ROLE).toString());
-            boolean isAcceptable = false;
-            switch (role) {
-                case USER:
-                    isAcceptable = userPages.stream().anyMatch(requestURI::contains);
-                    break;
-                case ADMIN:
-                    isAcceptable = adminPages.stream().anyMatch(requestURI::contains);
-                    break;
-                case UNKNOWN:
-                    isAcceptable = unknownPages.stream().anyMatch(requestURI::contains);
-            }
+            boolean isAcceptable = switch (role) {
+                case USER -> userPages.stream().anyMatch(requestURI::contains);
+                case ADMIN -> adminPages.stream().anyMatch(requestURI::contains);
+                case UNKNOWN -> unknownPages.stream().anyMatch(requestURI::contains);
+            };
 
             if (!isAcceptable) {
                 response.sendError(HttpServletResponse.SC_FORBIDDEN);
