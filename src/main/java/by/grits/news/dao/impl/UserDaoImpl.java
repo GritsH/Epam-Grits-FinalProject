@@ -11,13 +11,9 @@ import java.sql.*;
 public class UserDaoImpl implements UserDao {
 
     private static final String INSERT =
-            "insert into users(email_address, user_password, role_type, added_at) values(?,?,?,?,?)";
-    private static final String DELETE =
-            "delete from users where email_address=?";
+            "insert into users(email_address, user_password, role_type, added_at) values(?,?,?,?)";
     private static final String GET_BY_EMAIL =
             "select email_address,user_password, role_type, added_at from users where email_address=?";
-    private static final String GET_ALL =
-            "select email_address, user_name, user_password, role_type, added_at from users";
     private static final String LOGIN =
             "select email_address, user_password, role_type, added_at from users where email_address=? and user_password=?";
 
