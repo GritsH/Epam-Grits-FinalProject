@@ -1,6 +1,5 @@
 package by.grits.news.entities;
 
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -24,10 +23,6 @@ public class News implements Comparable<News> {
         return author;
     }
 
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-
     public Integer getId() {
         return id;
     }
@@ -46,10 +41,6 @@ public class News implements Comparable<News> {
 
     public String getSummary() {
         return summary;
-    }
-
-    public void setSummary(String summary) {
-        this.summary = summary;
     }
 
     public String getContent() {
