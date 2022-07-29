@@ -74,7 +74,7 @@ public class UserServiceImpl implements UserService {
                 return false;
             }
             String encodedPassword = passwordEncoder.encode(password);
-            User newUser = new User(email, encodedPassword, "", RoleType.USER, LocalDate.now());
+            User newUser = new User(email, encodedPassword, RoleType.USER, LocalDate.now());
             userDao.insert(newUser);
             return true;
         } catch (DaoException | NoSuchAlgorithmException e) {

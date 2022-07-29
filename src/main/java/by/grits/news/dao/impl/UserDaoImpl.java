@@ -11,15 +11,15 @@ import java.sql.*;
 public class UserDaoImpl implements UserDao {
 
     private static final String INSERT =
-            "insert into users(email_address, user_password, user_name, role_type, added_at) values(?,?,?,?,?)";
+            "insert into users(email_address, user_password, role_type, added_at) values(?,?,?,?,?)";
     private static final String DELETE =
             "delete from users where email_address=?";
     private static final String GET_BY_EMAIL =
-            "select email_address,user_password, user_name, role_type, added_at from users where email_address=?";
+            "select email_address,user_password, role_type, added_at from users where email_address=?";
     private static final String GET_ALL =
             "select email_address, user_name, user_password, role_type, added_at from users";
     private static final String LOGIN =
-            "select email_address, user_password, user_name, role_type, added_at from users where email_address=? and user_password=?";
+            "select email_address, user_password, role_type, added_at from users where email_address=? and user_password=?";
 
     private static UserDaoImpl instance;
 
@@ -40,9 +40,8 @@ public class UserDaoImpl implements UserDao {
 
             preparedStatement.setString(1, user.getEmailAddress());
             preparedStatement.setString(2, user.getPassword());
-            preparedStatement.setString(3, user.getName());
-            preparedStatement.setString(4, user.getRole().toString());
-            preparedStatement.setDate(5, Date.valueOf(user.getAddedAt()));
+            preparedStatement.setString(3, user.getRole().toString());
+            preparedStatement.setDate(4, Date.valueOf(user.getAddedAt()));
 
             preparedStatement.executeUpdate();
 
@@ -61,7 +60,7 @@ public class UserDaoImpl implements UserDao {
 
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
-                    user = new User(email, resultSet.getString("user_password"), resultSet.getString("user_name"),
+                    user = new User(email, resultSet.getString("user_password"),
                             RoleType.valueOf(resultSet.getString("role_type")),
                             resultSet.getDate("added_at").toLocalDate());
                 }
@@ -84,7 +83,7 @@ public class UserDaoImpl implements UserDao {
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 resultSet.next();
                 user = new User(resultSet.getString("email_address"), resultSet.getString("user_password"),
-                        resultSet.getString("user_name"), RoleType.valueOf(resultSet.getString("role_type")),
+                        RoleType.valueOf(resultSet.getString("role_type")),
                         resultSet.getDate("added_at").toLocalDate());
             }
         } catch (SQLException e) {
