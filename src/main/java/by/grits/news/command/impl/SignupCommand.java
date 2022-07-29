@@ -31,12 +31,10 @@ public class SignupCommand implements Command {
         updateUserDataFromRequest(request, userData);
         Router router;
         try {
-            Integer sizeBefore = userData.size();
             boolean result = userService.signup(userData);
-            Integer sizeAfter = userData.size();
-            if (sizeAfter.equals(sizeBefore)) {
+            if (result) {
                 session.removeAttribute(USER_DATA_SESSION);
-                session.setAttribute(REGISTRATION_RESULT, result);
+                session.setAttribute(REGISTRATION_RESULT, true);
                 router = new Router(PageNavigation.INDEX);
             } else {
                 session.setAttribute(USER_DATA_SESSION, userData);
