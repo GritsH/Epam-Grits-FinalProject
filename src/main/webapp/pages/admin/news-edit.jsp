@@ -11,6 +11,7 @@
 <fmt:message key="link.logout" var="logout"/>
 <fmt:message key="title.news" var="news"/>
 <fmt:message key="link.add_news" var="add_news"/>
+<fmt:message key="link.news_edit" var="news_edit"/>
 <fmt:message key="link.news_list" var="news_list"/>
 <fmt:message key="title.news_title" var="news_title"/>
 <fmt:message key="title.summary" var="news_summary"/>
@@ -56,7 +57,8 @@
         <section class="admin-body-nav">
             <a class="admin-body-nav__item" href="${path}/controller?command=go_to_news_list_page">${news}</a>
             <p class="admin-body-nav__item">>></p>
-            <a class="admin-body-nav__item" href="${path}/controller?command=go_to_add_news_page">${add_news}</a>
+            <a class="admin-body-nav__item"
+               href="${path}/controller?command=go_to_edit_news_page&news_id=${news_for_edit.id}">${news_edit}</a>
         </section>
         <form class="admin-body-content" action="${path}/controller" method="post">
             <input type="hidden" name="command" value="edit_news">
