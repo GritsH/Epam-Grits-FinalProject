@@ -46,14 +46,9 @@ public class Controller extends HttpServlet {
             String toPage = router.getPage();
 
             switch (router.getType()) {
-                case FORWARD:
-                    request.getRequestDispatcher(toPage).forward(request, response);
-                    break;
-                case REDIRECT:
-                    response.sendRedirect(toPage);
-                    break;
-                default:
-                    response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+                case FORWARD -> request.getRequestDispatcher(toPage).forward(request, response);
+                case REDIRECT -> response.sendRedirect(toPage);
+                default -> response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             }
         } catch (CommandException e) {
             LOGGER.error("Error while command execution " + commandName, e);
