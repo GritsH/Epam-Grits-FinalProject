@@ -6,8 +6,8 @@
     <title>500</title>
 </head>
 <body>
-<h1>500. We fucked up, please go to main page</h1>
-<h3>Let's hope that will help</h3>
+<h1>500. We screwed up, please go to main page</h1>
+<h2>Let's hope that will help</h2>
 <a href="${path}/index.jsp">Go back to main page</a>
 </body>
 </html>

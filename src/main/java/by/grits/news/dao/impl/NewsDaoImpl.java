@@ -21,8 +21,6 @@ public class NewsDaoImpl implements NewsDao {
             "select id, title, summary, content, author, added_at from news where id=?";
     private static final String GET_ALL =
             "select id, title, summary, content, author, added_at from news";
-    private static final String GET_BY_AUTHOR =
-            "select id, title, summary, content, author, added_at from news where author=?";
 
     private static NewsDaoImpl instance;
 

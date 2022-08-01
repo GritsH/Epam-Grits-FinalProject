@@ -28,12 +28,10 @@ public class ChangeLanguageCommand implements Command {
         HttpSession session = request.getSession();
         String currentPage = session.getAttribute(SessionAttribute.CURRENT_PAGE).toString();
         Language newLanguage = Language.valueOf(request.getParameter(RequestParameter.LANGUAGE));
-        switch (newLanguage) {
-            case EN:
-                session.setAttribute(SessionAttribute.LOCALE, Language.EN.getLocale());
-                break;
-            default:
-                session.setAttribute(SessionAttribute.LOCALE, Language.RU.getLocale());
+        if (newLanguage == Language.EN) {
+            session.setAttribute(SessionAttribute.LOCALE, Language.EN.getLocale());
+        } else {
+            session.setAttribute(SessionAttribute.LOCALE, Language.RU.getLocale());
         }
         return new Router(currentPage);
     }
