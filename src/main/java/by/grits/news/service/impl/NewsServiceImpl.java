@@ -5,6 +5,7 @@ import by.grits.news.dao.exception.DaoException;
 import by.grits.news.entities.News;
 import by.grits.news.service.NewsService;
 import by.grits.news.service.exception.ServiceException;
+import by.grits.news.util.NewsDataInputValidator;
 
 
 import java.time.LocalDate;
@@ -65,10 +66,17 @@ public class NewsServiceImpl implements NewsService {
         String author = newsData.get(NEWS_AUTHOR_SESSION);
         String addedAt = newsData.get(NEWS_ADDED_AT_SESSION);
 
+        String allInfo = title + summary + content + addedAt + author;
+        boolean isInputValid = NewsDataInputValidator.validateInput(allInfo);
+
         try {
-            News newsToAdd = new News(title, summary, content, author);
-            newsToAdd.setAddedAt(LocalDate.parse(addedAt));
-            newsDao.insert(newsToAdd);
+            if (isInputValid) {
+                News newsToAdd = new News(title, summary, content, author);
+                newsToAdd.setAddedAt(LocalDate.parse(addedAt));
+                newsDao.insert(newsToAdd);
+            }else{
+                throw new ServiceException("There were special characters in input, not valid.");
+            }
         } catch (DaoException e) {
             throw new ServiceException("Try to add news was failed.", e);
         }
